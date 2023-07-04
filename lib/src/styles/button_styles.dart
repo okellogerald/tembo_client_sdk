@@ -1,0 +1,153 @@
+import 'package:flutter/material.dart';
+
+import '../theme/colors.dart';
+
+const kHorPadding = EdgeInsets.symmetric(horizontal: 15);
+
+class TemboButtonStyle {
+  final Color? backgroundColor, borderColor, foregroundColor;
+  final num? elevation, width, height, borderWidth, borderRadius;
+  final EdgeInsets? padding;
+  final TextStyle? textStyle;
+  final bool? useContinuousBorder;
+
+  const TemboButtonStyle({
+    this.backgroundColor,
+    this.borderColor,
+    this.foregroundColor,
+    this.borderWidth,
+    this.borderRadius,
+    this.elevation,
+    this.width,
+    this.padding = kHorPadding,
+    this.height,
+    this.textStyle,
+    this.useContinuousBorder = false,
+  });
+
+  TextStyle? get getTextStyle => textStyle?.copyWith(
+          color:
+              foregroundColor) /* ??
+      TextStyle(
+        color: foregroundColor,
+        fontWeight: FontWeight.w300,
+        fontFamily: kFontFamily,
+      )*/
+      ;
+
+  const TemboButtonStyle.filled({
+    this.backgroundColor = TemboColors.primary,
+    this.foregroundColor = TemboColors.onPrimary,
+    this.borderRadius,
+    this.elevation,
+    this.width,
+    this.height,
+    this.padding = kHorPadding,
+    this.textStyle,
+    this.useContinuousBorder = false,
+  })  : borderColor = Colors.transparent,
+        borderWidth = 0;
+
+  const TemboButtonStyle.transparent({
+    this.foregroundColor = Colors.black,
+    this.width,
+    this.height,
+    this.padding = kHorPadding,
+    this.textStyle,
+  })  : borderRadius = null,
+        useContinuousBorder = false,
+        elevation = 0,
+        backgroundColor = Colors.transparent,
+        borderColor = Colors.transparent,
+        borderWidth = 0;
+
+  Size? get _size {
+    if (width != null && height != null) {
+      return Size(width!.toDouble(), height!.toDouble());
+    }
+    if (width != null && height == null) {
+      return Size(width!.toDouble(), 40);
+    }
+    if (width == null && height != null) {
+      return Size.fromHeight(height!.toDouble());
+    }
+    if (width == null && height == null) {
+      return const Size.fromHeight(40);
+    }
+    return null;
+  }
+
+  TemboButtonStyle copyWith({
+    Color? backgroundColor,
+    Color? borderColor,
+    Color? foregroundColor,
+    num? elevation,
+    num? width,
+    num? height,
+    num? borderWidth,
+    num? borderRadius,
+    EdgeInsets? padding,
+    TextStyle? textStyle,
+    bool? useContinuousBorder,
+  }) {
+    return TemboButtonStyle(
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      foregroundColor: foregroundColor ?? this.foregroundColor,
+      elevation: elevation ?? this.elevation,
+      width: width ?? this.width,
+      height: height ?? this.height,
+      borderRadius: borderRadius ?? this.borderRadius,
+      borderColor: borderColor ?? this.borderColor,
+      borderWidth: borderWidth ?? this.borderWidth,
+      padding: padding ?? this.padding,
+      textStyle: textStyle ?? this.textStyle,
+      useContinuousBorder: useContinuousBorder ?? this.useContinuousBorder,
+    );
+  }
+
+  TemboButtonStyle merge(TemboButtonStyle other) {
+    return TemboButtonStyle(
+      backgroundColor: other.backgroundColor ?? backgroundColor,
+      elevation: other.elevation ?? elevation,
+      width: other.width ?? width,
+      height: other.height ?? height,
+      borderRadius: other.borderRadius ?? borderRadius,
+      foregroundColor: other.foregroundColor ?? foregroundColor,
+      borderColor: other.borderColor ?? borderColor,
+      borderWidth: other.borderWidth ?? borderWidth,
+      padding: other.padding ?? padding,
+      // textStyle: other.textStyle ?? textStyle,
+      useContinuousBorder: other.useContinuousBorder ?? useContinuousBorder,
+    );
+  }
+
+  bool get _usesContinuousBorder =>
+      useContinuousBorder == null || useContinuousBorder == true;
+
+  ButtonStyle get buttonStyle {
+    return ElevatedButton.styleFrom(
+      elevation: elevation?.toDouble() ?? 0,
+      backgroundColor: backgroundColor,
+      shape: _usesContinuousBorder
+          ? ContinuousRectangleBorder(
+              borderRadius:
+                  BorderRadius.circular(borderRadius?.toDouble() ?? 10),
+              side: BorderSide(
+                color: borderColor ?? Colors.grey,
+                width: borderWidth?.toDouble() ?? 1.0,
+              ),
+            )
+          : RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.circular(borderRadius?.toDouble() ?? 10),
+              side: BorderSide(
+                color: borderColor ?? Colors.grey,
+                width: borderWidth?.toDouble() ?? 1.0,
+              ),
+            ),
+      textStyle: getTextStyle,
+      fixedSize: _size,
+      padding: padding,
+    );
+  }
+}

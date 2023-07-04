@@ -1,33 +1,33 @@
 name: tembo_client
 description: A new Flutter package project.
 version: 0.0.1
-homepage: https://github.com/tembo_client
+repository: https://github.com/okellogerald/tembo_client
 
 environment:
-  sdk: '>=3.0.1 <4.0.0'
+  sdk: ">=3.0.1 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  intl: ^0.18.1
+  smile_identity_plugin:
+    path: ../smile_identity_plugin
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter packages.
 flutter:
-
   fonts:
     - family: circular
       fonts:
-        - asset: assets/fonts/Circular.otf
+        - asset: assets/fonts/CircularStd-Book.otf
           weight: 400
-        - asset: assets/fonts/Circular-Medium.otf
+        - asset: assets/fonts/CircularStd-Medium.otf
           weight: 500
-        - asset: assets/fonts/Circular-Bold.otf
+        - asset: assets/fonts/CircularStd-Bold.otf
           weight: 600
+        - asset: assets/fonts/CircularStd-Black.otf
+          weight: 700
