@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/styles.dart';
+
 class TemboBoxDecoration extends BoxDecoration {
   final double? radius;
   final double? borderWidth;
@@ -15,7 +17,7 @@ class TemboBoxDecoration extends BoxDecoration {
 
   @override
   BorderRadiusGeometry? get borderRadius =>
-      shape == BoxShape.circle ? null : BorderRadius.circular(radius ?? 5);
+      shape == BoxShape.circle ? null : BorderRadius.circular(radius ?? kBorderRadius);
 
   @override
   BoxBorder? get border => borderColor == null && borderWidth == null

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../theme/colors.dart';
+import '../constants/colors.dart';
 
 extension TextStyleExtension on TextStyle? {
   TextStyle get withPrimaryColor => this!.copyWith(color: TemboColors.primary);
-  TextStyle get withSecondaryColor =>
-      this!.copyWith(color: TemboColors.secondary);
 
   TextStyle get withOnPrimaryColor =>
       this!.copyWith(color: TemboColors.onPrimary);

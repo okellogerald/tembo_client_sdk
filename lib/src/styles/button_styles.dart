@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../theme/colors.dart';
-
-const kHorPadding = EdgeInsets.symmetric(horizontal: 15);
+import '../constants/colors.dart';
+import '../constants/styles.dart';
 
 class TemboButtonStyle {
   final Color? backgroundColor, borderColor, foregroundColor;
@@ -66,13 +65,13 @@ class TemboButtonStyle {
       return Size(width!.toDouble(), height!.toDouble());
     }
     if (width != null && height == null) {
-      return Size(width!.toDouble(), 40);
+      return Size(width!.toDouble(), 45);
     }
     if (width == null && height != null) {
       return Size.fromHeight(height!.toDouble());
     }
     if (width == null && height == null) {
-      return const Size.fromHeight(40);
+      return const Size.fromHeight(45);
     }
     return null;
   }
@@ -131,7 +130,7 @@ class TemboButtonStyle {
       shape: _usesContinuousBorder
           ? ContinuousRectangleBorder(
               borderRadius:
-                  BorderRadius.circular(borderRadius?.toDouble() ?? 10),
+                  BorderRadius.circular(borderRadius?.toDouble() ?? kBorderRadius),
               side: BorderSide(
                 color: borderColor ?? Colors.grey,
                 width: borderWidth?.toDouble() ?? 1.0,
@@ -139,7 +138,7 @@ class TemboButtonStyle {
             )
           : RoundedRectangleBorder(
               borderRadius:
-                  BorderRadius.circular(borderRadius?.toDouble() ?? 10),
+                  BorderRadius.circular(borderRadius?.toDouble() ?? kBorderRadius),
               side: BorderSide(
                 color: borderColor ?? Colors.grey,
                 width: borderWidth?.toDouble() ?? 1.0,

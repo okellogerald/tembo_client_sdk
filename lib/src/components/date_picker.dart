@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tembo_client/src/extensions/source.dart';
+import 'package:tembo_client/src/constants/colors.dart';
+import 'package:tembo_client/src/constants/styles.dart';
 
 import '../styles/button_styles.dart';
 import 'text.dart';
@@ -67,13 +68,13 @@ class _TemboDatePickerState extends State<TemboDatePicker> {
         if (widget.active) showPicker();
       },
       style: widget.style ??
-          TemboButtonStyle(
+          const TemboButtonStyle(
             backgroundColor: Colors.transparent,
-            foregroundColor: context.colorScheme.onBackground,
+            foregroundColor: TemboColors.onSurface,
             height: 45,
-            borderWidth: 2,
-            borderColor: context.colorScheme.surface,
-            borderRadius: 10,
+            borderWidth: 1.5,
+            borderColor: TemboColors.onSurface,
+            borderRadius: kBorderRadius,
           ),
       child: Row(
         children: [
@@ -85,9 +86,8 @@ class _TemboDatePickerState extends State<TemboDatePicker> {
             ),
           ),
           const SizedBox(width: 10),
-          Icon(
+          const Icon(
             Icons.calendar_today_outlined,
-            color: context.colorScheme.onSurface,
             size: 20,
           )
         ],

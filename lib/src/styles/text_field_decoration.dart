@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tembo_client/src/extensions/source.dart';
 
-import '../theme/colors.dart';
+import '../constants/colors.dart';
+import '../constants/styles.dart';
 
 enum TemboBorderStyle { underline, outline }
 
@@ -89,14 +90,14 @@ class TemboTextFieldDecoration {
     return hasBorder
         ? borderStyle == TemboBorderStyle.outline
             ? OutlineInputBorder(
-                borderRadius: BorderRadius.circular(borderRadius ?? 5),
+                borderRadius: BorderRadius.circular(borderRadius ?? kBorderRadius),
                 borderSide: BorderSide(
-                  color: borderColor ?? TemboColors.background,
-                  width: borderWidth ?? 1.0,
+                  color: borderColor ?? TemboColors.onSurface,
+                  width: borderWidth ?? 1.5,
                 ),
               )
             : UnderlineInputBorder(
-                borderRadius: BorderRadius.circular(borderRadius ?? 5),
+                borderRadius: BorderRadius.circular(borderRadius ?? kBorderRadius),
                 borderSide: BorderSide(
                   color: borderColor ?? TemboColors.background,
                   width: borderWidth ?? 1.0,
