@@ -13,6 +13,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
           fontFamily: "circular",
+          primaryColor: Colors.black,
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.transparent,
             iconTheme: IconThemeData(color: Colors.black),
@@ -24,18 +25,29 @@ class MainApp extends StatelessWidget {
             ),
           )),
       home: Scaffold(
-        body: Builder(builder: (context) {
-          return Center(
-            child: TextButton(
-              onPressed: () {
-                final route = MaterialPageRoute(
-                    builder: (context) => const BasicInfoPage());
-                Navigator.of(context).push(route);
-              },
-              child: Text("Start"),
-            ),
-          );
-        }),
+        body: Builder(
+          builder: (context) {
+            return Center(
+              child: TextButton(
+                onPressed: () {
+                  final route = MaterialPageRoute(
+                      builder: (context) => const BasicInfoPage());
+                  Navigator.of(context).push(route);
+                },
+                style: TextButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 10,
+                    ),
+                    shape: const RoundedRectangleBorder(side: BorderSide())),
+                child: const Text(
+                  "START",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smile_identity_plugin/models/smile_data.dart';
+import 'package:smile_identity_plugin/smile_identity_plugin.dart';
 import 'package:tembo_client/src/styles/source.dart';
 
 import '../components/exports.dart';
@@ -48,13 +50,26 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
           ),
           const SizedBox(height: 15),
           TemboTextButton(
-            onPressed: () {},
-            style: TemboButtonStyle.filled(),
-            child: TemboText("Continue"),
+            onPressed: getPlatfromVersion,
+            style: const TemboButtonStyle.filled(),
+            child: const TemboText("Continue"),
           )
         ],
       ),
     );
+  }
+
+  void getPlatfromVersion() async {
+    final plugin = SmileIdentityPlugin();
+    final data = SmileData(
+      firstName: "John",
+      lastName: "Doe",
+      country: "KE",
+      idNumber: "10000",
+      idType: "NATIONAL_ID",
+      userId: "user-id",
+    );
+     await plugin.capture(data);
   }
 
   void onDateSelected(DateTime value) {
