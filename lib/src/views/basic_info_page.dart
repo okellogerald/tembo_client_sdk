@@ -18,6 +18,22 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
   final lastNameController = TextEditingController();
   DateTime? date;
 
+  final smilePlugin = SmileIdentityPlugin();
+
+  @override
+  void initState() {
+    super.initState();
+
+    smilePlugin.onStateChanged.listen((state) {
+      if (state.hasError) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.error!)));
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +76,6 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
   }
 
   void getPlatfromVersion() async {
-    final plugin = SmileIdentityPlugin();
     final data = SmileData(
       firstName: "John",
       lastName: "Doe",
@@ -68,8 +83,10 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
       idNumber: "10000",
       idType: "NATIONAL_ID",
       userId: "user-id",
+      captureType: CaptureType.selfie,
+      jobType: 1,
     );
-     await plugin.capture(data);
+    await smilePlugin.capture(data);
   }
 
   void onDateSelected(DateTime value) {
