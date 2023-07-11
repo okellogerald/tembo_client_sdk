@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:smile_identity_plugin/models/smile_data.dart';
 import 'package:smile_identity_plugin/smile_identity_plugin.dart';
 import 'package:tembo_client/src/styles/source.dart';
+import 'package:tembo_client/src/utils/navigation_utils.dart';
+import 'package:tembo_client/src/views/submit_page.dart';
 
 import '../components/exports.dart';
 import '../constants/styles.dart';
+
+final smilePlugin = SmileIdentityPlugin();
 
 class BasicInfoPage extends StatefulWidget {
   const BasicInfoPage({super.key});
@@ -18,8 +22,6 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
   final lastNameController = TextEditingController();
   DateTime? date;
 
-  final smilePlugin = SmileIdentityPlugin();
-
   @override
   void initState() {
     super.initState();
@@ -31,6 +33,9 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
               .showSnackBar(SnackBar(content: Text(state.error!)));
         }
       }
+      if (state.captured) {
+        push(context, page: const SubmitPage());
+      }
     });
   }
 
@@ -39,7 +44,6 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
     return Scaffold(
       appBar: AppBar(
         title: const TemboText("Basic Info Page"),
-        elevation: 0,
       ),
       body: ListView(
         padding: kHorPadding.copyWith(top: 20),

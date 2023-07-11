@@ -25,8 +25,9 @@ class TemboButtonStyle {
   });
 
   TextStyle? get getTextStyle => textStyle?.copyWith(
-          color:
-              foregroundColor) /* ??
+        fontWeight: FontWeight.bold,
+        color: foregroundColor,
+      ) /* ??
       TextStyle(
         color: foregroundColor,
         fontWeight: FontWeight.w300,
@@ -129,16 +130,16 @@ class TemboButtonStyle {
       backgroundColor: backgroundColor,
       shape: _usesContinuousBorder
           ? ContinuousRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(borderRadius?.toDouble() ?? kBorderRadius),
+              borderRadius: BorderRadius.circular(
+                  borderRadius?.toDouble() ?? kBorderRadius),
               side: BorderSide(
                 color: borderColor ?? Colors.grey,
                 width: borderWidth?.toDouble() ?? 1.0,
               ),
             )
           : RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(borderRadius?.toDouble() ?? kBorderRadius),
+              borderRadius: BorderRadius.circular(
+                  borderRadius?.toDouble() ?? kBorderRadius),
               side: BorderSide(
                 color: borderColor ?? Colors.grey,
                 width: borderWidth?.toDouble() ?? 1.0,
