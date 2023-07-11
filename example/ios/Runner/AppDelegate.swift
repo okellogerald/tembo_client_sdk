@@ -1,6 +1,5 @@
 import UIKit
 import Flutter
-import smile_identity_plugin
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -8,12 +7,7 @@ import smile_identity_plugin
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-      GeneratedPluginRegistrant.register(with: self)
-      let controller : FlutterViewController = window?.rootViewController as! FlutterViewController;
-        
-      let smileIdentityPlugin = SwiftSmilePlugin(binaryMessenger: controller.binaryMessenger);
-      smileIdentityPlugin.init()
-      
+    GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }

@@ -15,12 +15,11 @@ class MainApp extends StatelessWidget {
           fontFamily: "circular",
           primaryColor: Colors.black,
           appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.transparent,
             iconTheme: IconThemeData(color: Colors.black),
+            elevation: 0,
             titleTextStyle: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w500,
-              color: Colors.black87,
               fontFamily: "circular",
             ),
           )),
