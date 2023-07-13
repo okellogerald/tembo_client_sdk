@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:smile_identity_plugin/models/smile_data.dart';
 import 'package:smile_identity_plugin/smile_identity_plugin.dart';
+import 'package:tembo_client/src/extensions/context_extension.dart';
+import 'package:tembo_client/src/extensions/textstyle_extension.dart';
 import 'package:tembo_client/src/styles/source.dart';
 import 'package:tembo_client/src/utils/navigation_utils.dart';
+import 'package:tembo_client/src/views/gender_pick_page.dart';
 import 'package:tembo_client/src/views/submit_page.dart';
 
+import '../components/bottom_nav_bar_button.dart';
 import '../components/exports.dart';
 import '../constants/styles.dart';
 
@@ -27,13 +30,16 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
     super.initState();
 
     smilePlugin.onStateChanged.listen((state) {
-      if (state.hasError) {
+      final captureError = state.captureState.error;
+      if (captureError != null) {
         if (context.mounted) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.error!)));
+              .showSnackBar(SnackBar(content: Text(captureError)));
         }
       }
-      if (state.captured) {
+
+      if (state.captureState.didCaptureSuccessfully &&
+          state.submitState.isNone) {
         push(context, page: const SubmitPage());
       }
     });
@@ -50,47 +56,47 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
         children: [
           TemboTextField(
             controller: firstNameController,
+            style: context.textTheme.bodyLarge.withFW400.withSize(22),
+            textCapitalization: TextCapitalization.words,
             decoration: const TemboTextFieldDecoration(
               hint: "First Name",
-              borderColor: Colors.grey,
+              borderColor: Colors.black54,
+              size: Size.fromHeight(55),
+              padding: EdgeInsets.symmetric(horizontal: 20),
             ),
           ),
           const SizedBox(height: 15),
           TemboTextField(
             controller: lastNameController,
+            style: context.textTheme.bodyLarge.withFW400.withSize(22),
+            textCapitalization: TextCapitalization.words,
             decoration: const TemboTextFieldDecoration(
               hint: "Last Name",
-              borderColor: Colors.grey,
+              borderColor: Colors.black54,
+              size: Size.fromHeight(55),
+              padding: EdgeInsets.symmetric(horizontal: 20),
             ),
           ),
           const SizedBox(height: 15),
           TemboDatePicker(
             hint: "Date of birth",
+            value: date,
             onSelected: onDateSelected,
+            style: const TemboButtonStyle.outline(
+              height: 55,
+              borderColor: Colors.black54,
+            ),
           ),
-          const SizedBox(height: 15),
-          TemboTextButton(
-            onPressed: getPlatfromVersion,
-            style: const TemboButtonStyle.filled(),
-            child: const TemboText("Continue"),
-          )
         ],
+      ),
+      bottomNavigationBar: BottomNavBarButton(
+        callback: getPlatfromVersion,
       ),
     );
   }
 
   void getPlatfromVersion() async {
-    final data = SmileData(
-      firstName: "John",
-      lastName: "Doe",
-      country: "KE",
-      idNumber: "10000",
-      idType: "NATIONAL_ID",
-      userId: "user-id",
-      captureType: CaptureType.selfie,
-      jobType: 1,
-    );
-    await smilePlugin.capture(data);
+    push(context, page: const GenderPickPage());
   }
 
   void onDateSelected(DateTime value) {

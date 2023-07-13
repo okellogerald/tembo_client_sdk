@@ -48,6 +48,19 @@ class TemboButtonStyle {
   })  : borderColor = Colors.transparent,
         borderWidth = 0;
 
+  const TemboButtonStyle.outline({
+    this.foregroundColor = Colors.black,
+    this.borderColor = Colors.black,
+    this.borderWidth = 1.5,
+    this.borderRadius = kBorderRadius,
+    this.width,
+    this.height,
+    this.padding = kHorPadding,
+    this.textStyle,
+  })  : useContinuousBorder = false,
+        elevation = 0,
+        backgroundColor = Colors.transparent;
+
   const TemboButtonStyle.transparent({
     this.foregroundColor = Colors.black,
     this.width,

@@ -29,9 +29,7 @@ class MainApp extends StatelessWidget {
             return Center(
               child: TextButton(
                 onPressed: () {
-                  final route = MaterialPageRoute(
-                      builder: (context) => const BasicInfoPage());
-                  Navigator.of(context).push(route);
+                  startTemboVerification(context);
                 },
                 style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
