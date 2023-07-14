@@ -206,7 +206,7 @@ class TemboTextFormField extends FormField<String> {
                 textDirection: textDirection,
                 textCapitalization: textCapitalization,
                 autofocus: autofocus,
-                toolbarOptions: toolbarOptions,
+             //   toolbarOptions: toolbarOptions,
                 readOnly: readOnly,
                 showCursor: showCursor,
                 obscuringCharacter: obscuringCharacter,

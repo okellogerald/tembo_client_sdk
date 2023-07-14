@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smile_identity_plugin/models/smile_data.dart';
 import 'package:tembo_client/src/components/exports.dart';
 import 'package:tembo_client/src/extensions/context_extension.dart';
 import 'package:tembo_client/src/extensions/textstyle_extension.dart';
@@ -7,7 +6,6 @@ import 'package:tembo_client/src/styles/button_styles.dart';
 import 'package:tembo_client/src/utils/navigation_utils.dart';
 import 'package:tembo_client/tembo_client.dart';
 
-import 'data_verify_page.dart';
 
 class SubmitPage extends StatefulWidget {
   const SubmitPage({super.key});
