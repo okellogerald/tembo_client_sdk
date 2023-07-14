@@ -6,7 +6,6 @@ import 'package:tembo_client/src/models/country.dart';
 import 'package:tembo_client/tembo_client.dart';
 
 import '../components/bottom_nav_bar_button.dart';
-import '../components/exports.dart';
 import '../utils/navigation_utils.dart';
 
 class CountryPickPage extends StatefulWidget {

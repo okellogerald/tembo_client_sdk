@@ -6,7 +6,6 @@ import 'package:tembo_client/src/constants/constants.dart';
 import 'package:tembo_client/src/models/gender.dart';
 import 'package:tembo_client/src/views/id_page.dart';
 
-import '../components/exports.dart';
 import '../utils/navigation_utils.dart';
 
 class GenderPickPage extends StatefulWidget {

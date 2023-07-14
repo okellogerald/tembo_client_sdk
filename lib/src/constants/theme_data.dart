@@ -35,7 +35,7 @@ const _pageTitleStyle = TextStyle(
 const _optionButtonStyle = TemboButtonStyle(
   height: 45,
   backgroundColor: Color(0xFFEEEEEE),
-  borderRadius: kBorderRadius,
+  borderRadius: 30,
   borderColor: TemboColors.primary,
   borderWidth: 1.5,
   foregroundColor: TemboColors.primary,
@@ -50,7 +50,7 @@ const _optionButtonStyle = TemboButtonStyle(
 const _unselectedOptionButtonStyle = TemboButtonStyle(
   height: 45,
   backgroundColor: TemboColors.surface,
-  borderRadius: kBorderRadius,
+  borderRadius: 30,
   borderColor: TemboColors.border,
   borderWidth: 1,
   foregroundColor: Color.fromRGBO(0, 0, 0, .7),
@@ -88,6 +88,7 @@ const _datePickerStyle = TemboDatePickerDecoration(
 
 const _textFieldDecoration = TemboTextFieldDecoration(
   borderColor: Colors.black54,
+  fillColor: Color.fromARGB(255, 247, 247, 247),
   borderRadius: kBorderRadius,
   size: Size.fromHeight(50),
   hintStyle: _hintStyle,

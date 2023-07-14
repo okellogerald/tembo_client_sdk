@@ -44,7 +44,12 @@ NavigatorState? _getNavigatorInstance(BuildContext context,
   return navigatorState;
 }
 
-showSnackbar(String message, {bool isError = true, int? duration}) {
+showSnackbar(
+  BuildContext context,
+  String message, {
+  bool isError = true,
+  int? duration,
+}) {
   rootScaffoldMessengerKey.currentState!.showSnackBar(TemboSnackbar(
     message,
     isError,
@@ -52,8 +57,17 @@ showSnackbar(String message, {bool isError = true, int? duration}) {
   ));
 }
 
-showErrorSnackbar(String message, [int? duration]) {
-  showSnackbar(message, isError: true, duration: duration);
+showErrorSnackbar(BuildContext context, String message, [int? duration]) {
+  showSnackbar(
+    context,
+    message,
+    isError: true,
+    duration: duration,
+  );
 }
 
-showInfoSnackbar(String message) => showSnackbar(message, isError: false);
+showInfoSnackbar(BuildContext context, String message) => showSnackbar(
+      context,
+      message,
+      isError: false,
+    );
