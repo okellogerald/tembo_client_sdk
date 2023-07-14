@@ -2,28 +2,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tembo_client/src/constants/colors.dart';
-import 'package:tembo_client/src/constants/styles.dart';
 
-import '../styles/button_styles.dart';
+import 'package:tembo_client/tembo_client.dart';
+
 import 'text.dart';
 import 'text_button.dart';
 
 class TemboDatePicker extends StatefulWidget {
   final DateTime? value;
   final ValueChanged<DateTime> onSelected;
-  final String? hint;
   final bool active, dobPicker;
-  final TemboButtonStyle? style;
+  final String? hint;
 
   const TemboDatePicker({
     super.key,
     this.value,
     required this.onSelected,
-    this.hint,
     this.active = true,
     this.dobPicker = false,
-    this.style,
+    this.hint,
   });
 
   @override
@@ -63,33 +60,31 @@ class _TemboDatePickerState extends State<TemboDatePicker> {
 
   @override
   Widget build(BuildContext context) {
+    final decoration = theme.datePickerDecoration.copyWith(hint: widget.hint);
+
     return TemboTextButton(
       onPressed: () {
         if (widget.active) showPicker();
       },
-      style: widget.style ??
-          const TemboButtonStyle(
-            backgroundColor: Colors.transparent,
-            foregroundColor: TemboColors.onSurface,
-            height: 45,
-            borderWidth: 1.5,
-            borderColor: TemboColors.onSurface,
-            borderRadius: kBorderRadius,
-          ),
+      style: decoration.buttonStyle,
       child: Row(
         children: [
           Expanded(
-            child: TemboText(
-              selectedDate != null
-                  ? DateFormat("dd/MM/yyyy").format(selectedDate!)
-                  : widget.hint ?? "",
-            ),
+            child: selectedDate != null
+                ? TemboText(DateFormat("dd/MM/yyyy").format(selectedDate!))
+                : TemboText(
+                    selectedDate != null
+                        ? DateFormat("dd/MM/yyyy").format(selectedDate!)
+                        : decoration.hint,
+                    style: decoration.hintStyle,
+                  ),
           ),
           const SizedBox(width: 10),
-          const Icon(
-            Icons.calendar_today_outlined,
-            size: 20,
-          )
+          decoration.icon ??
+              const Icon(
+                Icons.calendar_today_outlined,
+                size: 20,
+              )
         ],
       ),
     );

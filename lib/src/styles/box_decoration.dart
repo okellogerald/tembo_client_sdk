@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/styles.dart';
+import '../constants/constants.dart';
 
 class TemboBoxDecoration extends BoxDecoration {
   final double? radius;

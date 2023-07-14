@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client/src/constants/styles.dart';
-import 'package:tembo_client/src/extensions/source.dart';
+import 'package:tembo_client/tembo_client.dart';
 
-import '../styles/source.dart';
 import 'exports.dart';
 
 class TemboRadioButton<T> extends StatelessWidget {
@@ -24,21 +22,9 @@ class TemboRadioButton<T> extends StatelessWidget {
     final selectedValue = selected(value);
     return TemboTextButton(
       onPressed: () => onPressed(value),
-      style: TemboButtonStyle(
-        height: 45,
-        backgroundColor: Colors.grey.shade200,
-        borderRadius: kBorderRadius,
-        borderColor:
-            selectedValue ? context.colorScheme.primary : Colors.black54,
-        borderWidth: selectedValue ? 2.0 : 0.0,
-        foregroundColor: selectedValue
-            ? context.colorScheme.primary
-            : context.colorScheme.onSurface,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        textStyle: context.textTheme.bodyMedium!.copyWith(
-          fontWeight: selectedValue ? FontWeight.bold : FontWeight.normal,
-        ),
-      ),
+      style: selectedValue
+          ? theme.selectedOptionButtonStyle
+          : theme.unselecetdOptionButtonStyle,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

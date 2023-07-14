@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tembo_client/src/constants/styles.dart';
+import 'package:tembo_client/src/constants/constants.dart';
 import 'package:tembo_client/src/extensions/source.dart';
 
 import '../styles/source.dart';

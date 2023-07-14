@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
-import '../constants/styles.dart';
+import '../constants/constants.dart';
 
 class TemboButtonStyle {
   final Color? backgroundColor, borderColor, foregroundColor;
@@ -25,15 +25,8 @@ class TemboButtonStyle {
   });
 
   TextStyle? get getTextStyle => textStyle?.copyWith(
-        fontWeight: FontWeight.bold,
         color: foregroundColor,
-      ) /* ??
-      TextStyle(
-        color: foregroundColor,
-        fontWeight: FontWeight.w300,
-        fontFamily: kFontFamily,
-      )*/
-      ;
+      );
 
   const TemboButtonStyle.filled({
     this.backgroundColor = TemboColors.primary,

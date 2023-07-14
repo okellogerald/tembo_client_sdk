@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client/src/extensions/source.dart';
 
 import '../constants/colors.dart';
-import '../constants/styles.dart';
+import '../constants/constants.dart';
 
 enum TemboBorderStyle { underline, outline }
 
@@ -10,6 +9,7 @@ class TemboTextFieldDecoration {
   final Color? fillColor;
   final TextStyle hintStyle;
   final TextStyle? labelStyle;
+  final TextStyle? valueStyle;
   final String? hint, label;
   final double? borderWidth;
   final double? borderRadius;
@@ -29,6 +29,7 @@ class TemboTextFieldDecoration {
       fontWeight: FontWeight.w400,
       fontSize: 15,
     ),
+    this.valueStyle,
     this.hint,
     this.label,
     this.labelStyle,
@@ -43,8 +44,6 @@ class TemboTextFieldDecoration {
     this.padding,
     this.useDefinedStylesForDisabledBorder = false,
   });
-
-  TextStyle get valueStyle => hintStyle.withColor(TemboColors.onBackground);
 
   TemboTextFieldDecoration copyWith({
     Color? fillColor,

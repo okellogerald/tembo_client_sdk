@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tembo_client/tembo_client.dart';
 
-import '../styles/source.dart';
 import 'exports.dart';
 
 class BottomNavBarButton extends StatelessWidget {
@@ -14,11 +14,10 @@ class BottomNavBarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return SafeArea(
       child: TemboTextButton(
         onPressed: callback,
-        style: const TemboButtonStyle.filled(height: 60),
+        style: theme.bottomNavBarButtonStyle,
         child: TemboText(text ?? "Next"),
       ),
     );

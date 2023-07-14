@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:tembo_client/src/constants/styles.dart';
+import 'package:tembo_client/src/constants/constants.dart';
 import 'package:tembo_client/src/extensions/source.dart';
 
 import 'exports.dart';

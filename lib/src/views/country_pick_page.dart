@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tembo_client/src/components/chip_picker.dart';
-import 'package:tembo_client/src/constants/styles.dart';
+import 'package:tembo_client/src/components/page_title.dart';
+import 'package:tembo_client/src/constants/constants.dart';
 import 'package:tembo_client/src/models/country.dart';
-import 'package:tembo_client/src/styles/source.dart';
 import 'package:tembo_client/tembo_client.dart';
 
 import '../components/bottom_nav_bar_button.dart';
@@ -22,13 +22,13 @@ class _CountryPickPageState extends State<CountryPickPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const TemboText("Choose Your Country"),
-      ),
+      appBar: AppBar(),
       body: Padding(
         padding: kPagePadding,
-        child: Column(
+        child: ListView(
           children: [
+            const PageTitle(title: "Choose Your Country"),
+            const SizedBox(height: 15),
             TemboPicker2(
               options: supportedCountries,
               onChange: onCountrySelected,

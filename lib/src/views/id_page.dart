@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:smile_identity_plugin/models/smile_data.dart';
 import 'package:tembo_client/src/components/bottom_nav_bar_button.dart';
-import 'package:tembo_client/src/components/options_picker.dart';
+import 'package:tembo_client/src/components/chip_picker.dart';
+import 'package:tembo_client/src/components/page_title.dart';
+import 'package:tembo_client/src/extensions/context_extension.dart';
 import 'package:tembo_client/src/models/doc_type.dart';
+import 'package:tembo_client/tembo_client.dart';
 
 import '../components/exports.dart';
-import '../constants/styles.dart';
-import '../styles/source.dart';
-import 'basic_info_page.dart';
+import '../constants/constants.dart';
 
 class IDPage extends StatefulWidget {
   const IDPage({super.key});
@@ -24,13 +25,24 @@ class _IDPageState extends State<IDPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const TemboText("Identity Document Data"),
-      ),
+      appBar: AppBar(),
       body: ListView(
-        padding: kHorPadding.copyWith(top: 20),
+        padding: kPagePadding,
         children: [
-          TemboPicker(
+          const PageTitle(title: "Identity Document Data"),
+          const SizedBox(height: 15),
+          TemboText(
+            "Document Type",
+            style: context.textTheme.bodyLarge,
+          ),
+          const SizedBox(height: 10),
+          TemboPicker2(
+            options: VerDocumentType.values,
+            onChange: onTypeSelected,
+            label: (t) => t.jsonKey,
+            selected: (p0) => p0 == type,
+          ),
+          /*  TemboPicker(
             options: VerDocumentType.values,
             onChange: onTypeSelected,
             name: (t) => t.jsonKey,
@@ -38,26 +50,23 @@ class _IDPageState extends State<IDPage> {
             dropdownTitle: "Choose Document Type:",
             hint: "Doc Type",
             style: const TemboButtonStyle.outline(),
-          ),
-          const SizedBox(height: 15),
+          ),*/
+          const SizedBox(height: 25),
           TemboTextField(
             controller: numberController,
-            decoration: const TemboTextFieldDecoration(
-              hint: "Document Number",
-              borderColor: Colors.grey,
-            ),
+            hint: "Document Number",
           ),
           const SizedBox(height: 15),
           TemboDatePicker(
-            hint: "Issue Date",
             onSelected: onIssueDateSelected,
             value: issueDate,
+            hint: "Issue Date",
           ),
           const SizedBox(height: 15),
           TemboDatePicker(
-            hint: "Expiry Date",
             onSelected: onExpiryDateSelected,
             value: expirryDate,
+            hint: "Expiry Date",
           ),
         ],
       ),
@@ -77,6 +86,7 @@ class _IDPageState extends State<IDPage> {
 
   void onTypeSelected(VerDocumentType value) {
     type = value;
+    setState(() {});
   }
 
   void next() async {

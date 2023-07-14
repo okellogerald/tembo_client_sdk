@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tembo_client/src/extensions/source.dart';
+import 'package:tembo_client/tembo_client.dart';
 
-import '../styles/source.dart';
 import 'text.dart';
 
 class TemboTextField extends StatefulWidget {
   final TextEditingController? controller;
-  final TemboTextFieldDecoration? decoration;
   final bool? obscureText;
   final String? Function(String?)? validator;
   final ValueChanged<String>? onChanged;
@@ -16,33 +15,13 @@ class TemboTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final bool? enabled;
   final List<TextInputFormatter>? formatters;
-  final TextStyle? style;
   final TextAlign? textAlign;
+  final String? hint;
 
-  final bool _obscured;
   final bool canBeUnobscured;
-
-  const TemboTextField.obscured({
-    this.controller,
-    this.decoration,
-    this.obscureText,
-    this.validator,
-    this.focusNode,
-    this.enabled,
-    this.textCapitalization,
-    this.onChanged,
-    this.textInputType,
-    this.formatters,
-    this.canBeUnobscured = true,
-    this.style,
-    Key? key,
-    this.textAlign,
-  })  : _obscured = true,
-        super(key: key);
 
   const TemboTextField({
     this.controller,
-    this.decoration,
     this.obscureText,
     this.validator,
     this.focusNode,
@@ -51,11 +30,10 @@ class TemboTextField extends StatefulWidget {
     this.onChanged,
     this.textInputType,
     this.formatters,
-    this.style,
+    this.hint,
     Key? key,
     this.textAlign,
-  })  : _obscured = false,
-        canBeUnobscured = false,
+  })  : canBeUnobscured = false,
         super(key: key);
 
   @override
@@ -72,7 +50,7 @@ class _TemboTextFieldState extends State<TemboTextField> {
     super.initState();
     final controller = widget.controller;
 
-    if (controller != null && widget._obscured) {
+    if (controller != null) {
       controllerHasTextNotifier.value = controller.text.isNotEmpty;
       controller.addListener(() {
         controllerHasTextNotifier.value = controller.text.isNotEmpty;
@@ -82,13 +60,14 @@ class _TemboTextFieldState extends State<TemboTextField> {
 
   @override
   Widget build(BuildContext context) {
-    final bool canExpand = widget.decoration?.size != null;
+    final decoration = theme.textFieldDecoration.copyWith(hint: widget.hint);
+    final bool canExpand = decoration.size != null;
 
     final textfield = TextFormField(
-      style: widget.style ?? context.textTheme.bodyMedium,
+      style: decoration.valueStyle,
       controller: widget.controller,
       focusNode: widget.focusNode,
-      decoration: widget.decoration?.getInputDecoration.copyWith(
+      decoration: decoration.getInputDecoration.copyWith(
         errorStyle: context.textTheme.bodySmall.withSize(0),
       ),
       inputFormatters: widget.formatters,
@@ -109,9 +88,9 @@ class _TemboTextFieldState extends State<TemboTextField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: widget.decoration?.size?.width,
-          height: widget.decoration?.size?.height,
-          child: widget._obscured ? buildPasswordField() : textfield,
+          width: decoration.size?.width,
+          height: decoration.size?.height,
+          child: textfield,
         ),
         buildError(),
       ],
@@ -141,53 +120,5 @@ class _TemboTextFieldState extends State<TemboTextField> {
         );
       },
     );
-  }
-
-  Widget buildPasswordField() {
-    bool obscureText = true;
-
-    return StatefulBuilder(builder: (context, setState) {
-      return TextFormField(
-        controller: widget.controller,
-        inputFormatters: widget.formatters,
-        focusNode: widget.focusNode,
-        style: context.textTheme.bodyMedium,
-
-//        style: const TextStyle(fontWeight: FontWeight.w500),
-        decoration: widget.decoration?.getInputDecoration.copyWith(
-          suffixIcon: ValueListenableBuilder<bool>(
-            valueListenable: controllerHasTextNotifier,
-            builder: (context, hasText, snapshot) {
-              emptyContainer() {
-                return const SizedBox(
-                  height: .0001,
-                  width: .00001,
-                );
-              }
-
-              if (!widget.canBeUnobscured) return emptyContainer();
-              return hasText
-                  ? InkWell(
-                      onTap: () {
-                        obscureText = !obscureText;
-                        setState(() {});
-                      },
-                      child: Icon(
-                        !obscureText ? Icons.visibility_off : Icons.visibility,
-                        size: 24,
-                      ),
-                    )
-                  : emptyContainer();
-            },
-          ),
-        ),
-        obscureText: obscureText,
-        validator: widget.validator,
-        textCapitalization:
-            widget.textCapitalization ?? TextCapitalization.none,
-        keyboardType: widget.textInputType,
-        onChanged: widget.onChanged,
-      );
-    });
   }
 }
