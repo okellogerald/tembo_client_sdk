@@ -101,8 +101,10 @@ class TemboPlainTextButton extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text: text,
-          style:
-              style ?? context.textTheme.bodySmall.withFW300.withPrimaryColor,
+          style: style ??
+              context.textTheme.bodySmall.withFW500.withPrimaryColor.copyWith(
+                decoration: TextDecoration.underline,
+              ),
           recognizer: TapGestureRecognizer()..onTap = onPressed,
         ),
       ),

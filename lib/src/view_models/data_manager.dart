@@ -5,15 +5,15 @@ import 'package:tembo_client/src/models/doc.dart';
 import 'package:tembo_client/src/models/gender.dart';
 
 class DataManager extends ValueNotifier<Data> {
-  DataManager() : super(Data());
+  DataManager(super.data);
 
   void updateFirstName(String firstName) {
     value = value.copyWith(firstName: firstName);
     notifyListeners();
   }
 
-  void updateLastName(String firstName) {
-    value = value.copyWith(firstName: firstName);
+  void updateLastName(String name) {
+    value = value.copyWith(lastName: name);
     notifyListeners();
   }
 
@@ -41,4 +41,6 @@ class DataManager extends ValueNotifier<Data> {
     value = data;
     notifyListeners();
   }
+
+
 }

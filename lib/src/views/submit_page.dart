@@ -7,6 +7,8 @@ import 'package:tembo_client/src/styles/button_styles.dart';
 import 'package:tembo_client/src/utils/navigation_utils.dart';
 import 'package:tembo_client/tembo_client.dart';
 
+import 'data_verify_page.dart';
+
 class SubmitPage extends StatefulWidget {
   const SubmitPage({super.key});
 
@@ -94,16 +96,6 @@ class _SubmitPageState extends State<SubmitPage> {
   }
 
   void next() async {
-    final data = SmileData(
-      firstName: "John",
-      lastName: "Doe",
-      country: "KE",
-      idNumber: "10000",
-      idType: "NATIONAL_ID",
-      userId: "user-id",
-      captureType: CaptureType.selfie,
-      jobType: 1,
-    );
-    await smilePlugin.capture(data);
+    
   }
 }

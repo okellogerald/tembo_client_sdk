@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tembo_client/src/constants/colors.dart';
+import 'package:tembo_client/src/extensions/source.dart';
 
 import 'package:tembo_client/tembo_client.dart';
 
@@ -13,6 +15,7 @@ class TemboDatePicker extends StatefulWidget {
   final ValueChanged<DateTime> onSelected;
   final bool active, dobPicker;
   final String? hint;
+  final String? error;
 
   const TemboDatePicker({
     super.key,
@@ -21,6 +24,7 @@ class TemboDatePicker extends StatefulWidget {
     this.active = true,
     this.dobPicker = false,
     this.hint,
+    this.error,
   });
 
   @override
@@ -29,11 +33,13 @@ class TemboDatePicker extends StatefulWidget {
 
 class _TemboDatePickerState extends State<TemboDatePicker> {
   DateTime? selectedDate;
+  final _errorNotifier = ValueNotifier(false);
 
   @override
   void initState() {
     super.initState();
     selectedDate = widget.value;
+    _errorNotifier.value = widget.error != null;
   }
 
   onSelected(DateTime date) {
@@ -46,6 +52,7 @@ class _TemboDatePickerState extends State<TemboDatePicker> {
   void didUpdateWidget(TemboDatePicker oldWidget) {
     super.didUpdateWidget(oldWidget);
     selectedDate = widget.value;
+    _errorNotifier.value = widget.error != null;
   }
 
   showPicker() {
@@ -60,34 +67,51 @@ class _TemboDatePickerState extends State<TemboDatePicker> {
 
   @override
   Widget build(BuildContext context) {
-    final decoration = theme.datePickerDecoration.copyWith(hint: widget.hint);
-
-    return TemboTextButton(
-      onPressed: () {
-        if (widget.active) showPicker();
-      },
-      style: decoration.buttonStyle,
-      child: Row(
-        children: [
-          Expanded(
-            child: selectedDate != null
-                ? TemboText(DateFormat("dd/MM/yyyy").format(selectedDate!))
-                : TemboText(
-                    selectedDate != null
-                        ? DateFormat("dd/MM/yyyy").format(selectedDate!)
-                        : decoration.hint,
-                    style: decoration.hintStyle,
-                  ),
-          ),
-          const SizedBox(width: 10),
-          decoration.icon ??
-              const Icon(
-                Icons.calendar_today_outlined,
-                size: 20,
-              )
-        ],
-      ),
+    final decoration = theme.datePickerDecoration.copyWith(
+      hint: widget.hint,
     );
+
+    return ValueListenableBuilder(
+        valueListenable: _errorNotifier,
+        builder: (_, hasError, __) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TemboTextButton(
+                onPressed: () {
+                  _errorNotifier.value = false;
+                  if (widget.active) showPicker();
+                },
+                style: decoration.buttonStyle?.copyWith(
+                  borderColor: hasError ? TemboColors.error : null,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: selectedDate != null
+                          ? TemboText(
+                              DateFormat("dd/MM/yyyy").format(selectedDate!))
+                          : TemboText(
+                              selectedDate != null
+                                  ? DateFormat("dd/MM/yyyy")
+                                      .format(selectedDate!)
+                                  : decoration.hint,
+                              style: decoration.hintStyle,
+                            ),
+                    ),
+                    const SizedBox(width: 10),
+                    decoration.icon ??
+                        const Icon(
+                          Icons.calendar_today_outlined,
+                          size: 20,
+                        )
+                  ],
+                ),
+              ),
+              buildError(),
+            ],
+          );
+        });
   }
 
   showAndroidPicker(
@@ -171,6 +195,24 @@ class _TemboDatePickerState extends State<TemboDatePicker> {
                     ),
                   ),
           ],
+        );
+      },
+    );
+  }
+
+  Widget buildError() {
+    return ValueListenableBuilder(
+      valueListenable: _errorNotifier,
+      builder: (_, hasError, __) {
+        if (!hasError || widget.error == null) return Container();
+        return Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: TemboText(
+            widget.error!,
+            style: context.textTheme.bodyMedium.withColor(
+              TemboColors.error,
+            ),
+          ),
         );
       },
     );

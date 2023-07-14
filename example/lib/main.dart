@@ -30,7 +30,7 @@ class MainApp extends StatelessWidget {
             return Center(
               child: TextButton(
                 onPressed: () {
-                  startTemboVerification(context);
+                  startTemboVerification(context, userId: 'user-id');
                 },
                 style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(

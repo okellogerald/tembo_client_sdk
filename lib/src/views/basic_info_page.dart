@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smile_identity_plugin/smile_identity_plugin.dart';
-import 'package:tembo_client/src/components/page_title.dart';
+import 'package:tembo_client/src/widgets/page_title.dart';
 import 'package:tembo_client/src/extensions/source.dart';
 import 'package:tembo_client/src/utils/navigation_utils.dart';
 import 'package:tembo_client/src/utils/source.dart';
@@ -10,6 +10,7 @@ import 'package:tembo_client/tembo_client.dart';
 
 import '../components/bottom_nav_bar_button.dart';
 import '../components/exports.dart';
+import '../components/form/form.dart';
 import '../constants/constants.dart';
 
 final smilePlugin = SmileIdentityPlugin();
@@ -26,11 +27,17 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
   final lastNameController = TextEditingController();
   DateTime? date;
 
-  final formKey = GlobalKey<FormState>();
+  String? dateError;
+
+  final formKey = GlobalKey<TemboFormState>();
 
   @override
   void initState() {
     super.initState();
+
+    firstNameController.text = dataManager.value.firstName ?? "";
+    lastNameController.text = dataManager.value.lastName ?? "";
+    date = dataManager.value.dob;
 
     smilePlugin.onStateChanged.listen((state) {
       final captureError = state.captureState.error;
@@ -52,7 +59,7 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Form(
+      body: TemboForm(
         key: formKey,
         child: ListView(
           padding: kPagePadding,
@@ -76,6 +83,7 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
             TemboDatePicker(
               value: date,
               onSelected: onDateSelected,
+              error: dateError,
               hint: "Date of Birth",
             ),
           ],
@@ -99,32 +107,34 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
   }
 
   bool validate() {
-    final hasNoErrors = formKey.currentState?.validate() ?? false;
+    final hasNoFormErrors = formKey.currentState?.validate() ?? false;
 
-    if (!hasNoErrors) return false;
-
-    if (date == null && hasNoErrors) {
-      showSnackbar(context, "Date of birth is required");
+    if (date == null) {
+      dateError = "Date of birth is required";
+      setState(() {});
       return false;
     }
 
     final now = DateTime.now();
     final diff = date!.difference(now);
     if (!diff.isNegative) {
-      showSnackbar(context, "Are you born from the future?");
+      dateError = "We don't support people born from the future.";
+      setState(() {});
       return false;
     }
 
     if (diff.abs().inDays < 18 * 365) {
-      showSnackbar(context, "You must be at least 18 years old!");
+      dateError = "You must be at least 18 years old!";
+      setState(() {});
       return false;
     }
 
-    return true;
+    return hasNoFormErrors;
   }
 
   void onDateSelected(DateTime value) {
     date = value;
+    dateError = null;
     setState(() {});
   }
 }

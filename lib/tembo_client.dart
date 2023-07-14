@@ -12,13 +12,22 @@ export 'src/views/basic_info_page.dart';
 
 var theme = TemboThemeData();
 
-final dataManager = DataManager();
+late final DataManager dataManager;
 
 void startTemboVerification(
   BuildContext context, {
   TemboThemeData? themeData,
+  required String userId,
+  Map<String, dynamic>? otherValues,
 }) {
   if (themeData != null) theme = themeData;
+
+  final data = Data(userId: userId, otherValues: otherValues);
+  try {
+    dataManager = DataManager(data);
+  } catch (_) {
+    dataManager.updateData(data);
+  }
 
   push(
     context,
@@ -32,3 +41,5 @@ void startTemboVerification(
     ),
   );
 }
+
+// TODO: make sure to present to users document types for respective countries

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tembo_client/src/components/chip_picker.dart';
-import 'package:tembo_client/src/components/page_title.dart';
+import 'package:tembo_client/src/widgets/page_title.dart';
 import 'package:tembo_client/src/constants/constants.dart';
 import 'package:tembo_client/src/models/country.dart';
 import 'package:tembo_client/tembo_client.dart';
 
 import '../components/bottom_nav_bar_button.dart';
 import '../utils/navigation_utils.dart';
+import '../widgets/validation_error_view.dart';
 
 class CountryPickPage extends StatefulWidget {
   const CountryPickPage({super.key});
@@ -17,6 +18,13 @@ class CountryPickPage extends StatefulWidget {
 
 class _CountryPickPageState extends State<CountryPickPage> {
   Country? country;
+  String? error;
+
+  @override
+  void initState() {
+    super.initState();
+    country = dataManager.value.country;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +42,10 @@ class _CountryPickPageState extends State<CountryPickPage> {
               selected: (d) => d == country,
               label: (d) => d.name,
             ),
+            const SizedBox(height: 20),
+            ValidationErrorView(
+              error: error,
+            )
           ],
         ),
       ),
@@ -44,11 +56,27 @@ class _CountryPickPageState extends State<CountryPickPage> {
   }
 
   void getPlatfromVersion() async {
+    final valid = validate();
+    if (!valid) return;
+
+    dataManager.updateCountry(country!);
     push(context, page: const BasicInfoPage());
   }
 
   void onCountrySelected(Country value) {
     country = value;
+    error = null;
     setState(() {});
+  }
+
+  bool validate() {
+    final valid = country != null;
+
+    if (!valid) {
+      error = "Country is required";
+      setState(() {});
+    }
+
+    return valid;
   }
 }

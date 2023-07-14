@@ -18,6 +18,6 @@ class TemboColors {
   static const surfaceContainer = Color.fromARGB(255, 245, 245, 245);
   static const onSurfaceContainer = onSurface;
 
-  static const error = Colors.red;
+  static const error = Color(0xff841617);
   static const onError = Colors.white;
 }

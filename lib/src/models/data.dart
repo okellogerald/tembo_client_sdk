@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import 'package:tembo_client/src/models/country.dart';
 import 'package:tembo_client/src/models/doc.dart';
 
@@ -10,6 +12,8 @@ class Data {
   final DateTime? dob;
   final Gender? gender;
   final VerDocument? document;
+  final String userId;
+  final Map<String, dynamic>? otherValues;
 
   Data({
     this.country,
@@ -18,6 +22,8 @@ class Data {
     this.dob,
     this.gender,
     this.document,
+    required this.userId,
+    this.otherValues,
   });
 
   Data copyWith({
@@ -35,12 +41,14 @@ class Data {
       dob: dob ?? this.dob,
       gender: gender ?? this.gender,
       document: document ?? this.document,
+      userId: userId,
+      otherValues: otherValues,
     );
   }
 
   @override
   String toString() {
-    return 'Data(country: $country, firstName: $firstName, lastName: $lastName, dob: $dob, gender: $gender, document: $document)';
+    return 'Data(country: $country, firstName: $firstName, lastName: $lastName, dob: $dob, gender: $gender, document: $document, userId: $userId, otherValues: $otherValues)';
   }
 
   @override
@@ -53,7 +61,9 @@ class Data {
       other.lastName == lastName &&
       other.dob == dob &&
       other.gender == gender &&
-      other.document == document;
+      other.document == document &&
+      other.userId == userId &&
+      mapEquals(other.otherValues, otherValues);
   }
 
   @override
@@ -63,6 +73,8 @@ class Data {
       lastName.hashCode ^
       dob.hashCode ^
       gender.hashCode ^
-      document.hashCode;
+      document.hashCode ^
+      userId.hashCode ^
+      otherValues.hashCode;
   }
 }

@@ -49,12 +49,13 @@ class TemboTextFieldDecoration {
     Color? fillColor,
     String? hint,
     Widget? suffixIcon,
+    Color? borderColor,
   }) {
     return TemboTextFieldDecoration(
       fillColor: fillColor ?? this.fillColor,
       hint: hint ?? this.hint,
       hintStyle: hintStyle,
-      borderColor: borderColor,
+      borderColor: borderColor ?? this.borderColor,
       borderRadius: borderRadius,
       borderWidth: borderWidth,
       hasBorder: hasBorder,

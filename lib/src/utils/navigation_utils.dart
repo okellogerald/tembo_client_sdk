@@ -50,7 +50,7 @@ showSnackbar(
   bool isError = true,
   int? duration,
 }) {
-  rootScaffoldMessengerKey.currentState!.showSnackBar(TemboSnackbar(
+  ScaffoldMessenger.of(context).showSnackBar(TemboSnackbar(
     message,
     isError,
     durationInSeconds: duration,
