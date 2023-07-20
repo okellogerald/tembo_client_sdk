@@ -6,7 +6,6 @@ import 'package:tembo_client/src/styles/button_styles.dart';
 import 'package:tembo_client/src/utils/navigation_utils.dart';
 import 'package:tembo_client/tembo_client.dart';
 
-
 class SubmitPage extends StatefulWidget {
   const SubmitPage({super.key});
 
@@ -94,6 +93,14 @@ class _SubmitPageState extends State<SubmitPage> {
   }
 
   void next() async {
-    
+    final data = smilePlugin.value.data;
+    if (data == null) {
+      showErrorSnackbar(
+        context,
+        "Looks like you need to start the process again.",
+      );
+      return;
+    }
+    await smilePlugin.capture(data);
   }
 }

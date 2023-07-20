@@ -11,8 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.18.1
-  smile_identity_plugin:
-    path: ../smile_identity_plugin
+  smile_identity_plugin: ^0.0.1
 
 dev_dependencies:
   flutter_test:

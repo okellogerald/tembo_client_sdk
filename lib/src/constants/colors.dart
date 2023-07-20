@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class TemboColors {
@@ -20,4 +21,36 @@ class TemboColors {
 
   static const error = Color(0xff841617);
   static const onError = Colors.white;
+}
+
+class TemboColors1 {
+  final Color? primary,
+      onPrimary,
+      border,
+      primaryContainer,
+      onPrimaryContainer,
+      background,
+      onBackground,
+      surface,
+      onSurface,
+      surfaceContainer,
+      onSurfaceContainer,
+      error,
+      onError;
+
+  const TemboColors1({
+    this.primary,
+    this.onPrimary,
+    this.border,
+    this.primaryContainer,
+    this.onPrimaryContainer,
+    this.background,
+    this.onBackground,
+    this.surface,
+    this.onSurface,
+    this.surfaceContainer,
+    this.onSurfaceContainer,
+    this.error,
+    this.onError,
+  });
 }

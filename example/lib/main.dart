@@ -22,9 +22,13 @@ class MainApp extends StatelessWidget {
               fontSize: 22,
               fontWeight: FontWeight.w500,
               fontFamily: "circular",
+              color: Colors.black87,
             ),
           )),
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Application 1"),
+        ),
         body: Builder(
           builder: (context) {
             return Center(

@@ -73,9 +73,12 @@ const _datePickerStyle = TemboDatePickerDecoration(
     fontFamily: kFontFamily,
     fontWeight: FontWeight.normal,
   ),
-  buttonStyle: TemboButtonStyle.outline(
+  buttonStyle: TemboButtonStyle(
     height: 50,
-    borderColor: TemboColors.border,
+    borderWidth: 1.5,
+    borderColor: TemboColors.primaryContainer,
+    backgroundColor: TemboColors.primaryContainer,
+    foregroundColor: TemboColors.onBackground,
     borderRadius: kBorderRadius,
     textStyle: TextStyle(
       fontSize: 14,
@@ -87,8 +90,8 @@ const _datePickerStyle = TemboDatePickerDecoration(
 );
 
 const _textFieldDecoration = TemboTextFieldDecoration(
-  borderColor: Colors.black54,
-  fillColor: Color.fromARGB(255, 247, 247, 247),
+  borderColor: TemboColors.primaryContainer,
+  fillColor: TemboColors.primaryContainer,
   borderRadius: kBorderRadius,
   size: Size.fromHeight(50),
   hintStyle: _hintStyle,
