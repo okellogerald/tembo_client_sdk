@@ -63,6 +63,7 @@ class TemboThemeData {
       selectedOptionButtonStyle: _optionButtonStyle.copyWith(
         backgroundColor: colors.surfaceContainer,
         borderColor: colors.primary,
+        foregroundColor: colors.primary,
       ),
       unselectedOptionButtonStyle: _unselectedOptionButtonStyle.copyWith(
         borderColor: colors.border,
@@ -192,7 +193,11 @@ const _datePickerTextStyle = TextStyle(
 );
 
 const _labelledFormFieldDecoration = TemboLabelledFormFieldDecoration(
-  labelTextStyle: _textFieldHintStyle,
+  labelTextStyle: TextStyle(
+    fontSize: 12,
+    color: TemboColors.hint,
+    fontWeight: FontWeight.normal,
+  ),
   valueTextStyle: TextStyle(
     fontSize: 14,
     color: TemboColors.onBackground,
@@ -228,7 +233,7 @@ TemboThemeData handleFontFamily(TemboThemeData data, String fontFamily) {
         fontFamily: fontFamily,
       ),
       buttonStyle: data.datePickerDecoration?.buttonStyle?.copyWith(
-        textStyle: data.bottomNavBarButtonStyle?.textStyle?.copyWith(
+        textStyle: data.datePickerDecoration?.buttonStyle?.textStyle?.copyWith(
           fontFamily: fontFamily,
         ),
       ),

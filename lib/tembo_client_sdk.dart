@@ -25,7 +25,10 @@ void startTemboVerification(
   String? fontFamily,
 }) {
   _initThemeData(
-      themeData: themeData, scheme: colorScheme, fontFamily: fontFamily);
+    themeData: themeData,
+    scheme: colorScheme,
+    fontFamily: fontFamily,
+  );
   _initDataManager(userId: userId, otherValues: otherValues);
 
   push(
@@ -65,7 +68,6 @@ void _initThemeData({
     if (fontFamily != null) theme = handleFontFamily(data, fontFamily);
     if (fontFamily == null) theme = data;
   } catch (_) {
-    print(_);
     // handling LateInitializationError issues
   }
 }

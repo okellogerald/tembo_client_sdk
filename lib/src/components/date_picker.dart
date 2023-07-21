@@ -82,7 +82,8 @@ class _TemboDatePickerState extends State<TemboDatePicker> {
                   if (widget.active) showPicker();
                 },
                 style: decoration?.buttonStyle?.copyWith(
-                    borderColor: hasError ? TemboColors.error : null),
+                  borderColor: hasError ? TemboColors.error : null,
+                ),
                 child: Row(
                   children: [
                     Expanded(
