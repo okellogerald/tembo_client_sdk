@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:tembo_client/src/constants/colors.dart';
+import 'package:tembo_client_sdk/src/constants/colors.dart';
 
 import 'exports.dart';
 

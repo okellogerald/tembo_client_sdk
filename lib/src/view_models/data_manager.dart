@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client/src/models/country.dart';
-import 'package:tembo_client/src/models/data.dart';
-import 'package:tembo_client/src/models/doc.dart';
-import 'package:tembo_client/src/models/gender.dart';
+import 'package:tembo_client_sdk/src/models/country.dart';
+import 'package:tembo_client_sdk/src/models/data.dart';
+import 'package:tembo_client_sdk/src/models/doc.dart';
+import 'package:tembo_client_sdk/src/models/gender.dart';
 
 class DataManager extends ValueNotifier<Data> {
   DataManager(super.data);
@@ -41,6 +41,4 @@ class DataManager extends ValueNotifier<Data> {
     value = data;
     notifyListeners();
   }
-
-
 }

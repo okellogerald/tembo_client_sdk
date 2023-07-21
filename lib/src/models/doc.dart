@@ -1,4 +1,4 @@
-import 'package:tembo_client/src/utils/source.dart';
+import 'package:tembo_client_sdk/src/utils/source.dart';
 
 import 'doc_type.dart';
 

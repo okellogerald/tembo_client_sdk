@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
-import 'package:tembo_client/src/models/country.dart';
-import 'package:tembo_client/src/models/doc.dart';
+import 'package:tembo_client_sdk/src/models/country.dart';
+import 'package:tembo_client_sdk/src/models/doc.dart';
 
 import 'gender.dart';
 

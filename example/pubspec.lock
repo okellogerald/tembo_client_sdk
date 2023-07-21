@@ -200,7 +200,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  tembo_client:
+  tembo_client_sdk:
     dependency: "direct main"
     description:
       path: ".."

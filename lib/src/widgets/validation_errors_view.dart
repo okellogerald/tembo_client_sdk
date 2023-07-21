@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client/src/components/exports.dart';
-import 'package:tembo_client/src/constants/colors.dart';
-import 'package:tembo_client/src/constants/constants.dart';
-import 'package:tembo_client/src/extensions/source.dart';
-import 'package:tembo_client/src/styles/box_decoration.dart';
-import 'package:tembo_client/src/styles/button_styles.dart';
+import 'package:tembo_client_sdk/src/components/exports.dart';
+import 'package:tembo_client_sdk/src/constants/colors.dart';
+import 'package:tembo_client_sdk/src/constants/constants.dart';
+import 'package:tembo_client_sdk/src/extensions/source.dart';
+import 'package:tembo_client_sdk/src/styles/box_decoration.dart';
+import 'package:tembo_client_sdk/src/styles/button_styles.dart';
 
 class ValidationErrorsView extends StatelessWidget {
   final List<String> errors;

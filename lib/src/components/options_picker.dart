@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tembo_client/src/constants/constants.dart';
-import 'package:tembo_client/src/extensions/source.dart';
+import 'package:tembo_client_sdk/src/constants/constants.dart';
+import 'package:tembo_client_sdk/src/extensions/source.dart';
 
 import '../styles/source.dart';
 import 'exports.dart';

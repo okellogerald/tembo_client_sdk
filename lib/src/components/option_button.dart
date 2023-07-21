@@ -24,7 +24,7 @@ class TemboOptionButton<T> extends StatelessWidget {
       foregroundColor: TemboColors.onBackground,
       width: 250,
       height: 60,
-      borderColor: TemboColors.surface,
+      borderColor: TemboColors.border,
       padding: EdgeInsets.symmetric(horizontal: 30),
     );
   }

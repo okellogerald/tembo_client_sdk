@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client/src/components/chip_picker.dart';
-import 'package:tembo_client/src/widgets/page_title.dart';
-import 'package:tembo_client/src/constants/constants.dart';
-import 'package:tembo_client/src/models/country.dart';
-import 'package:tembo_client/tembo_client.dart';
+import 'package:tembo_client_sdk/src/components/chip_picker.dart';
+import 'package:tembo_client_sdk/src/widgets/page_title.dart';
+import 'package:tembo_client_sdk/src/constants/constants.dart';
+import 'package:tembo_client_sdk/src/models/country.dart';
+import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 import '../components/bottom_nav_bar_button.dart';
 import '../utils/navigation_utils.dart';
@@ -50,12 +50,12 @@ class _CountryPickPageState extends State<CountryPickPage> {
         ),
       ),
       bottomNavigationBar: BottomNavBarButton(
-        callback: getPlatfromVersion,
+        callback: next,
       ),
     );
   }
 
-  void getPlatfromVersion() async {
+  void next() async {
     final valid = validate();
     if (!valid) return;
 

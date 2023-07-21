@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client/tembo_client.dart';
+import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 import 'exports.dart';
 
@@ -24,7 +24,7 @@ class TemboRadioButton<T> extends StatelessWidget {
       onPressed: () => onPressed(value),
       style: selectedValue
           ? theme.selectedOptionButtonStyle
-          : theme.unselecetdOptionButtonStyle,
+          : theme.unselectedOptionButtonStyle,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

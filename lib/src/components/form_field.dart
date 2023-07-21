@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client/src/components/text.dart';
-import 'package:tembo_client/src/constants/colors.dart';
-import 'package:tembo_client/src/constants/constants.dart';
-import 'package:tembo_client/src/extensions/source.dart';
-import 'package:tembo_client/src/styles/box_decoration.dart';
+import 'package:tembo_client_sdk/src/components/text.dart';
+import 'package:tembo_client_sdk/src/constants/constants.dart';
+import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 class TemboLabelledFormField extends StatelessWidget {
   final String label;
@@ -22,24 +20,17 @@ class TemboLabelledFormField extends StatelessWidget {
       children: [
         TemboText(
           label,
-          style: context.textTheme.bodyMedium.withFW300.withColor(
-            Colors.black54,
-          ),
+          style: theme.labelledFormFieldDecoration?.labelTextStyle,
         ),
         const SizedBox(height: 5),
         Container(
-          height: 45,
           width: double.maxFinite,
-          decoration: TemboBoxDecoration(
-            borderColor: TemboColors.border,
-            borderWidth: 1.5,
-            color: Colors.grey.shade100,
-          ),
-          padding: kHorPadding,
+          decoration: theme.labelledFormFieldDecoration?.boxDecoration,
+          padding: kHorPadding.copyWith(top: 12, bottom: 12),
           alignment: Alignment.centerLeft,
           child: TemboText(
             value,
-            style: context.textTheme.bodyMedium.withFW500,
+            style: theme.labelledFormFieldDecoration?.valueTextStyle,
           ),
         ),
       ],

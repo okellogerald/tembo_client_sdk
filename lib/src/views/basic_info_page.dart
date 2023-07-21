@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:smile_identity_plugin/smile_identity_plugin.dart';
-import 'package:tembo_client/src/widgets/page_title.dart';
-import 'package:tembo_client/src/extensions/source.dart';
-import 'package:tembo_client/src/utils/navigation_utils.dart';
-import 'package:tembo_client/src/utils/source.dart';
-import 'package:tembo_client/src/views/gender_pick_page.dart';
-import 'package:tembo_client/src/views/submit_page.dart';
-import 'package:tembo_client/tembo_client.dart';
+import 'package:tembo_client_sdk/src/widgets/page_title.dart';
+import 'package:tembo_client_sdk/src/extensions/source.dart';
+import 'package:tembo_client_sdk/src/utils/navigation_utils.dart';
+import 'package:tembo_client_sdk/src/utils/source.dart';
+import 'package:tembo_client_sdk/src/views/gender_pick_page.dart';
+import 'package:tembo_client_sdk/src/views/submit_page.dart';
+import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 import '../components/bottom_nav_bar_button.dart';
 import '../components/exports.dart';
@@ -90,12 +90,12 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
         ),
       ),
       bottomNavigationBar: BottomNavBarButton(
-        callback: getPlatfromVersion,
+        callback: next,
       ),
     );
   }
 
-  void getPlatfromVersion() async {
+  void next() async {
     final valid = validate();
     if (!valid) return;
 

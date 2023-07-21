@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client/tembo_client.dart';
+import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 void main() {
   runApp(const MainApp());
@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
           fontFamily: "circular",
           primaryColor: Colors.black,
-          appBarTheme:  AppBarTheme(
+          appBarTheme: AppBarTheme(
             iconTheme: const IconThemeData(color: Colors.black),
             elevation: 0,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -34,7 +34,17 @@ class MainApp extends StatelessWidget {
             return Center(
               child: TextButton(
                 onPressed: () {
-                  startTemboVerification(context, userId: 'user-id');
+                  startTemboVerification(
+                    context,
+                    userId: 'user-id',
+                    colorScheme: const TemboColorScheme(
+                      primary: Colors.red,
+                      onPrimary: Colors.white,
+                      border: Colors.black,
+                      onBackground: Colors.black,
+                    ),
+                    fontFamily: "circular",
+                  );
                 },
                 style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client/tembo_client.dart';
+import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 import 'exports.dart';
 

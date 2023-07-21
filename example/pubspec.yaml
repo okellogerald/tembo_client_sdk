@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  tembo_client:
+  tembo_client_sdk:
     path: ../
 
 dev_dependencies:

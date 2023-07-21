@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tembo_client/src/constants/colors.dart';
-import 'package:tembo_client/src/extensions/source.dart';
+import 'package:tembo_client_sdk/src/extensions/source.dart';
 
-import 'package:tembo_client/tembo_client.dart';
+import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 import 'text.dart';
 import 'text_button.dart';
@@ -67,7 +66,7 @@ class _TemboDatePickerState extends State<TemboDatePicker> {
 
   @override
   Widget build(BuildContext context) {
-    final decoration = theme.datePickerDecoration.copyWith(
+    final decoration = theme.datePickerDecoration?.copyWith(
       hint: widget.hint,
     );
 
@@ -82,29 +81,29 @@ class _TemboDatePickerState extends State<TemboDatePicker> {
                   _errorNotifier.value = false;
                   if (widget.active) showPicker();
                 },
-                style: decoration.buttonStyle?.copyWith(
-                  borderColor: hasError ? TemboColors.error : null,
-                ),
+                style: decoration?.buttonStyle?.copyWith(
+                    borderColor: hasError ? TemboColors.error : null),
                 child: Row(
                   children: [
                     Expanded(
                       child: selectedDate != null
                           ? TemboText(
-                              DateFormat("dd/MM/yyyy").format(selectedDate!))
+                              DateFormat("dd/MM/yyyy").format(selectedDate!),
+                            )
                           : TemboText(
                               selectedDate != null
                                   ? DateFormat("dd/MM/yyyy")
                                       .format(selectedDate!)
-                                  : decoration.hint,
-                              style: decoration.hintStyle,
+                                  : decoration?.hint ?? "",
+                              style: decoration?.hintStyle,
                             ),
                     ),
                     const SizedBox(width: 10),
-                    decoration.icon ??
-                        const Icon(
+                    decoration?.icon ?? Container(),
+                    /*     const Icon(
                           Icons.calendar_today_outlined,
                           size: 20,
-                        )
+                        ), */
                   ],
                 ),
               ),

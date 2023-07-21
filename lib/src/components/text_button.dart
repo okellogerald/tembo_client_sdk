@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:tembo_client/src/extensions/source.dart';
+import 'package:tembo_client_sdk/src/extensions/source.dart';
 
 import '../styles/source.dart';
 

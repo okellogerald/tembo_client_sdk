@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client/src/components/text.dart';
-import 'package:tembo_client/tembo_client.dart';
+import 'package:tembo_client_sdk/src/components/text.dart';
+
+import '../../tembo_client_sdk.dart';
 
 class PageTitle extends StatelessWidget {
   final String title;

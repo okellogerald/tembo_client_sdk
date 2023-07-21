@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tembo_client/src/constants/colors.dart';
-import 'package:tembo_client/src/extensions/source.dart';
-import 'package:tembo_client/tembo_client.dart';
+import 'package:tembo_client_sdk/src/extensions/source.dart';
+import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 import 'text_form_field.dart';
 import '../text.dart';
@@ -62,29 +61,29 @@ class _TemboTextFieldState extends State<TemboTextField> {
 
   @override
   Widget build(BuildContext context) {
-    final decoration = theme.textFieldDecoration.copyWith(hint: widget.hint);
-    final bool canExpand = decoration.size != null;
+    final decoration = theme.textFieldDecoration?.copyWith(hint: widget.hint);
+    final bool canExpand = decoration?.size != null;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: decoration.size?.width,
-          height: decoration.size?.height,
+          width: decoration?.size?.width,
+          height: decoration?.size?.height,
           child: ValueListenableBuilder<String?>(
               valueListenable: errorNotifier,
               builder: (context, error, snapshot) {
                 final hasError = error != null;
 
                 return TemboTextFormField(
-                  style: decoration.valueStyle,
+                  style: decoration?.valueStyle,
                   controller: widget.controller,
                   focusNode: widget.focusNode,
                   decoration: hasError
                       ? decoration
-                          .copyWith(borderColor: TemboColors.error)
+                          ?.copyWith(borderColor: TemboColors.error)
                           .getInputDecoration
-                      : decoration.getInputDecoration.copyWith(
+                      : decoration?.getInputDecoration.copyWith(
                           errorStyle: context.textTheme.bodySmall.withSize(0),
                         ),
                   inputFormatters: widget.formatters,

@@ -25,7 +25,7 @@ class TemboTextFieldDecoration {
   const TemboTextFieldDecoration({
     this.fillColor,
     this.hintStyle = const TextStyle(
-      color: TemboColors.onSurface,
+      color: TemboColors.hint,
       fontWeight: FontWeight.w400,
       fontSize: 15,
     ),
@@ -50,11 +50,13 @@ class TemboTextFieldDecoration {
     String? hint,
     Widget? suffixIcon,
     Color? borderColor,
+    TextStyle? hintStyle,
+    TextStyle? valueStyle,
   }) {
     return TemboTextFieldDecoration(
       fillColor: fillColor ?? this.fillColor,
       hint: hint ?? this.hint,
-      hintStyle: hintStyle,
+      hintStyle: hintStyle ?? this.hintStyle,
       borderColor: borderColor ?? this.borderColor,
       borderRadius: borderRadius,
       borderWidth: borderWidth,
@@ -66,6 +68,7 @@ class TemboTextFieldDecoration {
       borderStyle: borderStyle,
       padding: padding,
       suffixIcon: suffixIcon ?? this.suffixIcon,
+      valueStyle: valueStyle ?? this.valueStyle,
     );
   }
 
@@ -80,7 +83,7 @@ class TemboTextFieldDecoration {
     }
     return const OutlineInputBorder(
       borderSide: BorderSide(
-        color: TemboColors.surface,
+        color: TemboColors.border,
         width: 2,
       ),
     );
@@ -92,7 +95,7 @@ class TemboTextFieldDecoration {
             ? OutlineInputBorder(
                 borderRadius: BorderRadius.circular(borderRadius ?? kBorderRadius),
                 borderSide: BorderSide(
-                  color: borderColor ?? TemboColors.onSurface,
+                  color: borderColor ?? TemboColors.border,
                   width: borderWidth ?? 1.5,
                 ),
               )

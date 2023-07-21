@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client/src/components/exports.dart';
-import 'package:tembo_client/src/extensions/context_extension.dart';
-import 'package:tembo_client/src/extensions/textstyle_extension.dart';
-import 'package:tembo_client/src/styles/button_styles.dart';
-import 'package:tembo_client/src/utils/navigation_utils.dart';
-import 'package:tembo_client/tembo_client.dart';
+import 'package:tembo_client_sdk/src/components/exports.dart';
+import 'package:tembo_client_sdk/src/extensions/context_extension.dart';
+import 'package:tembo_client_sdk/src/extensions/textstyle_extension.dart';
+import 'package:tembo_client_sdk/src/utils/navigation_utils.dart';
+import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 class SubmitPage extends StatefulWidget {
   const SubmitPage({super.key});

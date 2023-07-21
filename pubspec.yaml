@@ -1,7 +1,7 @@
-name: tembo_client
-description: A new Flutter package project.
+name: tembo_client_sdk
+description: Tembo Client SDK.
 version: 0.0.1
-repository: https://github.com/okellogerald/tembo_client
+repository: https://github.com/okellogerald/tembo_client_sdk
 
 environment:
   sdk: ">=3.0.1 <4.0.0"
@@ -19,14 +19,3 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-  fonts:
-    - family: circular
-      fonts:
-        - asset: assets/fonts/CircularStd-Book.ttf
-          weight: 400
-        - asset: assets/fonts/CircularStd-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/CircularStd-Bold.ttf
-          weight: 600
-        - asset: assets/fonts/CircularStd-Black.ttf
-          weight: 700

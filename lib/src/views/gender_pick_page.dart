@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client/src/components/bottom_nav_bar_button.dart';
-import 'package:tembo_client/src/components/chip_picker.dart';
-import 'package:tembo_client/src/widgets/page_title.dart';
-import 'package:tembo_client/src/constants/constants.dart';
-import 'package:tembo_client/src/models/gender.dart';
-import 'package:tembo_client/src/views/id_page.dart';
+import 'package:tembo_client_sdk/src/components/bottom_nav_bar_button.dart';
+import 'package:tembo_client_sdk/src/components/chip_picker.dart';
+import 'package:tembo_client_sdk/src/widgets/page_title.dart';
+import 'package:tembo_client_sdk/src/constants/constants.dart';
+import 'package:tembo_client_sdk/src/models/gender.dart';
+import 'package:tembo_client_sdk/src/views/id_page.dart';
 
-import '../../tembo_client.dart';
+import '../../tembo_client_sdk.dart';
 import '../utils/navigation_utils.dart';
 import '../widgets/validation_error_view.dart';
 
@@ -52,12 +52,12 @@ class _GenderPickPageState extends State<GenderPickPage> {
         ),
       ),
       bottomNavigationBar: BottomNavBarButton(
-        callback: getPlatfromVersion,
+        callback: next,
       ),
     );
   }
 
-  void getPlatfromVersion() async {
+  void next() async {
     final valid = validate();
     if (!valid) return;
 
