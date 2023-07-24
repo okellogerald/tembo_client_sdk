@@ -36,9 +36,9 @@ class MainApp extends StatelessWidget {
                 onPressed: () {
                   startTemboVerification(
                     context,
-                    userData: UserData(
+                    userData: Data(
                       userId: "user-id",
-                      country: Country.kenya(),
+                      country: Country.tz(),
                       gender: Gender.male,
                       firstName: "Okello",
                       lastName: "Gerald",

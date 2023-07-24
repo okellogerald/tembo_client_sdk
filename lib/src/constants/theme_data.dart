@@ -29,7 +29,7 @@ class TemboThemeData {
 
   TemboThemeData({
     this.pageTitleStyle = _pageTitleStyle,
-    this.selectedOptionButtonStyle = _optionButtonStyle,
+    this.selectedOptionButtonStyle = _selectedOptionButtonStyle,
     this.unselectedOptionButtonStyle = _unselectedOptionButtonStyle,
     this.datePickerDecoration = _datePickerStyle,
     this.textFieldDecoration = _textFieldDecoration,
@@ -59,7 +59,7 @@ class TemboThemeData {
   factory TemboThemeData.from(TemboColorScheme colors) {
     return TemboThemeData(
       pageTitleStyle: _pageTitleStyle.copyWith(color: colors.title),
-      selectedOptionButtonStyle: _optionButtonStyle.copyWith(
+      selectedOptionButtonStyle: _selectedOptionButtonStyle.copyWith(
         backgroundColor: colors.surfaceContainer,
         borderColor: colors.primary,
         foregroundColor: colors.primary,
@@ -113,12 +113,12 @@ const _pageTitleStyle = TextStyle(
   color: TemboColors.title,
 );
 
-const _optionButtonStyle = TemboButtonStyle(
+const _selectedOptionButtonStyle = TemboButtonStyle(
   height: 45,
   backgroundColor: TemboColors.surfaceContainer,
   borderRadius: 30,
   borderColor: TemboColors.primary,
-  borderWidth: 1.5,
+  borderWidth: 2,
   foregroundColor: TemboColors.primary,
   padding: EdgeInsets.symmetric(horizontal: 20),
   textStyle: TextStyle(

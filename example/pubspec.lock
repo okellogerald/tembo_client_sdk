@@ -163,11 +163,12 @@ packages:
   smile_identity_plugin:
     dependency: transitive
     description:
-      name: smile_identity_plugin
-      sha256: ef293e7a4b628daf87befcacad511aa2e29bdca38bc0aa18552620de27b75fa6
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.1"
+      path: "."
+      ref: HEAD
+      resolved-ref: "9f7fa68a077358db978ae79c5b29b4f4bea5a231"
+      url: "https://github.com/okellogerald/smile_identity_plugin.git"
+    source: git
+    version: "0.0.1+1"
   source_span:
     dependency: transitive
     description:
@@ -249,4 +250,4 @@ packages:
     version: "2.1.4"
 sdks:
   dart: ">=3.0.1 <4.0.0"
-  flutter: ">=3.3.0"
+  flutter: ">=3.10.0"

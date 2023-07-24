@@ -8,7 +8,7 @@ import 'package:tembo_client_sdk/src/view_models/data_manager.dart';
 import 'package:tembo_client_sdk/src/view_models/theme_manager.dart';
 import 'package:tembo_client_sdk/src/views/country_pick_page.dart';
 
-import 'src/models/user_data.dart';
+import 'src/models/data.dart';
 
 export 'src/views/basic_info_page.dart';
 export 'src/constants/source.dart';
@@ -20,7 +20,7 @@ late final DataManager dataManager;
 
 void startTemboVerification(
   BuildContext context, {
-  required UserData userData,
+  required Data userData,
   TemboThemeData? themeData,
   TemboColorScheme? colorScheme,
   String? fontFamily,
@@ -41,7 +41,7 @@ void startTemboVerification(
       ),
       child: Scaffold(
         key: rootScaffoldMessengerKey,
-        body: ValueListenableBuilder<UserData>(
+        body: ValueListenableBuilder<Data>(
             valueListenable: dataManager,
             builder: (context, _, snapshot) {
               return const CountryPickPage();
@@ -75,7 +75,7 @@ TemboThemeData _initThemeData({
   return data;
 }
 
-void _initDataManager(UserData userData) {
+void _initDataManager(Data userData) {
   try {
     dataManager = DataManager(userData);
   } catch (_) {

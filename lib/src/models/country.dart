@@ -1,35 +1,23 @@
 class Country {
-  final String image;
-  final String fullName;
-  final String dialCode;
-  final String shortName;
+  final String name;
+  final String abbrev;
 
   const Country({
-    required this.image,
-    required this.fullName,
-    required this.dialCode,
-    required this.shortName,
+    required this.name,
+    required this.abbrev,
   });
-
-  String get name => "$fullName ($shortName)";
-
-  String get code => dialCode.replaceAll(" ", "").replaceAll("+", "");
 
   factory Country.fromMap(Map<String, String> map) {
     return Country(
-      image: map['emoji']!,
-      fullName: map['name']!,
-      dialCode: map['dial_code']!,
-      shortName: map['code']!,
+      name: map['name']!,
+      abbrev: map['abbrev']!,
     );
   }
 
   factory Country.tz() {
     final map = {
       "name": "Tanzania",
-      "dial_code": "+255",
-      "emoji": "🇹🇿",
-      "code": "TZ"
+      "abbrev": "TZ"
     };
     return Country.fromMap(map);
   }
@@ -37,9 +25,7 @@ class Country {
   factory Country.kenya() {
     final map = {
       "name": "Kenya",
-      "dial_code": "+255",
-      "emoji": "🇹🇿",
-      "code": "KE"
+      "abbrev": "KE"
     };
     return Country.fromMap(map);
   }
@@ -47,9 +33,7 @@ class Country {
   factory Country.ghana() {
     final map = {
       "name": "Ghana",
-      "dial_code": "+255",
-      "emoji": "🇹🇿",
-      "code": "GH"
+      "abbrev": "GH"
     };
     return Country.fromMap(map);
   }
@@ -57,9 +41,7 @@ class Country {
   factory Country.nigeria() {
     final map = {
       "name": "Nigeria",
-      "dial_code": "+255",
-      "emoji": "🇹🇿",
-      "code": "NG"
+      "abbrev": "NG"
     };
     return Country.fromMap(map);
   }
@@ -67,9 +49,7 @@ class Country {
   factory Country.uganda() {
     final map = {
       "name": "Uganda",
-      "dial_code": "+253",
-      "emoji": "🇹🇿",
-      "code": "UG"
+      "abbrev": "UG"
     };
     return Country.fromMap(map);
   }
@@ -79,19 +59,12 @@ class Country {
     if (identical(this, other)) return true;
   
     return 
-      other.image == image &&
-      other.fullName == fullName &&
-      other.dialCode == dialCode &&
-      other.shortName == shortName;
+      other.name == name &&
+      other.abbrev == abbrev;
   }
 
   @override
-  int get hashCode {
-    return image.hashCode ^
-      fullName.hashCode ^
-      dialCode.hashCode ^
-      shortName.hashCode;
-  }
+  int get hashCode => name.hashCode ^ abbrev.hashCode;
 }
 
 final supportedCountries = [

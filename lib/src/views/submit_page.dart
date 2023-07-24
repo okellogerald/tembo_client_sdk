@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tembo_client_sdk/src/components/source.dart';
-import 'package:tembo_client_sdk/src/extensions/context_extension.dart';
 import 'package:tembo_client_sdk/src/extensions/textstyle_extension.dart';
 import 'package:tembo_client_sdk/src/utils/navigation_utils.dart';
 import 'package:tembo_client_sdk/tembo_client_sdk.dart';
@@ -13,11 +12,6 @@ class SubmitPage extends StatefulWidget {
 }
 
 class _SubmitPageState extends State<SubmitPage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,20 +36,22 @@ class _SubmitPageState extends State<SubmitPage> {
                       "We are submitting your job",
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     TemboLoadingIndicator()
                   ],
                 );
               },
               submitted: () {
                 return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const TemboText(
                       "We have submitted your job",
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     TemboTextButton(
+                      style: _buttonStyle,
                       child: const TemboText("Close"),
                       onPressed: () {
                         pop(context);
@@ -73,12 +69,10 @@ class _SubmitPageState extends State<SubmitPage> {
                       message,
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     TemboTextButton(
-                      style: TemboButtonStyle(
-                        textStyle: context.textTheme.bodyMedium.withFW600,
-                      ),
-                      onPressed: next,
+                      style: _buttonStyle,
+                      onPressed: tryAgain,
                       child: const TemboText("Try Again"),
                     )
                   ],
@@ -91,7 +85,7 @@ class _SubmitPageState extends State<SubmitPage> {
     );
   }
 
-  void next() async {
+  void tryAgain() async {
     final data = smilePlugin.value.data;
     if (data == null) {
       showErrorSnackbar(
@@ -100,6 +94,14 @@ class _SubmitPageState extends State<SubmitPage> {
       );
       return;
     }
-    await smilePlugin.capture(data);
+    await smilePlugin.retry(data);
   }
 }
+
+const _buttonStyle = TemboButtonStyle.outline(
+  borderRadius: 30,
+  borderWidth: 2,
+  padding: kHorPadding,
+  borderColor: TemboColors.onBackground,
+  foregroundColor: TemboColors.onBackground,
+);

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tembo_client_sdk/src/models/country.dart';
-import 'package:tembo_client_sdk/src/models/user_data.dart';
+import 'package:tembo_client_sdk/src/models/data.dart';
 import 'package:tembo_client_sdk/src/models/doc.dart';
 import 'package:tembo_client_sdk/src/models/gender.dart';
 
-class DataManager extends ValueNotifier<UserData> {
+class DataManager extends ValueNotifier<Data> {
   DataManager(super.data);
 
   void updateFirstName(String firstName) {
@@ -37,7 +37,7 @@ class DataManager extends ValueNotifier<UserData> {
     notifyListeners();
   }
 
-  void updateData(UserData data) {
+  void updateData(Data data) {
     value = data;
     notifyListeners();
   }
