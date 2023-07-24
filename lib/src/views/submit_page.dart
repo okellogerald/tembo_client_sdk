@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tembo_client_sdk/src/components/source.dart';
-import 'package:tembo_client_sdk/src/extensions/textstyle_extension.dart';
 import 'package:tembo_client_sdk/src/utils/navigation_utils.dart';
 import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
@@ -94,6 +93,7 @@ class _SubmitPageState extends State<SubmitPage> {
       );
       return;
     }
+    pop(context);
     await smilePlugin.retry(data);
   }
 }
