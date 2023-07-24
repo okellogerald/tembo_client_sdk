@@ -1,5 +1,8 @@
 class Country {
-  final String image, fullName, dialCode, shortName;
+  final String image;
+  final String fullName;
+  final String dialCode;
+  final String shortName;
 
   const Country({
     required this.image,
@@ -69,6 +72,25 @@ class Country {
       "code": "UG"
     };
     return Country.fromMap(map);
+  }
+
+  @override
+  bool operator ==(covariant Country other) {
+    if (identical(this, other)) return true;
+  
+    return 
+      other.image == image &&
+      other.fullName == fullName &&
+      other.dialCode == dialCode &&
+      other.shortName == shortName;
+  }
+
+  @override
+  int get hashCode {
+    return image.hashCode ^
+      fullName.hashCode ^
+      dialCode.hashCode ^
+      shortName.hashCode;
   }
 }
 

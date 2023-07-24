@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:tembo_client_sdk/src/constants/colors.dart';
 
-import 'exports.dart';
+import 'source.dart';
 
 class TemboSnackbar extends SnackBar {
   final String message;

@@ -3,7 +3,7 @@ import 'package:tembo_client_sdk/src/constants/constants.dart';
 import 'package:tembo_client_sdk/src/extensions/source.dart';
 
 import '../styles/source.dart';
-import 'exports.dart';
+import 'source.dart';
 import 'options_dialog.dart';
 
 class TemboLabelledPicker<T> extends StatelessWidget {

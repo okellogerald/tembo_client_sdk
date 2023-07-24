@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tembo_client_sdk/src/components/text.dart';
 
-import '../../tembo_client_sdk.dart';
+import 'source.dart';
 
 class PageTitle extends StatelessWidget {
   final String title;
@@ -9,9 +9,13 @@ class PageTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TemboText(
-      title,
-      style: theme.pageTitleStyle,
+    return ThemeDataWrapper(
+      builder: (context, theme) {
+        return TemboText(
+          title,
+          style: theme.pageTitleStyle,
+        );
+      },
     );
   }
 }

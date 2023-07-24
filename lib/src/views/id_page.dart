@@ -1,18 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:tembo_client_sdk/src/components/bottom_nav_bar_button.dart';
-import 'package:tembo_client_sdk/src/components/chip_picker.dart';
-import 'package:tembo_client_sdk/src/extensions/source.dart';
-import 'package:tembo_client_sdk/src/models/doc.dart';
-import 'package:tembo_client_sdk/src/utils/navigation_utils.dart';
-import 'package:tembo_client_sdk/src/utils/source.dart';
-import 'package:tembo_client_sdk/src/widgets/page_title.dart';
-import 'package:tembo_client_sdk/src/models/doc_type.dart';
 import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
-import '../components/exports.dart';
-import '../components/form/form.dart';
-import '../constants/constants.dart';
-import '../widgets/validation_error_view.dart';
+import 'source.dart';
 import 'data_verify_page.dart';
 
 class IDPage extends StatefulWidget {
@@ -22,7 +10,7 @@ class IDPage extends StatefulWidget {
   State<IDPage> createState() => _IDPageState();
 }
 
-class _IDPageState extends State<IDPage> {
+class _IDPageState extends TemboState<IDPage> {
   final numberController = TextEditingController();
   DateTime? issueDate, expiryDate;
   VerDocumentType? type;
@@ -33,12 +21,12 @@ class _IDPageState extends State<IDPage> {
   final formKey = GlobalKey<TemboFormState>();
 
   @override
-  void initState() {
-    super.initState();
+  FutureOr<void> afterFirstLayout(BuildContext context) {
     numberController.text = dataManager.value.document?.idNumber ?? "";
     issueDate = dataManager.value.document?.issueDate;
     expiryDate = dataManager.value.document?.expiryDate;
     type = dataManager.value.document?.type;
+    setState(() {});
   }
 
   @override

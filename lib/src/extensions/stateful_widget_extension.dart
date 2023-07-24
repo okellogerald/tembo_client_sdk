@@ -17,3 +17,9 @@ mixin AfterLayoutMixin<T extends StatefulWidget> on State<T> {
 
   FutureOr<void> afterFirstLayout(BuildContext context);
 }
+
+abstract class TemboState<T extends StatefulWidget> extends State<T>
+    with AfterLayoutMixin {
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context);
+}

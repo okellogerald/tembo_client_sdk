@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client_sdk/src/constants/constants.dart';
 
 import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
@@ -95,13 +94,13 @@ class TemboThemeData {
         ),
       ),
       labelledFormFieldDecoration: _labelledFormFieldDecoration.copyWith(
-          labelTextStyle: _labelledFormFieldDecoration.labelTextStyle.copyWith(
+          labelTextStyle: _labelledFormFieldDecoration.labelTextStyle?.copyWith(
             color: colors.hint,
           ),
-          valueTextStyle: _labelledFormFieldDecoration.labelTextStyle.copyWith(
+          valueTextStyle: _labelledFormFieldDecoration.labelTextStyle?.copyWith(
             color: colors.onBackground,
           ),
-          boxDecoration: _labelledFormFieldDecoration.boxDecoration.copyWith(
+          boxDecoration: _labelledFormFieldDecoration.boxDecoration?.copyWith(
             color: colors.surfaceContainer,
           )),
     );
@@ -153,7 +152,7 @@ const _datePickerStyle = TemboDatePickerDecoration(
     borderWidth: 1.5,
     borderColor: TemboColors.surfaceContainer,
     backgroundColor: TemboColors.surfaceContainer,
-    foregroundColor: TemboColors.onSurfaceContainer,
+    foregroundColor: TemboColors.onBackground,
     borderRadius: kBorderRadius,
     textStyle: _datePickerTextStyle,
   ),
@@ -247,10 +246,10 @@ TemboThemeData handleFontFamily(TemboThemeData data, String fontFamily) {
       ),
     ),
     labelledFormFieldDecoration: data.labelledFormFieldDecoration?.copyWith(
-      labelTextStyle: data.labelledFormFieldDecoration?.labelTextStyle.copyWith(
+      labelTextStyle: data.labelledFormFieldDecoration?.labelTextStyle?.copyWith(
         fontFamily: fontFamily,
       ),
-      valueTextStyle: data.labelledFormFieldDecoration?.valueTextStyle.copyWith(
+      valueTextStyle: data.labelledFormFieldDecoration?.valueTextStyle?.copyWith(
         fontFamily: fontFamily,
       ),
     ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client_sdk/src/components/exports.dart';
+import 'package:tembo_client_sdk/src/components/source.dart';
 import 'package:tembo_client_sdk/src/extensions/context_extension.dart';
 import 'package:tembo_client_sdk/src/extensions/textstyle_extension.dart';
 import 'package:tembo_client_sdk/src/utils/navigation_utils.dart';

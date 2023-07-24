@@ -1,14 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:tembo_client_sdk/src/components/bottom_nav_bar_button.dart';
-import 'package:tembo_client_sdk/src/components/chip_picker.dart';
-import 'package:tembo_client_sdk/src/widgets/page_title.dart';
-import 'package:tembo_client_sdk/src/constants/constants.dart';
-import 'package:tembo_client_sdk/src/models/gender.dart';
 import 'package:tembo_client_sdk/src/views/id_page.dart';
 
 import '../../tembo_client_sdk.dart';
-import '../utils/navigation_utils.dart';
-import '../widgets/validation_error_view.dart';
+import 'source.dart';
 
 class GenderPickPage extends StatefulWidget {
   const GenderPickPage({super.key});
@@ -17,16 +10,15 @@ class GenderPickPage extends StatefulWidget {
   State<GenderPickPage> createState() => _GenderPickPageState();
 }
 
-class _GenderPickPageState extends State<GenderPickPage> {
+class _GenderPickPageState extends TemboState<GenderPickPage> {
   Gender? gender;
   String? error;
 
-    @override
-  void initState() {
-    super.initState();
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context) {
     gender = dataManager.value.gender;
+    setState(() {});
   }
-
 
   @override
   Widget build(BuildContext context) {

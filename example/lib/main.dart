@@ -36,13 +36,30 @@ class MainApp extends StatelessWidget {
                 onPressed: () {
                   startTemboVerification(
                     context,
-                    userId: 'user-id',
-                    colorScheme: const TemboColorScheme(
-                      primary: Colors.red,
+                    userData: UserData(
+                      userId: "user-id",
+                      country: Country.kenya(),
+                      gender: Gender.male,
+                      firstName: "Okello",
+                      lastName: "Gerald",
+                      dob: DateTime(1998),
+                      document: VerDocument(
+                        type: VerDocumentType.driverLicense,
+                        issueDate: DateTime.now(),
+                        expiryDate: DateTime.now(),
+                        idNumber: "2836464744784",
+                      ),
+                    ),
+                    /*   colorScheme: const TemboColorScheme(
+                      primary: Color(0xff3066BE),
+                      // primary: Colors.red,
                       onPrimary: Colors.white,
                       border: Colors.black,
                       onBackground: Colors.black,
-                    ),
+                      title: Colors.black26,
+                      error: Colors.blueAccent,
+                    ), */
+
                     fontFamily: "circular",
                   );
                 },

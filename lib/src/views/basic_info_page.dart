@@ -1,17 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:smile_identity_plugin/smile_identity_plugin.dart';
-import 'package:tembo_client_sdk/src/widgets/page_title.dart';
-import 'package:tembo_client_sdk/src/extensions/source.dart';
-import 'package:tembo_client_sdk/src/utils/navigation_utils.dart';
-import 'package:tembo_client_sdk/src/utils/source.dart';
 import 'package:tembo_client_sdk/src/views/gender_pick_page.dart';
 import 'package:tembo_client_sdk/src/views/submit_page.dart';
 import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
-import '../components/bottom_nav_bar_button.dart';
-import '../components/exports.dart';
-import '../components/form/form.dart';
-import '../constants/constants.dart';
+import 'source.dart';
 
 final smilePlugin = SmileIdentityPlugin();
 
@@ -19,10 +11,10 @@ class BasicInfoPage extends StatefulWidget {
   const BasicInfoPage({super.key});
 
   @override
-  State<BasicInfoPage> createState() => _BasicInfoPageState();
+  TemboState<BasicInfoPage> createState() => _BasicInfoPageState();
 }
 
-class _BasicInfoPageState extends State<BasicInfoPage> {
+class _BasicInfoPageState extends TemboState<BasicInfoPage> {
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   DateTime? date;
@@ -34,10 +26,6 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
   @override
   void initState() {
     super.initState();
-
-    firstNameController.text = dataManager.value.firstName ?? "";
-    lastNameController.text = dataManager.value.lastName ?? "";
-    date = dataManager.value.dob;
 
     smilePlugin.onStateChanged.listen((state) {
       final captureError = state.captureState.error;
@@ -53,6 +41,14 @@ class _BasicInfoPageState extends State<BasicInfoPage> {
         push(context, page: const SubmitPage());
       }
     });
+  }
+
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context) {
+    firstNameController.text = dataManager.value.firstName ?? "";
+    lastNameController.text = dataManager.value.lastName ?? "";
+    date = dataManager.value.dob;
+    setState(() {});
   }
 
   @override

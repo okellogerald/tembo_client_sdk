@@ -1,29 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:tembo_client_sdk/src/components/chip_picker.dart';
-import 'package:tembo_client_sdk/src/widgets/page_title.dart';
-import 'package:tembo_client_sdk/src/constants/constants.dart';
-import 'package:tembo_client_sdk/src/models/country.dart';
 import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
-import '../components/bottom_nav_bar_button.dart';
-import '../utils/navigation_utils.dart';
-import '../widgets/validation_error_view.dart';
+import 'source.dart';
 
 class CountryPickPage extends StatefulWidget {
   const CountryPickPage({super.key});
 
   @override
-  State<CountryPickPage> createState() => _CountryPickPageState();
+  TemboState<CountryPickPage> createState() => _CountryPickPageState();
 }
 
-class _CountryPickPageState extends State<CountryPickPage> {
+class _CountryPickPageState extends TemboState<CountryPickPage> {
   Country? country;
   String? error;
 
   @override
-  void initState() {
-    super.initState();
+  FutureOr<void> afterFirstLayout(BuildContext context) {
     country = dataManager.value.country;
+    setState(() {});
   }
 
   @override

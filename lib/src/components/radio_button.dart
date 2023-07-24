@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client_sdk/tembo_client_sdk.dart';
+import 'package:tembo_client_sdk/src/widgets/theme_data_wrapper.dart';
 
-import 'exports.dart';
+import 'source.dart';
 
 class TemboRadioButton<T> extends StatelessWidget {
   final ValueChanged<T> onPressed;
@@ -20,22 +20,24 @@ class TemboRadioButton<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectedValue = selected(value);
-    return TemboTextButton(
-      onPressed: () => onPressed(value),
-      style: selectedValue
-          ? theme.selectedOptionButtonStyle
-          : theme.unselectedOptionButtonStyle,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (selectedValue)
-            const Padding(
-              padding: EdgeInsets.only(right: 10),
-              child: Icon(Icons.check, size: 20),
-            ),
-          TemboText(label(value)),
-        ],
-      ),
-    );
+    return ThemeDataWrapper(builder: (context, theme) {
+      return TemboTextButton(
+        onPressed: () => onPressed(value),
+        style: selectedValue
+            ? theme.selectedOptionButtonStyle
+            : theme.unselectedOptionButtonStyle,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (selectedValue)
+              const Padding(
+                padding: EdgeInsets.only(right: 10),
+                child: Icon(Icons.check, size: 20),
+              ),
+            TemboText(label(value)),
+          ],
+        ),
+      );
+    });
   }
 }

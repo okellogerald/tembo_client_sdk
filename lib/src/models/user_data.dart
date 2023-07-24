@@ -5,7 +5,7 @@ import 'package:tembo_client_sdk/src/models/doc.dart';
 
 import 'gender.dart';
 
-class Data {
+class UserData {
   final Country? country;
   final String? firstName;
   final String? lastName;
@@ -15,7 +15,7 @@ class Data {
   final String userId;
   final Map<String, dynamic>? otherValues;
 
-  Data({
+  UserData({
     this.country,
     this.firstName,
     this.lastName,
@@ -26,7 +26,7 @@ class Data {
     this.otherValues,
   });
 
-  Data copyWith({
+  UserData copyWith({
     Country? country,
     String? firstName,
     String? lastName,
@@ -34,7 +34,7 @@ class Data {
     Gender? gender,
     VerDocument? document,
   }) {
-    return Data(
+    return UserData(
       country: country ?? this.country,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
@@ -52,29 +52,28 @@ class Data {
   }
 
   @override
-  bool operator ==(covariant Data other) {
+  bool operator ==(covariant UserData other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.country == country &&
-      other.firstName == firstName &&
-      other.lastName == lastName &&
-      other.dob == dob &&
-      other.gender == gender &&
-      other.document == document &&
-      other.userId == userId &&
-      mapEquals(other.otherValues, otherValues);
+
+    return other.country == country &&
+        other.firstName == firstName &&
+        other.lastName == lastName &&
+        other.dob == dob &&
+        other.gender == gender &&
+        other.document == document &&
+        other.userId == userId &&
+        mapEquals(other.otherValues, otherValues);
   }
 
   @override
   int get hashCode {
     return country.hashCode ^
-      firstName.hashCode ^
-      lastName.hashCode ^
-      dob.hashCode ^
-      gender.hashCode ^
-      document.hashCode ^
-      userId.hashCode ^
-      otherValues.hashCode;
+        firstName.hashCode ^
+        lastName.hashCode ^
+        dob.hashCode ^
+        gender.hashCode ^
+        document.hashCode ^
+        userId.hashCode ^
+        otherValues.hashCode;
   }
 }

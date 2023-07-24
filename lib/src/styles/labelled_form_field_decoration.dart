@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class TemboLabelledFormFieldDecoration {
-  final TextStyle labelTextStyle;
-  final TextStyle valueTextStyle;
-  final BoxDecoration boxDecoration;
+  final TextStyle? labelTextStyle;
+  final TextStyle? valueTextStyle;
+  final BoxDecoration? boxDecoration;
 
   const TemboLabelledFormFieldDecoration({
-    required this.labelTextStyle,
-    required this.valueTextStyle,
-    required this.boxDecoration,
+    this.labelTextStyle,
+    this.valueTextStyle,
+    this.boxDecoration,
   });
 
   TemboLabelledFormFieldDecoration copyWith({

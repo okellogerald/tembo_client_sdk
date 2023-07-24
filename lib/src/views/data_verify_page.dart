@@ -1,12 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:smile_identity_plugin/models/smile_data.dart';
-import 'package:tembo_client_sdk/src/components/bottom_nav_bar_button.dart';
-import 'package:tembo_client_sdk/src/constants/constants.dart';
-import 'package:tembo_client_sdk/src/utils/source.dart';
-import 'package:tembo_client_sdk/src/widgets/page_title.dart';
 
 import '../../tembo_client_sdk.dart';
-import '../components/form_field.dart';
+import 'source.dart';
 
 class DataVerifyPage extends StatefulWidget {
   const DataVerifyPage({super.key});
