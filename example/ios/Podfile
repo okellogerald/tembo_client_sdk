@@ -32,7 +32,6 @@ target 'Runner' do
   use_modular_headers!
 
   pod 'Smile_Identity_SDK'
-  pod 'MaterialComponents/Snackbar'
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
   target 'RunnerTests' do

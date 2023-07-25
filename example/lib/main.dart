@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smile_flutter_3/smile_flutter_3.dart';
 import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 void main() {
@@ -33,18 +34,21 @@ class MainApp extends StatelessWidget {
           builder: (context) {
             return Center(
               child: TextButton(
-                onPressed: () {
+                onPressed: () async {
+                  await SmileFlutter.captureSelfieAndIDCard("tag");
+                  print("done");
+                  return;
                   startTemboVerification(
                     context,
                     userData: Data(
-                      userId: "user-id",
+                      userId: "user-3",
                       country: Country.tz(),
-                      gender: Gender.male,
-                      firstName: "Okello",
-                      lastName: "Gerald",
-                      dob: DateTime(1998),
+                      gender: Gender.female,
+                      firstName: "Jane",
+                      lastName: "Doe",
+                      dob: DateTime(1995),
                       document: VerDocument(
-                        type: VerDocumentType.driverLicense,
+                        type: VerDocumentType.nida,
                         issueDate: DateTime.now(),
                         expiryDate: DateTime.now(),
                         idNumber: "2836464744784",
