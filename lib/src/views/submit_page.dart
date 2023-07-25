@@ -17,77 +17,78 @@ class _SubmitPageState extends State<SubmitPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: ThemeDataWrapper(builder: (context, theme) {
-        final buttonStyle = _buttonStyle.copyWith(
-          textStyle: TextStyle(
-            fontFamily: theme.fontFamily,
-            fontWeight: FontWeight.bold,
-          ),
-        );
-        return Container(
-          constraints: const BoxConstraints.expand(),
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: StreamBuilder(
-            initialData: smilePlugin.value,
-            stream: smilePlugin.onStateChanged,
-            builder: (context, snapshot) {
-              final state = snapshot.data;
-              if (state == null) return Container();
+      body: Container(
+        constraints: const BoxConstraints.expand(),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: StreamBuilder(
+          initialData: smilePlugin.value,
+          stream: smilePlugin.onStateChanged,
+          builder: (context, snapshot) {
+            final state = snapshot.data;
+            if (state == null) return Container();
 
-              return state.submitState.when(
-                none: () => Container(),
-                submitting: () {
-                  return const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TemboText(
-                        "We are submitting your job",
-                        textAlign: TextAlign.center,
+            return state.submitState.when(
+              none: () => Container(),
+              submitting: () {
+                return const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TemboText(
+                      TemboTexts.submissionInProgressDesc,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 20),
+                    TemboLoadingIndicator()
+                  ],
+                );
+              },
+              submitted: () {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const TemboText(
+                      TemboTexts.submissionSuccessDesc,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 20),
+                    TemboTextButton(
+                      style: _buttonStyle,
+                      onPressed: removeSDKScreens,
+                      child: const TemboText(TemboTexts.actionsClose),
+                    )
+                  ],
+                );
+              },
+              error: (message) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const TemboText(
+                      TemboTexts.submissionFailedDesc,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 10),
+                    TemboText(
+                      message,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: _buttonStyle.foregroundColor?.withOpacity(.7),
+                        fontSize: 12,
                       ),
-                      SizedBox(height: 20),
-                      TemboLoadingIndicator()
-                    ],
-                  );
-                },
-                submitted: () {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const TemboText(
-                        "We have submitted your job",
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 20),
-                      TemboTextButton(
-                        style: buttonStyle,
-                        onPressed: removeSDKScreens,
-                        child: const TemboText("Close"),
-                      )
-                    ],
-                  );
-                },
-                error: (message) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TemboText(
-                        message,
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 20),
-                      TemboTextButton(
-                        style: buttonStyle,
-                        onPressed: tryAgain,
-                        child: const TemboText("Try Again"),
-                      )
-                    ],
-                  );
-                },
-              );
-            },
-          ),
-        );
-      }),
+                    ),
+                    const SizedBox(height: 20),
+                    TemboTextButton(
+                      style: _buttonStyle,
+                      onPressed: tryAgain,
+                      child: const TemboText(TemboTexts.actionsTryAgain),
+                    )
+                  ],
+                );
+              },
+            );
+          },
+        ),
+      ),
     );
   }
 
@@ -99,10 +100,7 @@ class _SubmitPageState extends State<SubmitPage> {
   void tryAgain() async {
     final data = smilePlugin.value.data;
     if (data == null) {
-      showErrorSnackbar(
-        context,
-        "Looks like you need to start the process again.",
-      );
+      popUntil(context, routeName: DataVerifyPage.routeName);
       return;
     }
     popUntil(context, routeName: DataVerifyPage.routeName);
@@ -116,4 +114,5 @@ const _buttonStyle = TemboButtonStyle.outline(
   padding: kHorPadding,
   borderColor: TemboColors.onBackground,
   foregroundColor: TemboColors.onBackground,
+  textStyle: TextStyle(fontWeight: FontWeight.bold),
 );

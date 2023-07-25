@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import 'package:tembo_client_sdk/tembo_client_sdk.dart';
@@ -29,7 +30,7 @@ class TemboThemeData {
   /// Applies to the labelled form fields in the data verification before submission page
   final TemboLabelledFormFieldDecoration? labelledFormFieldDecoration;
 
-  TemboThemeData({
+  const TemboThemeData({
     this.fontFamily,
     this.pageTitleStyle = _pageTitleStyle,
     this.selectedOptionButtonStyle = _selectedOptionButtonStyle,
@@ -98,15 +99,42 @@ class TemboThemeData {
         ),
       ),
       labelledFormFieldDecoration: _labelledFormFieldDecoration.copyWith(
-          labelTextStyle: _labelledFormFieldDecoration.labelTextStyle?.copyWith(
-            color: colors.hint,
-          ),
-          valueTextStyle: _labelledFormFieldDecoration.labelTextStyle?.copyWith(
-            color: colors.onBackground,
-          ),
-          boxDecoration: _labelledFormFieldDecoration.boxDecoration?.copyWith(
-            color: colors.surfaceContainer,
-          )),
+        labelTextStyle: _labelledFormFieldDecoration.labelTextStyle?.copyWith(
+          color: colors.hint,
+        ),
+        valueTextStyle: _labelledFormFieldDecoration.labelTextStyle?.copyWith(
+          color: colors.onBackground,
+        ),
+        boxDecoration: _labelledFormFieldDecoration.boxDecoration?.copyWith(
+          color: colors.surfaceContainer,
+        ),
+      ),
+    );
+  }
+
+  TemboThemeData copyWith({
+    String? fontFamily,
+    TextStyle? pageTitleStyle,
+    TemboButtonStyle? selectedOptionButtonStyle,
+    TemboButtonStyle? unselectedOptionButtonStyle,
+    TemboButtonStyle? bottomNavBarButtonStyle,
+    TemboDatePickerDecoration? datePickerDecoration,
+    TemboTextFieldDecoration? textFieldDecoration,
+    TemboLabelledFormFieldDecoration? labelledFormFieldDecoration,
+  }) {
+    return TemboThemeData(
+      fontFamily: fontFamily ?? this.fontFamily,
+      pageTitleStyle: pageTitleStyle ?? this.pageTitleStyle,
+      selectedOptionButtonStyle:
+          selectedOptionButtonStyle ?? this.selectedOptionButtonStyle,
+      unselectedOptionButtonStyle:
+          unselectedOptionButtonStyle ?? this.unselectedOptionButtonStyle,
+      bottomNavBarButtonStyle:
+          bottomNavBarButtonStyle ?? this.bottomNavBarButtonStyle,
+      datePickerDecoration: datePickerDecoration ?? this.datePickerDecoration,
+      textFieldDecoration: textFieldDecoration ?? this.textFieldDecoration,
+      labelledFormFieldDecoration:
+          labelledFormFieldDecoration ?? this.labelledFormFieldDecoration,
     );
   }
 }
@@ -212,53 +240,3 @@ const _labelledFormFieldDecoration = TemboLabelledFormFieldDecoration(
     color: TemboColors.surfaceContainer,
   ),
 );
-
-TemboThemeData handleFontFamily(TemboThemeData data, String fontFamily) {
-  return TemboThemeData(
-    fontFamily: fontFamily,
-    pageTitleStyle: data.pageTitleStyle?.copyWith(fontFamily: fontFamily),
-    selectedOptionButtonStyle: data.selectedOptionButtonStyle?.copyWith(
-      textStyle: data.selectedOptionButtonStyle?.textStyle?.copyWith(
-        fontFamily: fontFamily,
-      ),
-    ),
-    unselectedOptionButtonStyle: data.unselectedOptionButtonStyle?.copyWith(
-      textStyle: data.unselectedOptionButtonStyle?.textStyle?.copyWith(
-        fontFamily: fontFamily,
-      ),
-    ),
-    bottomNavBarButtonStyle: data.bottomNavBarButtonStyle?.copyWith(
-      textStyle: data.bottomNavBarButtonStyle?.textStyle?.copyWith(
-        fontFamily: fontFamily,
-      ),
-    ),
-    datePickerDecoration: data.datePickerDecoration?.copyWith(
-      hintStyle: data.datePickerDecoration?.hintStyle?.copyWith(
-        fontFamily: fontFamily,
-      ),
-      buttonStyle: data.datePickerDecoration?.buttonStyle?.copyWith(
-        textStyle: data.datePickerDecoration?.buttonStyle?.textStyle?.copyWith(
-          fontFamily: fontFamily,
-        ),
-      ),
-    ),
-    textFieldDecoration: data.textFieldDecoration?.copyWith(
-      hintStyle: data.textFieldDecoration?.hintStyle.copyWith(
-        fontFamily: fontFamily,
-      ),
-      valueStyle: data.textFieldDecoration?.valueStyle?.copyWith(
-        fontFamily: fontFamily,
-      ),
-    ),
-    labelledFormFieldDecoration: data.labelledFormFieldDecoration?.copyWith(
-      labelTextStyle:
-          data.labelledFormFieldDecoration?.labelTextStyle?.copyWith(
-        fontFamily: fontFamily,
-      ),
-      valueTextStyle:
-          data.labelledFormFieldDecoration?.valueTextStyle?.copyWith(
-        fontFamily: fontFamily,
-      ),
-    ),
-  );
-}

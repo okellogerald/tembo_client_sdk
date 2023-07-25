@@ -28,7 +28,7 @@ class _CountryPickPageState extends TemboState<CountryPickPage> {
         padding: kPagePadding,
         child: ListView(
           children: [
-            const PageTitle(title: "Choose Your Country"),
+            const PageTitle(title: TemboTexts.countryChoosePageTitle),
             const SizedBox(height: 15),
             TemboPicker2(
               options: supportedCountries,
@@ -71,7 +71,7 @@ class _CountryPickPageState extends TemboState<CountryPickPage> {
     final valid = country != null;
 
     if (!valid) {
-      error = "Country is required";
+      error = TemboTexts.errorsCountryRequired;
       setState(() {});
     }
 

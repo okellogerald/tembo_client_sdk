@@ -1,18 +1,20 @@
+import 'package:tembo_client_sdk/tembo_client_sdk.dart';
+
 enum VerDocumentType {
   driverLicense(
     jsonKey: "Driver Licence",
-    label: "id-type-driver",
+    label: TemboTexts.docTypeDriversLicense,
     smileIdentityLabel: "DRIVERS_LICENSE",
-  ),
-  nida(
-    jsonKey: "NIDA",
-    label: "id-type-nida",
-    smileIdentityLabel: "NATIONAL_ID",
   ),
   passport(
     jsonKey: "Passport",
-    label: "id-type-passport",
+    label: TemboTexts.docTypePassport,
     smileIdentityLabel: "PASSPORT",
+  ),
+  nida(
+    jsonKey: "NIDA",
+    label: TemboTexts.docTypeNationalID,
+    smileIdentityLabel: "NATIONAL_ID",
   ),
   ;
 

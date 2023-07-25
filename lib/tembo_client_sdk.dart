@@ -1,5 +1,6 @@
 library tembo_client_sdk;
 
+import 'package:tembo_client_sdk/src/view_models/locale_manager.dart';
 import 'package:tembo_client_sdk/src/view_models/theme_manager.dart';
 import 'package:tembo_client_sdk/src/views/country_pick_page.dart';
 import 'package:tembo_client_sdk/src/views/source.dart';
@@ -11,6 +12,7 @@ export 'src/models/source.dart';
 
 late final ThemeManager themeManager;
 late final DataManager dataManager;
+late final LocaleManager localeManager;
 
 void startTemboVerification(
   BuildContext context, {
@@ -18,7 +20,10 @@ void startTemboVerification(
   TemboThemeData? themeData,
   TemboColorScheme? colorScheme,
   String? fontFamily,
+  TemboLocale locale = TemboLocale.en,
 }) {
+  assert(!(colorScheme != null && themeData != null), "You can only specify either themeData or colorScheme but not both");
+
   final data = _initThemeData(
     themeData: themeData,
     scheme: colorScheme,
@@ -26,6 +31,7 @@ void startTemboVerification(
   );
   _initThemeManager(data);
   _initDataManager(userData);
+  _initLocaleManager(locale);
 
   push(
     context,
@@ -39,20 +45,19 @@ TemboThemeData _initThemeData({
   TemboColorScheme? scheme,
   String? fontFamily,
 }) {
-  var data = TemboThemeData();
-  try {
-    if (themeData != null) {
-      data = themeData;
-    }
-    if (scheme != null) {
-      data = TemboThemeData.from(scheme);
-    }
-    final family = themeData?.fontFamily ?? fontFamily;
-    if (family != null) {
-      data = handleFontFamily(data, family);
-    }
-  } catch (_) {
-    //
+  var data = const TemboThemeData();
+
+  if (themeData != null) {
+    data = themeData;
+  }
+
+  if (scheme != null) {
+    data = TemboThemeData.from(scheme);
+  }
+
+  final family = themeData?.fontFamily ?? fontFamily;
+  if (family != null) {
+    data = data.copyWith(fontFamily: family);
   }
 
   return data;
@@ -64,6 +69,15 @@ void _initDataManager(Data userData) {
   } catch (_) {
     // handling LateInitializationError issues
     dataManager.updateData(userData);
+  }
+}
+
+void _initLocaleManager(TemboLocale locale) {
+  try {
+    localeManager = LocaleManager(locale);
+  } catch (_) {
+    // handling LateInitializationError issues
+    localeManager.updateLocale(locale);
   }
 }
 

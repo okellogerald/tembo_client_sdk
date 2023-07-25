@@ -65,19 +65,19 @@ class _BasicInfoPageState extends TemboState<BasicInfoPage> {
         child: ListView(
           padding: kPagePadding,
           children: [
-            const PageTitle(title: "Basic Info"),
+            const PageTitle(title: TemboTexts.basicInfoPageTitle),
             const SizedBox(height: 15),
             TemboTextField(
               controller: firstNameController,
               textCapitalization: TextCapitalization.words,
-              hint: "First Name",
+              hint: TemboTexts.userFirstName,
               validator: validateName,
             ),
             const SizedBox(height: 15),
             TemboTextField(
               controller: lastNameController,
               textCapitalization: TextCapitalization.words,
-              hint: "Last Name",
+              hint: TemboTexts.userLastName,
               validator: validateName,
             ),
             const SizedBox(height: 15),
@@ -85,7 +85,7 @@ class _BasicInfoPageState extends TemboState<BasicInfoPage> {
               value: date,
               onSelected: onDateSelected,
               error: dateError,
-              hint: "Date of Birth",
+              hint: TemboTexts.userDOB,
             ),
           ],
         ),
@@ -115,7 +115,7 @@ class _BasicInfoPageState extends TemboState<BasicInfoPage> {
     final hasNoFormErrors = formKey.currentState?.validate() ?? false;
 
     if (date == null) {
-      dateError = "Date of birth is required";
+      dateError = TemboTexts.errorsDOBRequired;
       setState(() {});
       return false;
     }
@@ -123,13 +123,13 @@ class _BasicInfoPageState extends TemboState<BasicInfoPage> {
     final now = DateTime.now();
     final diff = date!.difference(now);
     if (!diff.isNegative) {
-      dateError = "We don't support people born from the future.";
+      dateError = TemboTexts.errorsDOBBornFromFuture;
       setState(() {});
       return false;
     }
 
     if (diff.abs().inDays < 18 * 365) {
-      dateError = "You must be at least 18 years old!";
+      dateError = TemboTexts.errorsDOBAgeBelow18;
       setState(() {});
       return false;
     }

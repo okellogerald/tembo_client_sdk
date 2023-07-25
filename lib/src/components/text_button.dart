@@ -1,6 +1,4 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:tembo_client_sdk/src/extensions/source.dart';
 
 import '../styles/source.dart';
 
@@ -73,40 +71,14 @@ class _TemboTextButtonState extends State<TemboTextButton> {
 
   Widget getChild(BuildContext context) {
     return DefaultTextStyle(
-        style: _style.getTextStyle ??
-            context.textTheme.bodyMedium.withFW300
-                .copyWith(color: _style.foregroundColor),
-        child: IconTheme(
-          data: IconThemeData(color: _style.foregroundColor),
-          child: widget.child,
-        ));
-  }
-}
-
-class TemboPlainTextButton extends StatelessWidget {
-  final VoidCallback onPressed;
-  final String text;
-  final TextStyle? style;
-
-  const TemboPlainTextButton({
-    super.key,
-    required this.onPressed,
-    required this.text,
-    this.style,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      child: RichText(
-        text: TextSpan(
-          text: text,
-          style: style ??
-              context.textTheme.bodySmall.withFW500.withPrimaryColor.copyWith(
-                decoration: TextDecoration.underline,
-              ),
-          recognizer: TapGestureRecognizer()..onTap = onPressed,
-        ),
+      style: _style.getTextStyle ??
+          TextStyle(
+            color: _style.foregroundColor,
+            fontWeight: FontWeight.bold,
+          ),
+      child: IconTheme(
+        data: IconThemeData(color: _style.foregroundColor),
+        child: widget.child,
       ),
     );
   }

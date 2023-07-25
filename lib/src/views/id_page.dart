@@ -39,37 +39,37 @@ class _IDPageState extends TemboState<IDPage> {
         child: ListView(
           padding: kPagePadding,
           children: [
-            const PageTitle(title: "Identity Document Data"),
+            const PageTitle(title: TemboTexts.docDataPageTitle),
             const SizedBox(height: 15),
             TemboText(
-              "Document Type",
+              TemboTexts.docType,
               style: context.textTheme.bodyLarge,
             ),
             const SizedBox(height: 10),
             TemboPicker2(
               options: VerDocumentType.values,
               onChange: onTypeSelected,
-              label: (t) => t.jsonKey,
+              label: (t) => t.label,
               selected: (p0) => p0 == type,
             ),
             const SizedBox(height: 25),
             TemboTextField(
               controller: numberController,
-              hint: "Document Number",
+              hint: TemboTexts.docNumber,
               validator: validateName,
             ),
             const SizedBox(height: 15),
             TemboDatePicker(
               onSelected: onIssueDateSelected,
               value: issueDate,
-              hint: "Issue Date",
+              hint: TemboTexts.docIssueDate,
               error: issueDateError,
             ),
             const SizedBox(height: 15),
             TemboDatePicker(
               onSelected: onExpiryDateSelected,
               value: expiryDate,
-              hint: "Expiry Date",
+              hint: TemboTexts.docExpiryDate,
               error: expiryDateError,
             ),
             const SizedBox(height: 25),
@@ -129,15 +129,15 @@ class _IDPageState extends TemboState<IDPage> {
     error = null;
 
     if (issueDate == null) {
-      issueDateError = "Issue date is required";
+      issueDateError = TemboTexts.errorsIssueDateRequired;
     }
 
     if (expiryDate == null) {
-      expiryDateError = "Expiry date is required";
+      expiryDateError = TemboTexts.errorsExpiryDateRequired;
     }
 
     if (type == null) {
-      error = "Document type is required";
+      error = TemboTexts.errorsDocTypeRequired;
     }
 
     setState(() {});

@@ -29,13 +29,13 @@ class _GenderPickPageState extends TemboState<GenderPickPage> {
         padding: kPagePadding,
         child: ListView(
           children: [
-            const PageTitle(title: "Choose Your Gender"),
+            const PageTitle(title: TemboTexts.genderPickPageTitle),
             const SizedBox(height: 15),
             TemboPicker2(
               options: Gender.values,
               onChange: onGenderSelected,
               selected: (d) => d == gender,
-              label: (d) => d.name,
+              label: (d) => d.label,
             ),
             const SizedBox(height: 20),
             ValidationErrorView(
@@ -72,7 +72,7 @@ class _GenderPickPageState extends TemboState<GenderPickPage> {
     final valid = gender != null;
 
     if (!valid) {
-      error = "Gender is required";
+      error = TemboTexts.errorsGenderRequired;
       setState(() {});
     }
 

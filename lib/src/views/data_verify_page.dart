@@ -21,45 +21,45 @@ class _DataVerifyPageState extends State<DataVerifyPage> {
       body: ListView(
         padding: kPagePadding.copyWith(bottom: 30),
         children: [
-          const PageTitle(title: "Is this okay?"),
+          const PageTitle(title: TemboTexts.dataVerifyPageTitle),
           const SizedBox(height: 20),
           OverflowBar(
             overflowSpacing: 15,
             children: [
               TemboLabelledFormField(
-                label: "First Name",
+                label: TemboTexts.userFirstName,
                 value: data.firstName!,
               ),
               TemboLabelledFormField(
-                label: "Last Name",
+                label: TemboTexts.userLastName,
                 value: data.lastName!,
               ),
               TemboLabelledFormField(
-                label: "Gender",
+                label: TemboTexts.userGender,
                 value: data.gender!.name,
               ),
               TemboLabelledFormField(
-                label: "Date of Birth",
+                label:  TemboTexts.userDOB,
                 value: data.dob!.format(),
               ),
               TemboLabelledFormField(
-                label: "Country",
+                label: TemboTexts.userCountry,
                 value: data.country!.name,
               ),
               TemboLabelledFormField(
-                label: "Document Type",
+                label: TemboTexts.docType,
                 value: data.document!.type.jsonKey,
               ),
               TemboLabelledFormField(
-                label: "Document Number",
+                label: TemboTexts.docNumber,
                 value: data.document!.idNumber,
               ),
               TemboLabelledFormField(
-                label: "Document Issue Date",
+                label: TemboTexts.docIssueDate,
                 value: data.document!.issueDate.format(),
               ),
               TemboLabelledFormField(
-                label: "Document Expiry Date",
+                label: TemboTexts.docExpiryDate,
                 value: data.document!.expiryDate.format(),
               ),
             ],

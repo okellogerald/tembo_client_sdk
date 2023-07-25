@@ -1,6 +1,8 @@
+import 'package:tembo_client_sdk/tembo_client_sdk.dart';
+
 enum Gender {
-  male("Male", label: "gender-male", jsonKey: "M"),
-  female("Female", label: "gender-female", jsonKey: "F"),
+  male("Male", label: TemboTexts.gendersMale, jsonKey: "M"),
+  female("Female", label: TemboTexts.gendersFemale, jsonKey: "F"),
   ;
 
   final String label, name;
