@@ -8,6 +8,7 @@ import 'source.dart';
 final smilePlugin = SmileIdentityPlugin();
 
 class BasicInfoPage extends StatefulWidget {
+  static const routeName = "basic_info";
   const BasicInfoPage({super.key});
 
   @override
@@ -38,7 +39,11 @@ class _BasicInfoPageState extends TemboState<BasicInfoPage> {
 
       if (state.captureState.didCaptureSuccessfully &&
           state.submitState.isNone) {
-        push(context, page: const SubmitPage());
+        push(
+          context,
+          routeName: SubmitPage.routeName,
+          page: const SubmitPage(),
+        );
       }
     });
   }
@@ -99,7 +104,11 @@ class _BasicInfoPageState extends TemboState<BasicInfoPage> {
     dataManager.updateLastName(lastNameController.compactText!);
     dataManager.updateDOB(date!);
 
-    push(context, page: const GenderPickPage());
+    push(
+      context,
+      routeName: GenderPickPage.routeName,
+      page: const GenderPickPage(),
+    );
   }
 
   bool validate() {

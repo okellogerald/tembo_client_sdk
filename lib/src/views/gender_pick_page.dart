@@ -4,6 +4,7 @@ import '../../tembo_client_sdk.dart';
 import 'source.dart';
 
 class GenderPickPage extends StatefulWidget {
+  static const routeName = "gender_pick";
   const GenderPickPage({super.key});
 
   @override
@@ -54,7 +55,11 @@ class _GenderPickPageState extends TemboState<GenderPickPage> {
     if (!valid) return;
 
     dataManager.updateGender(gender!);
-    push(context, page: const IDPage());
+    push(
+      context,
+      routeName: IDPage.routeName,
+      page: const IDPage(),
+    );
   }
 
   void onGenderSelected(Gender value) {

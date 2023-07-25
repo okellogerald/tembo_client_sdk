@@ -10,7 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  smile_flutter_3: ^0.0.18
   tembo_client_sdk:
     path: ../
 

@@ -8,11 +8,6 @@ import smile_identity_plugin
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-      let controller : FlutterViewController = window?.rootViewController as! FlutterViewController;
-        
-      let smile = SmileIdentity(binaryMessenger: controller.binaryMessenger);
-      smile.setUpListeners()
-      
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

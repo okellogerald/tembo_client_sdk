@@ -7,14 +7,26 @@ final rootNavigator = GlobalKey<NavigatorState>();
 
 final rootScaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
-Future push(BuildContext context, {required Widget page}) async {
+Future push(
+  BuildContext context, {
+  required Widget page,
+  required String routeName,
+}) async {
   final navigatorState = _getNavigatorInstance(context);
-  return await navigatorState?.push(MaterialPageRoute(builder: (_) => page));
+  return await navigatorState?.push(MaterialPageRoute(
+    builder: (_) => page,
+    settings: RouteSettings(name: routeName),
+  ));
 }
 
 void pop(context, [result]) {
   final navigatorState = _getNavigatorInstance(context);
   navigatorState?.pop(result);
+}
+
+void popUntil(BuildContext context, {required String routeName}) {
+  final navigatorState = _getNavigatorInstance(context);
+  navigatorState?.popUntil((route) => route.settings.name == routeName);
 }
 
 void pushAndRemoveUntil(BuildContext context, {required Widget page}) {

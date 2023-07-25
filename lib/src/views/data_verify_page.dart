@@ -4,6 +4,7 @@ import '../../tembo_client_sdk.dart';
 import 'source.dart';
 
 class DataVerifyPage extends StatefulWidget {
+  static const routeName = "data_verify";
   const DataVerifyPage({super.key});
 
   @override

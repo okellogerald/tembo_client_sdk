@@ -6,6 +6,8 @@ import '../styles/box_decoration.dart';
 
 /// For styling custom package components
 class TemboThemeData {
+  final String? fontFamily;
+
   /// Applies to all page titles
   final TextStyle? pageTitleStyle;
 
@@ -28,6 +30,7 @@ class TemboThemeData {
   final TemboLabelledFormFieldDecoration? labelledFormFieldDecoration;
 
   TemboThemeData({
+    this.fontFamily,
     this.pageTitleStyle = _pageTitleStyle,
     this.selectedOptionButtonStyle = _selectedOptionButtonStyle,
     this.unselectedOptionButtonStyle = _unselectedOptionButtonStyle,
@@ -58,6 +61,7 @@ class TemboThemeData {
   /// Other style properties e.g border-radius remain the same(with default configuration).
   factory TemboThemeData.from(TemboColorScheme colors) {
     return TemboThemeData(
+      fontFamily: null,
       pageTitleStyle: _pageTitleStyle.copyWith(color: colors.title),
       selectedOptionButtonStyle: _selectedOptionButtonStyle.copyWith(
         backgroundColor: colors.surfaceContainer,
@@ -203,14 +207,15 @@ const _labelledFormFieldDecoration = TemboLabelledFormFieldDecoration(
     fontWeight: FontWeight.bold,
   ),
   boxDecoration: TemboBoxDecoration(
-    borderColor: TemboColors.border,
-    borderWidth: 1.5,
+    borderColor: TemboColors.surfaceContainer,
+    borderWidth: 0,
     color: TemboColors.surfaceContainer,
   ),
 );
 
 TemboThemeData handleFontFamily(TemboThemeData data, String fontFamily) {
   return TemboThemeData(
+    fontFamily: fontFamily,
     pageTitleStyle: data.pageTitleStyle?.copyWith(fontFamily: fontFamily),
     selectedOptionButtonStyle: data.selectedOptionButtonStyle?.copyWith(
       textStyle: data.selectedOptionButtonStyle?.textStyle?.copyWith(
@@ -246,10 +251,12 @@ TemboThemeData handleFontFamily(TemboThemeData data, String fontFamily) {
       ),
     ),
     labelledFormFieldDecoration: data.labelledFormFieldDecoration?.copyWith(
-      labelTextStyle: data.labelledFormFieldDecoration?.labelTextStyle?.copyWith(
+      labelTextStyle:
+          data.labelledFormFieldDecoration?.labelTextStyle?.copyWith(
         fontFamily: fontFamily,
       ),
-      valueTextStyle: data.labelledFormFieldDecoration?.valueTextStyle?.copyWith(
+      valueTextStyle:
+          data.labelledFormFieldDecoration?.valueTextStyle?.copyWith(
         fontFamily: fontFamily,
       ),
     ),

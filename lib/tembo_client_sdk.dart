@@ -1,14 +1,8 @@
 library tembo_client_sdk;
 
-import 'package:flutter/material.dart';
-import 'package:tembo_client_sdk/src/constants/colors.dart';
-import 'package:tembo_client_sdk/src/constants/theme_data.dart';
-import 'package:tembo_client_sdk/src/utils/navigation_utils.dart';
-import 'package:tembo_client_sdk/src/view_models/data_manager.dart';
 import 'package:tembo_client_sdk/src/view_models/theme_manager.dart';
 import 'package:tembo_client_sdk/src/views/country_pick_page.dart';
-
-import 'src/models/data.dart';
+import 'package:tembo_client_sdk/src/views/source.dart';
 
 export 'src/views/basic_info_page.dart';
 export 'src/constants/source.dart';
@@ -35,19 +29,8 @@ void startTemboVerification(
 
   push(
     context,
-    page: DefaultTextStyle(
-      style: TextStyle(
-        fontFamily: fontFamily,
-      ),
-      child: Scaffold(
-        key: rootScaffoldMessengerKey,
-        body: ValueListenableBuilder<Data>(
-            valueListenable: dataManager,
-            builder: (context, _, snapshot) {
-              return const CountryPickPage();
-            }),
-      ),
-    ),
+    routeName: CountryPickPage.routeName,
+    page: const CountryPickPage(),
   );
 }
 
@@ -60,16 +43,16 @@ TemboThemeData _initThemeData({
   try {
     if (themeData != null) {
       data = themeData;
-    } else {
-      if (scheme == null) {
-        data = TemboThemeData();
-      } else {
-        data = TemboThemeData.from(scheme);
-      }
     }
-    if (fontFamily != null) data = handleFontFamily(data, fontFamily);
+    if (scheme != null) {
+      data = TemboThemeData.from(scheme);
+    }
+    final family = themeData?.fontFamily ?? fontFamily;
+    if (family != null) {
+      data = handleFontFamily(data, family);
+    }
   } catch (_) {
-    return TemboThemeData();
+    //
   }
 
   return data;

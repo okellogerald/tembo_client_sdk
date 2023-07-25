@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smile_flutter_3/smile_flutter_3.dart';
 import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 void main() {
@@ -35,9 +34,6 @@ class MainApp extends StatelessWidget {
             return Center(
               child: TextButton(
                 onPressed: () async {
-                  await SmileFlutter.captureSelfieAndIDCard("tag");
-                  print("done");
-                  return;
                   startTemboVerification(
                     context,
                     userData: Data(
@@ -54,16 +50,6 @@ class MainApp extends StatelessWidget {
                         idNumber: "2836464744784",
                       ),
                     ),
-                    /*   colorScheme: const TemboColorScheme(
-                      primary: Color(0xff3066BE),
-                      // primary: Colors.red,
-                      onPrimary: Colors.white,
-                      border: Colors.black,
-                      onBackground: Colors.black,
-                      title: Colors.black26,
-                      error: Colors.blueAccent,
-                    ), */
-
                     fontFamily: "circular",
                   );
                 },

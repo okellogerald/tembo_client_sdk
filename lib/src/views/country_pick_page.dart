@@ -3,6 +3,7 @@ import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 import 'source.dart';
 
 class CountryPickPage extends StatefulWidget {
+  static const routeName = "country_pick";
   const CountryPickPage({super.key});
 
   @override
@@ -53,7 +54,11 @@ class _CountryPickPageState extends TemboState<CountryPickPage> {
     if (!valid) return;
 
     dataManager.updateCountry(country!);
-    push(context, page: const BasicInfoPage());
+    push(
+      context,
+      routeName: BasicInfoPage.routeName,
+      page: const BasicInfoPage(),
+    );
   }
 
   void onCountrySelected(Country value) {

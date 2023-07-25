@@ -4,6 +4,7 @@ import 'source.dart';
 import 'data_verify_page.dart';
 
 class IDPage extends StatefulWidget {
+  static const routeName = "id_pick";
   const IDPage({super.key});
 
   @override
@@ -113,7 +114,11 @@ class _IDPageState extends TemboState<IDPage> {
       ),
     );
 
-    push(context, page: const DataVerifyPage());
+    push(
+      context,
+      routeName: DataVerifyPage.routeName,
+      page: const DataVerifyPage(),
+    );
   }
 
   bool validate() {
