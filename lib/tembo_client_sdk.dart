@@ -18,11 +18,24 @@ late final LocaleManager localeManager;
 void startTemboVerification(
   BuildContext context, {
   required Data userData,
+
+  /// Color scheme to be used for all components
   TemboColorScheme? scheme,
+
+  /// If [scheme] is provided, themeMode will be ignored.
+  ///
+  /// If [scheme] is not provided, the default [TemboColorScheme]s will be used
+  /// [TemboColorScheme.light] for ThemeMode.light and
+  /// [TemboColorScheme.dark] for ThemeMode.dark
+  ThemeMode themeMode = ThemeMode.system,
   String? fontFamily,
+
+  /// Sets the language to be used.
+  ///
+  /// Only Swahili(sw) and English(en) are currently supported.
   TemboLocale locale = TemboLocale.en,
 }) {
-  final data = _initThemeData(context, scheme, fontFamily);
+  final data = _initThemeData(context, themeMode, scheme, fontFamily);
   _initThemeManager(data);
   _initDataManager(userData);
   _initLocaleManager(locale);
@@ -36,18 +49,29 @@ void startTemboVerification(
 
 TemboThemeData _initThemeData(
   BuildContext context,
+  ThemeMode? themeMode,
   TemboColorScheme? scheme,
   String? fontFamily,
 ) {
   TemboThemeData data;
 
   if (scheme == null) {
-    var brightness = MediaQuery.platformBrightnessOf(context);
-    bool isDarkMode = brightness == Brightness.dark;
-    if (isDarkMode) {
-      data = TemboThemeData.from(const TemboColorScheme.dark());
-    } else {
-      data = const TemboThemeData();
+    switch (themeMode) {
+      case ThemeMode.system:
+        var brightness = MediaQuery.platformBrightnessOf(context);
+        bool isDarkMode = brightness == Brightness.dark;
+        if (isDarkMode) {
+          data = TemboThemeData.from(const TemboColorScheme.dark());
+        } else {
+          data = const TemboThemeData();
+        }
+        break;
+      case ThemeMode.dark:
+        const darkScheme = TemboColorScheme.dark();
+        data = TemboThemeData.from(darkScheme);
+        break;
+      default:
+        data = const TemboThemeData();
     }
   } else {
     data = TemboThemeData.from(scheme);

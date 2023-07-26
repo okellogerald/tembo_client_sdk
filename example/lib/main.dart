@@ -40,8 +40,9 @@ class MainApp extends StatelessWidget {
                         idNumber: "2836464744784",
                       ),
                     ),
-                    locale: TemboLocale.sw,
+                    locale: TemboLocale.en,
                     fontFamily: "circular",
+                    themeMode: ThemeMode.dark,
                   );
                 },
                 style: TextButton.styleFrom(

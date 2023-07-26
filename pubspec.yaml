@@ -16,7 +16,6 @@ dependencies:
   url_launcher: ^6.1.12
   smile_identity_plugin: ^0.0.1+2
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

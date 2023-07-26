@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:smile_identity_plugin/models/smile_data.dart';
 
 import 'package:tembo_client_sdk/src/models/country.dart';
@@ -7,14 +6,32 @@ import 'package:tembo_client_sdk/src/models/doc.dart';
 import 'gender.dart';
 
 class Data {
+  /// User's country.
+  ///
+  /// It should be the country from which the [document] has been issued.
   final Country? country;
+
+  /// User's first name
   final String? firstName;
+
+  /// User's last name
   final String? lastName;
+
+  /// User's date of birth
   final DateTime? dob;
+
+  /// User's gender
   final Gender? gender;
+
+  /// User's identity document. The [document] should be issued from [country]
   final VerDocument? document;
+
+  /// User's unique id.
+  ///
+  /// This will help identify whether this user has already been verified at any later date.
   final String userId;
-  final Map<String, dynamic>? otherValues;
+
+  /// Make sure to use Environment.prod before you push to production.
   final Environment? environment;
 
   Data({
@@ -25,7 +42,6 @@ class Data {
     this.gender,
     this.document,
     required this.userId,
-    this.otherValues,
     this.environment,
   });
 
@@ -37,7 +53,6 @@ class Data {
     Gender? gender,
     VerDocument? document,
     String? userId,
-    Map<String, dynamic>? otherValues,
     Environment? environment,
   }) {
     return Data(
@@ -48,42 +63,38 @@ class Data {
       gender: gender ?? this.gender,
       document: document ?? this.document,
       userId: userId ?? this.userId,
-      otherValues: otherValues ?? this.otherValues,
       environment: environment ?? this.environment,
     );
   }
 
   @override
   String toString() {
-    return 'Data(country: $country, firstName: $firstName, lastName: $lastName, dob: $dob, gender: $gender, document: $document, userId: $userId, otherValues: $otherValues, environment: $environment)';
+    return 'Data(country: $country, firstName: $firstName, lastName: $lastName, dob: $dob, gender: $gender, document: $document, userId: $userId, environment: $environment)';
   }
 
   @override
   bool operator ==(covariant Data other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.country == country &&
-      other.firstName == firstName &&
-      other.lastName == lastName &&
-      other.dob == dob &&
-      other.gender == gender &&
-      other.document == document &&
-      other.userId == userId &&
-      mapEquals(other.otherValues, otherValues) &&
-      other.environment == environment;
+
+    return other.country == country &&
+        other.firstName == firstName &&
+        other.lastName == lastName &&
+        other.dob == dob &&
+        other.gender == gender &&
+        other.document == document &&
+        other.userId == userId &&
+        other.environment == environment;
   }
 
   @override
   int get hashCode {
     return country.hashCode ^
-      firstName.hashCode ^
-      lastName.hashCode ^
-      dob.hashCode ^
-      gender.hashCode ^
-      document.hashCode ^
-      userId.hashCode ^
-      otherValues.hashCode ^
-      environment.hashCode;
+        firstName.hashCode ^
+        lastName.hashCode ^
+        dob.hashCode ^
+        gender.hashCode ^
+        document.hashCode ^
+        userId.hashCode ^
+        environment.hashCode;
   }
 }

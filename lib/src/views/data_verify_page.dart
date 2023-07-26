@@ -94,7 +94,6 @@ SmileData prepareForSmileIdentityVerification(Data userData) {
         jobType: 1,
         userId: userData.userId,
         country: Country.kenya().abbrev,
-        additionalValues: userData.otherValues,
         captureType: CaptureType.selfieAndIdCapture,
         environment: Environment.test,
         firstName: userData.firstName,
@@ -107,7 +106,6 @@ SmileData prepareForSmileIdentityVerification(Data userData) {
       jobType: 1,
       userId: userData.userId,
       country: Country.kenya().abbrev,
-      additionalValues: userData.otherValues,
       captureType: CaptureType.selfieAndIdCapture,
       environment: Environment.prod,
     );
@@ -120,7 +118,6 @@ SmileData prepareForSmileIdentityVerification(Data userData) {
       idType: userData.document!.type.smileIdentityLabel,
       userId: userData.userId,
       jobType: 1,
-      additionalValues: userData.otherValues,
       captureType: CaptureType.selfieAndIdCapture,
       environment: Environment.prod,
     );
