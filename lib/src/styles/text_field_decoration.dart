@@ -25,7 +25,7 @@ class TemboTextFieldDecoration {
   const TemboTextFieldDecoration({
     this.fillColor,
     this.hintStyle = const TextStyle(
-      color: TemboColors.hint,
+      color: LightTemboColors.hint,
       fontWeight: FontWeight.w400,
       fontSize: 15,
     ),
@@ -72,18 +72,25 @@ class TemboTextFieldDecoration {
     );
   }
 
-  InputBorder get disabledBorder {
-    if(useDefinedStylesForDisabledBorder) {
-      return  OutlineInputBorder(
-      borderSide: BorderSide(
-        color: borderColor ?? Colors.transparent,
-        width: borderWidth ?? 0,
-      ),
+  TemboTextFieldDecoration copyFontFamily(String? fontFamily) {
+    return copyWith(
+      valueStyle: valueStyle?.copyWith(fontFamily: fontFamily),
+      hintStyle: hintStyle.copyWith(fontFamily: fontFamily),
     );
+  }
+
+  InputBorder get disabledBorder {
+    if (useDefinedStylesForDisabledBorder) {
+      return OutlineInputBorder(
+        borderSide: BorderSide(
+          color: borderColor ?? Colors.transparent,
+          width: borderWidth ?? 0,
+        ),
+      );
     }
     return const OutlineInputBorder(
       borderSide: BorderSide(
-        color: TemboColors.border,
+        color: LightTemboColors.border,
         width: 2,
       ),
     );
@@ -93,16 +100,18 @@ class TemboTextFieldDecoration {
     return hasBorder
         ? borderStyle == TemboBorderStyle.outline
             ? OutlineInputBorder(
-                borderRadius: BorderRadius.circular(borderRadius ?? kBorderRadius),
+                borderRadius:
+                    BorderRadius.circular(borderRadius ?? kBorderRadius),
                 borderSide: BorderSide(
-                  color: borderColor ?? TemboColors.border,
+                  color: borderColor ?? LightTemboColors.border,
                   width: borderWidth ?? 1.5,
                 ),
               )
             : UnderlineInputBorder(
-                borderRadius: BorderRadius.circular(borderRadius ?? kBorderRadius),
+                borderRadius:
+                    BorderRadius.circular(borderRadius ?? kBorderRadius),
                 borderSide: BorderSide(
-                  color: borderColor ?? TemboColors.background,
+                  color: borderColor ?? LightTemboColors.background,
                   width: borderWidth ?? 1.0,
                 ),
               )
@@ -117,7 +126,7 @@ class TemboTextFieldDecoration {
       focusedBorder: border,
       errorBorder: border.copyWith(
         borderSide: BorderSide(
-          color: TemboColors.error,
+          color: LightTemboColors.error,
           width: border.borderSide.width,
         ),
       ),

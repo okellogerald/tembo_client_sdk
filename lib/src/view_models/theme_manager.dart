@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/theme_data.dart';
+import '../constants/themes/theme_data.dart';
 
 class ThemeManager extends ValueNotifier<TemboThemeData> {
   ThemeManager(super.data);

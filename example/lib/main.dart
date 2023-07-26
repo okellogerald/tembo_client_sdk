@@ -12,8 +12,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(
-       /*  fontFamily: "circular",
-        primaryColor: Colors.black, */
+       // fontFamily: "circular",
         useMaterial3: true,
       ),
       home: Scaffold(
@@ -29,7 +28,7 @@ class MainApp extends StatelessWidget {
                     context,
                     userData: Data(
                       userId: "user-3",
-                      /*  country: Country.tz(),
+                      country: Country.tz(),
                       gender: Gender.female,
                       firstName: "Jane",
                       lastName: "Doe",
@@ -39,12 +38,9 @@ class MainApp extends StatelessWidget {
                         issueDate: DateTime.now(),
                         expiryDate: DateTime.now(),
                         idNumber: "2836464744784",
-                      ), */
+                      ),
                     ),
                     locale: TemboLocale.sw,
-                    colorScheme: const TemboColorScheme(
-                      primary: Colors.red,
-                    ),
                     fontFamily: "circular",
                   );
                 },

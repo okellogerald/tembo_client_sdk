@@ -73,15 +73,15 @@ class _TemboDatePickerState extends TemboState<TemboDatePicker> {
   @override
   Widget build(BuildContext context) {
     return ThemeDataWrapper(builder: (context, theme) {
-      final decoration = theme.datePickerDecoration?.copyWith(
+      final decoration = theme.datePickerDecoration.copyWith(
         hint: widget.hint,
       );
 
       return ValueListenableBuilder(
           valueListenable: _errorNotifier,
           builder: (_, hasError, __) {
-            final buttonStyle = decoration?.buttonStyle?.copyWith(
-              borderColor: hasError ? TemboColors.error : null,
+            final buttonStyle = decoration.buttonStyle?.copyWith(
+              borderColor: hasError ? LightTemboColors.error : null,
             );
 
             return Column(
@@ -101,16 +101,12 @@ class _TemboDatePickerState extends TemboState<TemboDatePicker> {
                                 DateFormat("dd/MM/yyyy").format(selectedDate!),
                               )
                             : TemboText(
-                                decoration?.hint ?? "",
-                                style: decoration?.hintStyle,
+                                decoration.hint,
+                                style: decoration.hintStyle,
                               ),
                       ),
                       const SizedBox(width: 10),
-                      decoration?.icon ?? Container(),
-                      /*     const Icon(
-                              Icons.calendar_today_outlined,
-                              size: 20,
-                            ), */
+                      decoration.icon ?? Container(),
                     ],
                   ),
                 ),
@@ -217,7 +213,7 @@ class _TemboDatePickerState extends TemboState<TemboDatePicker> {
           child: TemboText(
             widget.error!,
             style: context.textTheme.bodyMedium.withColor(
-              TemboColors.error,
+              LightTemboColors.error,
             ),
           ),
         );

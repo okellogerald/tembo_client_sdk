@@ -66,30 +66,31 @@ class _TemboTextFieldState extends State<TemboTextField> {
       return ValueListenableBuilder(
           valueListenable: localeManager,
           builder: (context, _, __) {
-            final decoration =
-                theme.textFieldDecoration?.copyWith(hint: widget.hint?.tr());
-            final bool canExpand = decoration?.size != null;
+            final decoration = theme.textFieldDecoration
+                .copyFontFamily(theme.fontFamily)
+                .copyWith(hint: widget.hint?.tr());
+            final bool canExpand = decoration.size != null;
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: decoration?.size?.width,
-                  height: decoration?.size?.height,
+                  width: decoration.size?.width,
+                  height: decoration.size?.height,
                   child: ValueListenableBuilder<String?>(
                       valueListenable: errorNotifier,
                       builder: (context, error, snapshot) {
                         final hasError = error != null;
 
                         return TemboTextFormField(
-                          style: decoration?.valueStyle,
+                          style: decoration.valueStyle,
                           controller: widget.controller,
                           focusNode: widget.focusNode,
                           decoration: hasError
                               ? decoration
-                                  ?.copyWith(borderColor: TemboColors.error)
+                                  .copyWith(borderColor: LightTemboColors.error)
                                   .getInputDecoration
-                              : decoration?.getInputDecoration.copyWith(
+                              : decoration.getInputDecoration.copyWith(
                                   errorStyle:
                                       context.textTheme.bodySmall.withSize(0),
                                 ),
@@ -133,7 +134,7 @@ class _TemboTextFieldState extends State<TemboTextField> {
           child: TemboText(
             error,
             style: context.textTheme.bodyMedium.withColor(
-              TemboColors.error,
+              LightTemboColors.error,
             ),
           ),
         );

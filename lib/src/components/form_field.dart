@@ -22,17 +22,17 @@ class TemboLabelledFormField extends StatelessWidget {
         children: [
           TemboText(
             label,
-            style: theme.labelledFormFieldDecoration?.labelTextStyle,
+            style: theme.labelledFormFieldDecoration.labelTextStyle,
           ),
           const SizedBox(height: 5),
           Container(
             width: double.maxFinite,
-            decoration: theme.labelledFormFieldDecoration?.boxDecoration,
+            decoration: theme.labelledFormFieldDecoration.boxDecoration,
             padding: kHorPadding.copyWith(top: 12, bottom: 12),
             alignment: Alignment.centerLeft,
             child: TemboText(
               value,
-              style: theme.labelledFormFieldDecoration?.valueTextStyle,
+              style: theme.labelledFormFieldDecoration.valueTextStyle,
             ),
           ),
         ],

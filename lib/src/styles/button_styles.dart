@@ -29,8 +29,8 @@ class TemboButtonStyle {
       );
 
   const TemboButtonStyle.filled({
-    this.backgroundColor = TemboColors.primary,
-    this.foregroundColor = TemboColors.onPrimary,
+    this.backgroundColor = LightTemboColors.primary,
+    this.foregroundColor = LightTemboColors.onPrimary,
     this.borderRadius,
     this.elevation,
     this.width,
@@ -124,6 +124,27 @@ class TemboButtonStyle {
       padding: other.padding ?? padding,
       // textStyle: other.textStyle ?? textStyle,
       useContinuousBorder: other.useContinuousBorder ?? useContinuousBorder,
+    );
+  }
+
+  TemboButtonStyle mergeWithColors({
+    Color? backgroundColor,
+    Color? borderColor,
+    Color? foregroundColor,
+  }) {
+    return TemboButtonStyle(
+      backgroundColor: this.backgroundColor ?? backgroundColor,
+      foregroundColor: this.foregroundColor ?? foregroundColor,
+      borderColor: this.borderColor ?? borderColor,
+
+      elevation: elevation,
+      width: width,
+      height: height,
+      borderRadius: borderRadius,
+      borderWidth: borderWidth,
+      padding: padding,
+      // textStyle: other.textStyle ?? textStyle,
+      useContinuousBorder: useContinuousBorder,
     );
   }
 

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:tembo_client_sdk/src/constants/colors.dart';
 
@@ -15,14 +14,16 @@ class TemboSnackbar extends SnackBar {
               message,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: isError ? TemboColors.onError : TemboColors.primary,
+                color: isError
+                    ? LightTemboColors.onError
+                    : LightTemboColors.primary,
                 fontSize: 14,
               ),
             ));
 
   @override
   Color? get backgroundColor =>
-      isError ? TemboColors.error : TemboColors.onBackground;
+      isError ? LightTemboColors.error : LightTemboColors.onBackground;
 
   @override
   SnackBarBehavior? get behavior => SnackBarBehavior.floating;

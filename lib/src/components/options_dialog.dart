@@ -4,7 +4,6 @@ import 'package:tembo_client_sdk/src/constants/constants.dart';
 import 'package:tembo_client_sdk/src/extensions/source.dart';
 
 import 'source.dart';
-import 'option_button.dart';
 
 Future<T?> showOptionsDialog<T>({
   required BuildContext context,

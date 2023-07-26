@@ -16,9 +16,9 @@ class ValidationErrorsView extends StatelessWidget {
 
     return Container(
       decoration: TemboBoxDecoration(
-        borderColor: TemboColors.error.withOpacity(.2),
+        borderColor: LightTemboColors.error.withOpacity(.2),
         borderWidth: 2,
-        color: TemboColors.error.withOpacity(.05),
+        color: LightTemboColors.error.withOpacity(.05),
       ),
       padding: kHorPadding.copyWith(top: 20, bottom: 20),
       constraints: const BoxConstraints(minHeight: 80),
@@ -48,7 +48,7 @@ class ValidationErrorsView extends StatelessWidget {
               return TemboText(
                 "- ${errors[i]}",
                 style: context.textTheme.bodyMedium.withFW500.withColor(
-                  TemboColors.error,
+                  LightTemboColors.error,
                 ),
               );
             },

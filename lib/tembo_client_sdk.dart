@@ -18,18 +18,11 @@ late final LocaleManager localeManager;
 void startTemboVerification(
   BuildContext context, {
   required Data userData,
-  TemboThemeData? themeData,
-  TemboColorScheme? colorScheme,
+  TemboColorScheme? scheme,
   String? fontFamily,
   TemboLocale locale = TemboLocale.en,
 }) {
-  assert(!(colorScheme != null && themeData != null), "You can only specify either themeData or colorScheme but not both");
-
-  final data = _initThemeData(
-    themeData: themeData,
-    scheme: colorScheme,
-    fontFamily: fontFamily,
-  );
+  final data = _initThemeData(context, scheme, fontFamily);
   _initThemeManager(data);
   _initDataManager(userData);
   _initLocaleManager(locale);
@@ -41,27 +34,26 @@ void startTemboVerification(
   );
 }
 
-TemboThemeData _initThemeData({
-  TemboThemeData? themeData,
+TemboThemeData _initThemeData(
+  BuildContext context,
   TemboColorScheme? scheme,
   String? fontFamily,
-}) {
-  var data = const TemboThemeData();
+) {
+  TemboThemeData data;
 
-  if (themeData != null) {
-    data = themeData;
-  }
-
-  if (scheme != null) {
+  if (scheme == null) {
+    var brightness = MediaQuery.platformBrightnessOf(context);
+    bool isDarkMode = brightness == Brightness.dark;
+    if (isDarkMode) {
+      data = TemboThemeData.from(const TemboColorScheme.dark());
+    } else {
+      data = const TemboThemeData();
+    }
+  } else {
     data = TemboThemeData.from(scheme);
   }
 
-  final family = themeData?.fontFamily ?? fontFamily;
-  if (family != null) {
-    data = data.copyWith(fontFamily: family);
-  }
-
-  return data;
+  return data.copyWith(fontFamily: fontFamily);
 }
 
 void _initDataManager(Data userData) {
