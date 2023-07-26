@@ -1,8 +1,8 @@
-import 'package:tembo_client_sdk/src/views/country_pick_page.dart';
 import 'package:tembo_client_sdk/src/views/data_verify_page.dart';
 import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 import "source.dart";
+import 'toc_page.dart';
 
 class SubmitPage extends StatefulWidget {
   static const routeName = "submit_page";
@@ -93,7 +93,7 @@ class _SubmitPageState extends State<SubmitPage> {
   }
 
   void removeSDKScreens() {
-    popUntil(context, routeName: CountryPickPage.routeName);
+    popUntil(context, routeName: TOCPage.routeName);
     pop(context);
   }
 

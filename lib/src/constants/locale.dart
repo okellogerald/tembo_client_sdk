@@ -12,6 +12,9 @@ class TemboTexts {
   static const docDataPageTitle = "doc-data-page-title";
   static const dataVerifyPageTitle = "data-verify-page-title";
 
+  static const tocPageDesc = "toc-page-desc-prefix";
+  static const tocPageAgreeConfirmDesc = "toc-page-agree-confirm-desc";
+
   static const docType = "doc-type";
   static const docTypeDriversLicense = "doc-type-drivers-license";
   static const docTypeNationalID = "doc-type-national-id";
@@ -37,6 +40,7 @@ class TemboTexts {
   static const actionsNext = "actions-next";
   static const actionsTryAgain = "actions-try-again";
   static const actionsClose = "actions-close";
+  static const actionsReadTOC = "actions-read-toc";
 
   // errors
   static const errorsEmptyFieldsSuffix = "errors-empty-fields-suffix";
@@ -90,6 +94,11 @@ const enTexts = {
   TemboTexts.errorsIssueDateRequired: "Issue date is required",
   TemboTexts.errorsExpiryDateRequired: "Expiry date is required",
   TemboTexts.errorsDocTypeRequired: "Document type must be selected",
+  TemboTexts.actionsReadTOC: "Read Our Terms & Conditions",
+  TemboTexts.tocPageDesc:
+      "You need to agree to our Terms and Conditions to proceed with the onboarding process",
+  TemboTexts.tocPageAgreeConfirmDesc:
+      "I have read and agreed to your Terms & Conditions",
 };
 
 const swTexts = {
@@ -99,15 +108,15 @@ const swTexts = {
   TemboTexts.docDataPageTitle: "Taarifa za Utambulisho",
   TemboTexts.dataVerifyPageTitle: "Hakiki Taarifa Zako",
   TemboTexts.docType: "Aina ya Kitambulisho",
-  TemboTexts.docTypeDriversLicense: "Leseni Ya Udereva",
-  TemboTexts.docTypeNationalID: "Kitambulisho Cha Utaifa",
+  TemboTexts.docTypeDriversLicense: "Leseni ya Udereva",
+  TemboTexts.docTypeNationalID: "Kitambulisho cha Utaifa",
   TemboTexts.docTypePassport: "Pasipoti",
-  TemboTexts.docNumber: "Namba Ya Kitambulisho",
+  TemboTexts.docNumber: "Namba ya Kitambulisho",
   TemboTexts.docIssueDate: "Tarehe ya Kutolewa kwa Hati",
   TemboTexts.docExpiryDate: "Tarehe ya Mwisho wa Matumizi wa Hati",
-  TemboTexts.userFirstName: "Jina La Kwanza",
-  TemboTexts.userLastName: "Jina La Ukoo",
-  TemboTexts.userDOB: "Tarehe Ya Kuzaliwa",
+  TemboTexts.userFirstName: "Jina la Kwanza",
+  TemboTexts.userLastName: "Jina la Ukoo",
+  TemboTexts.userDOB: "Tarehe ya Kuzaliwa",
   TemboTexts.userGender: "Jinsia",
   TemboTexts.userCountry: "Nchi",
   TemboTexts.gendersMale: "Mwanamume",
@@ -129,7 +138,13 @@ const swTexts = {
   TemboTexts.errorsGenderRequired: "Tafadhali chagua jinsia kwanza",
   TemboTexts.errorsIssueDateRequired: "Lazima ujaze hii tarehe",
   TemboTexts.errorsExpiryDateRequired: "Lazima ujaze hii tarehe",
-  TemboTexts.errorsDocTypeRequired: "Tafadhali hakikisha umechagua aina ya kitambulisho",
+  TemboTexts.errorsDocTypeRequired:
+      "Tafadhali hakikisha umechagua aina ya kitambulisho",
+  TemboTexts.actionsReadTOC: "Soma Sheria na Masharti Yetu",
+  TemboTexts.tocPageDesc:
+      "Unahitaji kukubaliana na Sheria na Masharti yetu ili kuendelea na mchakato wa kujisajili",
+  TemboTexts.tocPageAgreeConfirmDesc:
+      "Nimesoma na ninakubaliana na Sheria na Masharti yenu",
 };
 
 extension StringExt2 on String {

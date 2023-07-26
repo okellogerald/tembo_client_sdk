@@ -11,20 +11,11 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          fontFamily: "circular",
-          primaryColor: Colors.black,
-          appBarTheme: AppBarTheme(
-            iconTheme: const IconThemeData(color: Colors.black),
-            elevation: 0,
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            titleTextStyle: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w500,
-              fontFamily: "circular",
-              color: Colors.black87,
-            ),
-          )),
+      theme: ThemeData.dark(
+       /*  fontFamily: "circular",
+        primaryColor: Colors.black, */
+        useMaterial3: true,
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Application 1"),

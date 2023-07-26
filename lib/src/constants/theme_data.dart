@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import 'package:tembo_client_sdk/tembo_client_sdk.dart';
@@ -102,7 +101,7 @@ class TemboThemeData {
         labelTextStyle: _labelledFormFieldDecoration.labelTextStyle?.copyWith(
           color: colors.hint,
         ),
-        valueTextStyle: _labelledFormFieldDecoration.labelTextStyle?.copyWith(
+        valueTextStyle: _labelledFormFieldDecoration.valueTextStyle?.copyWith(
           color: colors.onBackground,
         ),
         boxDecoration: _labelledFormFieldDecoration.boxDecoration?.copyWith(

@@ -2,8 +2,9 @@ library tembo_client_sdk;
 
 import 'package:tembo_client_sdk/src/view_models/locale_manager.dart';
 import 'package:tembo_client_sdk/src/view_models/theme_manager.dart';
-import 'package:tembo_client_sdk/src/views/country_pick_page.dart';
 import 'package:tembo_client_sdk/src/views/source.dart';
+
+import 'src/views/toc_page.dart';
 
 export 'src/views/basic_info_page.dart';
 export 'src/constants/source.dart';
@@ -35,8 +36,8 @@ void startTemboVerification(
 
   push(
     context,
-    routeName: CountryPickPage.routeName,
-    page: const CountryPickPage(),
+    routeName: TOCPage.routeName,
+    page: const TOCPage(),
   );
 }
 

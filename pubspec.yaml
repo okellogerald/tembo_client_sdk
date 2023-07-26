@@ -13,11 +13,9 @@ dependencies:
   intl: ^0.18.1
   smile_identity_plugin:
     path: "../smile_identity_plugin/"
+  url_launcher: ^6.1.12
   #smile_identity_plugin: ^0.0.1+1
-  # smile_identity_plugin:
-  #   git:
-  #     ref: dev
-  #     url: https://github.com/okellogerald/smile_identity_plugin.git
+
 
 dev_dependencies:
   flutter_test:
@@ -25,3 +23,6 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
