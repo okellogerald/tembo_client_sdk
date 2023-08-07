@@ -4,6 +4,8 @@ import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 import "source.dart";
 import 'toc_page.dart';
 
+/// Submission page. Let's the user know of whatever is happening after the verification process has
+/// started
 class SubmitPage extends StatefulWidget {
   static const routeName = "submit_page";
   const SubmitPage({super.key});

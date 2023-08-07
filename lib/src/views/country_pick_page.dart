@@ -2,6 +2,7 @@ import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 import 'source.dart';
 
+/// User picks the country
 class CountryPickPage extends StatefulWidget {
   static const routeName = "country_pick";
   const CountryPickPage({super.key});

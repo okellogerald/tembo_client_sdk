@@ -1,7 +1,9 @@
 library tembo_client_sdk;
 
+import 'package:smile_identity_plugin/models/smile_data.dart';
 import 'package:tembo_client_sdk/src/view_models/locale_manager.dart';
 import 'package:tembo_client_sdk/src/view_models/theme_manager.dart';
+import 'package:tembo_client_sdk/src/views/data_verify_page.dart';
 import 'package:tembo_client_sdk/src/views/source.dart';
 
 import 'src/views/toc_page.dart';
@@ -15,63 +17,79 @@ late final ThemeManager themeManager;
 late final DataManager dataManager;
 late final LocaleManager localeManager;
 
+var _environment = Environment.test;
+Environment get environment => _environment;
+
+/// Initiates the verification process
 void startTemboVerification(
+  /// The context of the widget from which the process starts. It is on this context's page
+  /// where the app will return to once the whole process is done.
   BuildContext context, {
-  required Data userData,
+  /// Defined user data will be pre-filled in respective pages of the SDK. Set [skipUserInfoCollection]
+  /// to true if you want the user to be start documents verification immediately. Please keep in mind
+  /// that this will only happen if all [TemboUserData] properties are given proper values.
+  required TemboUserData userData,
 
-  /// Color scheme to be used for all components
-  TemboColorScheme? scheme,
-
-  /// If [scheme] is provided, themeMode will be ignored.
+  /// Color scheme to be used for all components used in the SDK.
   ///
-  /// If [scheme] is not provided, the default [TemboColorScheme]s will be used
+  /// If [scheme] is not provided, the SDK checks for current system ThemeMode then
+  /// the default respective [TemboColorScheme]s will be used:
+  /// 
   /// [TemboColorScheme.light] for ThemeMode.light and
   /// [TemboColorScheme.dark] for ThemeMode.dark
-  ThemeMode themeMode = ThemeMode.system,
+  TemboColorScheme? scheme,
+
+  /// Font family to be used for all texts in the SDK
   String? fontFamily,
 
   /// Sets the language to be used.
   ///
-  /// Only Swahili(sw) and English(en) are currently supported.
+  /// Only Swahili(sw) and English(en) are currently supported
   TemboLocale locale = TemboLocale.en,
+
+  /// Make sure to use Environment.prod before you push to production.
+  final Environment? environment,
+
+  /// If set to true and all [TemboUserData] properties are given proper values makes the user start
+  /// documents verification immediately
+  final bool? skipUserInfoCollection,
 }) {
-  final data = _initThemeData(context, themeMode, scheme, fontFamily);
-  _initThemeManager(data);
+  final themeData = _initThemeData(context, scheme, fontFamily);
+  _initThemeManager(themeData);
   _initDataManager(userData);
   _initLocaleManager(locale);
+  _environment = environment ?? Environment.test;
 
-  push(
-    context,
-    routeName: TOCPage.routeName,
-    page: const TOCPage(),
-  );
+  if (skipUserInfoCollection == true &&
+      dataManager.checkIfHasAllImportantFields()) {
+    push(
+      context,
+      routeName: DataVerifyPage.routeName,
+      page: const DataVerifyPage(),
+    );
+  } else {
+    push(
+      context,
+      routeName: TOCPage.routeName,
+      page: const TOCPage(),
+    );
+  }
 }
 
 TemboThemeData _initThemeData(
   BuildContext context,
-  ThemeMode? themeMode,
   TemboColorScheme? scheme,
   String? fontFamily,
 ) {
   TemboThemeData data;
 
   if (scheme == null) {
-    switch (themeMode) {
-      case ThemeMode.system:
-        var brightness = MediaQuery.platformBrightnessOf(context);
-        bool isDarkMode = brightness == Brightness.dark;
-        if (isDarkMode) {
-          data = TemboThemeData.from(const TemboColorScheme.dark());
-        } else {
-          data = const TemboThemeData();
-        }
-        break;
-      case ThemeMode.dark:
-        const darkScheme = TemboColorScheme.dark();
-        data = TemboThemeData.from(darkScheme);
-        break;
-      default:
-        data = const TemboThemeData();
+    var brightness = MediaQuery.platformBrightnessOf(context);
+    bool isDarkMode = brightness == Brightness.dark;
+    if (isDarkMode) {
+      data = TemboThemeData.from(const TemboColorScheme.dark());
+    } else {
+      data = const TemboThemeData();
     }
   } else {
     data = TemboThemeData.from(scheme);
@@ -80,7 +98,7 @@ TemboThemeData _initThemeData(
   return data.copyWith(fontFamily: fontFamily);
 }
 
-void _initDataManager(Data userData) {
+void _initDataManager(TemboUserData userData) {
   try {
     dataManager = DataManager(userData);
   } catch (_) {

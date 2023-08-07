@@ -3,6 +3,7 @@ import 'package:tembo_client_sdk/src/views/id_page.dart';
 import '../../tembo_client_sdk.dart';
 import 'source.dart';
 
+/// Picks user gender
 class GenderPickPage extends StatefulWidget {
   static const routeName = "gender_pick";
   const GenderPickPage({super.key});

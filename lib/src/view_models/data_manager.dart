@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tembo_client_sdk/src/models/country.dart';
-import 'package:tembo_client_sdk/src/models/data.dart';
+import 'package:tembo_client_sdk/src/models/user_data.dart';
 import 'package:tembo_client_sdk/src/models/doc.dart';
 import 'package:tembo_client_sdk/src/models/gender.dart';
 
-class DataManager extends ValueNotifier<Data> {
+class DataManager extends ValueNotifier<TemboUserData> {
   DataManager(super.data);
 
   void updateFirstName(String firstName) {
@@ -37,8 +37,17 @@ class DataManager extends ValueNotifier<Data> {
     notifyListeners();
   }
 
-  void updateData(Data data) {
+  void updateData(TemboUserData data) {
     value = data;
     notifyListeners();
+  }
+
+  bool checkIfHasAllImportantFields() {
+    return value.country != null &&
+        value.dob != null &&
+        value.document != null &&
+        value.firstName != null &&
+        value.lastName != null &&
+        value.gender != null;
   }
 }

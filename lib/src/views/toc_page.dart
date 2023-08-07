@@ -2,6 +2,7 @@ import 'package:tembo_client_sdk/src/views/country_pick_page.dart';
 import 'package:tembo_client_sdk/src/views/source.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// Prompts the user to agree to TemboPlus's Terms & Conditions
 class TOCPage extends StatefulWidget {
   static const routeName = "toc_page";
   const TOCPage({super.key});

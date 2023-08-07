@@ -5,6 +5,7 @@ import 'package:tembo_client_sdk/src/constants/constants.dart';
 import 'package:tembo_client_sdk/src/extensions/source.dart';
 import 'package:tembo_client_sdk/src/styles/box_decoration.dart';
 
+/// Widget for showing a validation error
 class ValidationErrorView extends StatelessWidget {
   final String? error;
   const ValidationErrorView({super.key, required this.error});

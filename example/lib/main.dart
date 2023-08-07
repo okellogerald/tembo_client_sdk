@@ -12,7 +12,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(
-       // fontFamily: "circular",
+        // fontFamily: "circular",
         useMaterial3: true,
       ),
       home: Scaffold(
@@ -26,7 +26,7 @@ class MainApp extends StatelessWidget {
                 onPressed: () async {
                   startTemboVerification(
                     context,
-                    userData: Data(
+                    userData: TemboUserData(
                       userId: "user-3",
                       country: Country.tz(),
                       gender: Gender.female,
@@ -40,9 +40,9 @@ class MainApp extends StatelessWidget {
                         idNumber: "2836464744784",
                       ),
                     ),
-                    locale: TemboLocale.en,
+                    locale: TemboLocale.sw,
                     fontFamily: "circular",
-                    themeMode: ThemeMode.dark,
+                    skipUserInfoCollection: true,
                   );
                 },
                 style: TextButton.styleFrom(

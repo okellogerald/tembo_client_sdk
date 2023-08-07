@@ -1,11 +1,10 @@
-import 'package:smile_identity_plugin/models/smile_data.dart';
-
 import 'package:tembo_client_sdk/src/models/country.dart';
 import 'package:tembo_client_sdk/src/models/doc.dart';
 
 import 'gender.dart';
 
-class Data {
+/// Contains all data necessary for a successful verification process
+class TemboUserData {
   /// User's country.
   ///
   /// It should be the country from which the [document] has been issued.
@@ -31,10 +30,7 @@ class Data {
   /// This will help identify whether this user has already been verified at any later date.
   final String userId;
 
-  /// Make sure to use Environment.prod before you push to production.
-  final Environment? environment;
-
-  Data({
+  TemboUserData({
     this.country,
     this.firstName,
     this.lastName,
@@ -42,10 +38,9 @@ class Data {
     this.gender,
     this.document,
     required this.userId,
-    this.environment,
   });
 
-  Data copyWith({
+  TemboUserData copyWith({
     Country? country,
     String? firstName,
     String? lastName,
@@ -53,9 +48,8 @@ class Data {
     Gender? gender,
     VerDocument? document,
     String? userId,
-    Environment? environment,
   }) {
-    return Data(
+    return TemboUserData(
       country: country ?? this.country,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
@@ -63,17 +57,16 @@ class Data {
       gender: gender ?? this.gender,
       document: document ?? this.document,
       userId: userId ?? this.userId,
-      environment: environment ?? this.environment,
     );
   }
 
   @override
   String toString() {
-    return 'Data(country: $country, firstName: $firstName, lastName: $lastName, dob: $dob, gender: $gender, document: $document, userId: $userId, environment: $environment)';
+    return 'Data(country: $country, firstName: $firstName, lastName: $lastName, dob: $dob, gender: $gender, document: $document, userId: $userId)';
   }
 
   @override
-  bool operator ==(covariant Data other) {
+  bool operator ==(covariant TemboUserData other) {
     if (identical(this, other)) return true;
 
     return other.country == country &&
@@ -82,8 +75,7 @@ class Data {
         other.dob == dob &&
         other.gender == gender &&
         other.document == document &&
-        other.userId == userId &&
-        other.environment == environment;
+        other.userId == userId;
   }
 
   @override
@@ -94,7 +86,6 @@ class Data {
         dob.hashCode ^
         gender.hashCode ^
         document.hashCode ^
-        userId.hashCode ^
-        environment.hashCode;
+        userId.hashCode;
   }
 }

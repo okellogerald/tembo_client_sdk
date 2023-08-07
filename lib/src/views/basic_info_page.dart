@@ -7,6 +7,7 @@ import 'source.dart';
 
 final smilePlugin = SmileIdentityPlugin();
 
+/// Collects Basic User Information
 class BasicInfoPage extends StatefulWidget {
   static const routeName = "basic_info";
   const BasicInfoPage({super.key});

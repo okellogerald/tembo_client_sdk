@@ -3,6 +3,7 @@ import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 import 'source.dart';
 import 'data_verify_page.dart';
 
+/// Gets user document
 class IDPage extends StatefulWidget {
   static const routeName = "id_pick";
   const IDPage({super.key});
