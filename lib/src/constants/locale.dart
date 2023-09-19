@@ -42,6 +42,12 @@ class TemboTexts {
   static const actionsClose = "actions-close";
   static const actionsReadTOC = "actions-read-toc";
 
+  static const dataPrepDesc = "data-prep-desc";
+  static const dataPrepRequirement1 = "data-prep-req-1";
+  static const dataPrepRequirement2 = "data-prep-req-2";
+  static const dataPrepSupportedDocs = "data-prep-supported-docs";
+  static const dataPrepNextPageCTA = "data-prep-action-cta";
+
   // errors
   static const errorsEmptyFieldsSuffix = "errors-empty-fields-suffix";
   static const errorsEmptyFieldsPrefix = "errors-empty-fields-prefix";
@@ -99,6 +105,13 @@ const enTexts = {
       "You need to agree to our Terms and Conditions to proceed with the onboarding process",
   TemboTexts.tocPageAgreeConfirmDesc:
       "I have read and agreed to your Terms & Conditions",
+  TemboTexts.dataPrepDesc:
+      "You're about to start the document capturing process. We have two requirements:",
+  TemboTexts.dataPrepRequirement1: 'Your Selfie',
+  TemboTexts.dataPrepRequirement2: 'Your Identity Document',
+  TemboTexts.dataPrepSupportedDocs:
+      "Only the below Identity Documents are supported:",
+  TemboTexts.dataPrepNextPageCTA: "I'm ready. Let's go!",
 };
 
 const swTexts = {
@@ -145,6 +158,13 @@ const swTexts = {
       "Unahitaji kukubaliana na Sheria na Masharti yetu ili kuendelea na mchakato wa kujisajili",
   TemboTexts.tocPageAgreeConfirmDesc:
       "Nimesoma na ninakubaliana na Sheria na Masharti yenu",
+  TemboTexts.dataPrepDesc:
+      "Unakaribia kuanza mchakato wa kunasa hati. Tuna mahitaji mawili:",
+  TemboTexts.dataPrepRequirement1: 'Picha Yako',
+  TemboTexts.dataPrepRequirement2: 'Hati yako ya Utambulisho',
+  TemboTexts.dataPrepSupportedDocs:
+      "Ni Hati za Utambulisho zilizo hapa chini ndizo zinazotumika:",
+  TemboTexts.dataPrepNextPageCTA: "Niko tayari. Twende!",
 };
 
 extension StringExt2 on String {

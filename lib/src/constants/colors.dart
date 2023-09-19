@@ -14,6 +14,8 @@ class LightTemboColors {
   static const title = Color(0xffAAC0CE);
   static const body = Colors.black87;
 
+  static const scaffoldBackground = Color.fromARGB(255, 245, 245, 245);
+
   static const background = Colors.white;
   static const onBackground = Colors.black87;
 
@@ -25,7 +27,6 @@ class LightTemboColors {
 }
 
 class DarkTemboColors {
-  //static const primary = Color(0xffE6F5FC);
   static const primary = Colors.lightBlueAccent;
   static const onPrimary = Colors.black87;
 
@@ -33,6 +34,8 @@ class DarkTemboColors {
   static const hint = Colors.white70;
   static const title = Color(0xffAAC0CE);
   static const body = Colors.white70;
+
+  static const scaffoldBackground = Colors.black87;
 
   static const background = Colors.black45;
   static const onBackground = Colors.white;
@@ -51,6 +54,7 @@ class TemboColorScheme {
       hint,
       title,
       body,
+      scaffoldBackground,
       background,
       onBackground,
       surfaceContainer,
@@ -71,6 +75,7 @@ class TemboColorScheme {
     this.onSurfaceContainer,
     this.error,
     this.onError,
+    this.scaffoldBackground,
   });
 
   const TemboColorScheme.light({
@@ -86,6 +91,7 @@ class TemboColorScheme {
     this.onSurfaceContainer = LightTemboColors.onSurfaceContainer,
     this.error = LightTemboColors.error,
     this.onError = LightTemboColors.onError,
+    this.scaffoldBackground = LightTemboColors.scaffoldBackground,
   });
 
   const TemboColorScheme.dark({
@@ -101,5 +107,6 @@ class TemboColorScheme {
     this.onSurfaceContainer = DarkTemboColors.onSurfaceContainer,
     this.error = DarkTemboColors.error,
     this.onError = DarkTemboColors.onError,
+    this.scaffoldBackground = DarkTemboColors.scaffoldBackground,
   });
 }

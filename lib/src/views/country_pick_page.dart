@@ -23,31 +23,34 @@ class _CountryPickPageState extends TemboState<CountryPickPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: kPagePadding,
-        child: ListView(
-          children: [
-            const PageTitle(title: TemboTexts.countryChoosePageTitle),
-            const SizedBox(height: 15),
-            TemboPicker2(
-              options: supportedCountries,
-              onChange: onCountrySelected,
-              selected: (d) => d == country,
-              label: (d) => d.name,
-            ),
-            const SizedBox(height: 20),
-            ValidationErrorView(
-              error: error,
-            )
-          ],
+    return ThemeDataWrapper(builder: (context, theme) {
+      return Scaffold(
+        appBar: AppBar(),
+        backgroundColor: theme.colorScheme.scaffoldBackground,
+        body: Padding(
+          padding: kPagePadding,
+          child: ListView(
+            children: [
+              const PageTitle(title: TemboTexts.countryChoosePageTitle),
+              const SizedBox(height: 15),
+              TemboPicker2(
+                options: supportedCountries,
+                onChange: onCountrySelected,
+                selected: (d) => d == country,
+                label: (d) => d.name,
+              ),
+              const SizedBox(height: 20),
+              ValidationErrorView(
+                error: error,
+              )
+            ],
+          ),
         ),
-      ),
-      bottomNavigationBar: BottomNavBarButton(
-        callback: next,
-      ),
-    );
+        bottomNavigationBar: BottomNavBarButton(
+          callback: next,
+        ),
+      );
+    });
   }
 
   void next() async {

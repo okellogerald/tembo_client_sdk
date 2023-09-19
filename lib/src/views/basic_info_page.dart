@@ -59,41 +59,46 @@ class _BasicInfoPageState extends TemboState<BasicInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: TemboForm(
-        key: formKey,
-        child: ListView(
-          padding: kPagePadding,
-          children: [
-            const PageTitle(title: TemboTexts.basicInfoPageTitle),
-            const SizedBox(height: 15),
-            TemboTextField(
-              controller: firstNameController,
-              textCapitalization: TextCapitalization.words,
-              hint: TemboTexts.userFirstName,
-              validator: validateName,
+    return ThemeDataWrapper(
+      builder: (context, theme) {
+        return Scaffold(
+          appBar: AppBar(),
+          backgroundColor: theme.colorScheme.scaffoldBackground,
+          body: TemboForm(
+            key: formKey,
+            child: ListView(
+              padding: kPagePadding,
+              children: [
+                const PageTitle(title: TemboTexts.basicInfoPageTitle),
+                const SizedBox(height: 15),
+                TemboTextField(
+                  controller: firstNameController,
+                  textCapitalization: TextCapitalization.words,
+                  hint: TemboTexts.userFirstName,
+                  validator: validateName,
+                ),
+                const SizedBox(height: 15),
+                TemboTextField(
+                  controller: lastNameController,
+                  textCapitalization: TextCapitalization.words,
+                  hint: TemboTexts.userLastName,
+                  validator: validateName,
+                ),
+                const SizedBox(height: 15),
+                TemboDatePicker(
+                  value: date,
+                  onSelected: onDateSelected,
+                  error: dateError,
+                  hint: TemboTexts.userDOB,
+                ),
+              ],
             ),
-            const SizedBox(height: 15),
-            TemboTextField(
-              controller: lastNameController,
-              textCapitalization: TextCapitalization.words,
-              hint: TemboTexts.userLastName,
-              validator: validateName,
-            ),
-            const SizedBox(height: 15),
-            TemboDatePicker(
-              value: date,
-              onSelected: onDateSelected,
-              error: dateError,
-              hint: TemboTexts.userDOB,
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavBarButton(
-        callback: next,
-      ),
+          ),
+          bottomNavigationBar: BottomNavBarButton(
+            callback: next,
+          ),
+        );
+      }
     );
   }
 

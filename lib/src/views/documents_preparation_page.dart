@@ -16,77 +16,80 @@ class DocumentsPreparationPage extends StatefulWidget {
 class _DocumentsPreparationPageState extends State<DocumentsPreparationPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      body: ThemeDataWrapper(
-        builder: (context, theme) {
-          return Container(
-            padding: kHorPadding,
-            constraints: const BoxConstraints.expand(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const TemboText(
-                  "You're about to start the document capturing process. We have two requirements:",
-                ),
-                const SizedBox(height: 15),
-                ListTile(
-                  leading: TemboText(
-                    "1.",
-                    style: boldStyle,
+    return ThemeDataWrapper(builder: (context, theme) {
+      return Scaffold(
+        backgroundColor: theme.colorScheme.scaffoldBackground,
+        appBar: AppBar(),
+        extendBody: true,
+        extendBodyBehindAppBar: true,
+        body: ThemeDataWrapper(
+          builder: (context, theme) {
+            return Container(
+              padding: kHorPadding,
+              constraints: const BoxConstraints.expand(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const TemboText(
+                    TemboTexts.dataPrepDesc,
                   ),
-                  title: TemboText(
-                    "Your Selfie",
-                    style: boldStyle,
-                  ),
-                ),
-                ListTile(
-                  leading: TemboText(
-                    "2.",
-                    style: boldStyle,
-                  ),
-                  title: TemboText(
-                    "Identity Document.",
-                    style: boldStyle,
-                  ),
-                  subtitle: TemboText(
-                    "Only the below Identity Documents are supported:",
-                    style: style,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Padding(
-                  padding: const EdgeInsets.only(left: 55),
-                  child: Wrap(
-                    runSpacing: 10,
-                    spacing: 10,
-                    alignment: WrapAlignment.start,
-                    runAlignment: WrapAlignment.start,
-                    children: List.generate(
-                      VerDocumentType.values.length,
-                      (index) {
-                        final label = VerDocumentType.values[index].label;
-                        return TemboText(
-                          "· ${label.tr()}",
-                          style: style.copyWith(fontWeight: FontWeight.w400),
-                        );
-                      },
+                  const SizedBox(height: 15),
+                  ListTile(
+                    leading: TemboText(
+                      "1.",
+                      style: boldStyle,
+                    ),
+                    title: TemboText(
+                      TemboTexts.dataPrepRequirement1,
+                      style: boldStyle,
                     ),
                   ),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
-      bottomNavigationBar: BottomNavBarButton(
-        callback: capture,
-        text: "I am ready, Let's go!",
-      ),
-    );
+                  ListTile(
+                    leading: TemboText(
+                      "2.",
+                      style: boldStyle,
+                    ),
+                    title: TemboText(
+                      TemboTexts.dataPrepRequirement1,
+                      style: boldStyle,
+                    ),
+                    subtitle: TemboText(
+                      TemboTexts.dataPrepSupportedDocs,
+                      style: style,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 55),
+                    child: Wrap(
+                      runSpacing: 10,
+                      spacing: 10,
+                      alignment: WrapAlignment.start,
+                      runAlignment: WrapAlignment.start,
+                      children: List.generate(
+                        VerDocumentType.values.length,
+                        (index) {
+                          final label = VerDocumentType.values[index].label;
+                          return TemboText(
+                            "· ${label.tr()}",
+                            style: style.copyWith(fontWeight: FontWeight.w400),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+        bottomNavigationBar: BottomNavBarButton(
+          callback: capture,
+          text: TemboTexts.dataPrepNextPageCTA,
+        ),
+      );
+    });
   }
 
   TextStyle get style {

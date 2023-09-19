@@ -33,54 +33,59 @@ class _IDPageState extends TemboState<IDPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: TemboForm(
-        key: formKey,
-        child: ListView(
-          padding: kPagePadding,
-          children: [
-            const PageTitle(title: TemboTexts.docDataPageTitle),
-            const SizedBox(height: 15),
-            TemboText(
-              TemboTexts.docType,
-              style: context.textTheme.bodyLarge,
+    return ThemeDataWrapper(
+      builder: (context, theme) {
+        return Scaffold(
+          backgroundColor: theme.colorScheme.scaffoldBackground,
+          appBar: AppBar(),
+          body: TemboForm(
+            key: formKey,
+            child: ListView(
+              padding: kPagePadding,
+              children: [
+                const PageTitle(title: TemboTexts.docDataPageTitle),
+                const SizedBox(height: 15),
+                TemboText(
+                  TemboTexts.docType,
+                  style: context.textTheme.bodyLarge,
+                ),
+                const SizedBox(height: 10),
+                TemboPicker2(
+                  options: VerDocumentType.values,
+                  onChange: onTypeSelected,
+                  label: (t) => t.label,
+                  selected: (p0) => p0 == type,
+                ),
+                const SizedBox(height: 25),
+                TemboTextField(
+                  controller: numberController,
+                  hint: TemboTexts.docNumber,
+                  validator: validateName,
+                ),
+                const SizedBox(height: 15),
+                TemboDatePicker(
+                  onSelected: onIssueDateSelected,
+                  value: issueDate,
+                  hint: TemboTexts.docIssueDate,
+                  error: issueDateError,
+                ),
+                const SizedBox(height: 15),
+                TemboDatePicker(
+                  onSelected: onExpiryDateSelected,
+                  value: expiryDate,
+                  hint: TemboTexts.docExpiryDate,
+                  error: expiryDateError,
+                ),
+                const SizedBox(height: 25),
+                ValidationErrorView(error: error),
+              ],
             ),
-            const SizedBox(height: 10),
-            TemboPicker2(
-              options: VerDocumentType.values,
-              onChange: onTypeSelected,
-              label: (t) => t.label,
-              selected: (p0) => p0 == type,
-            ),
-            const SizedBox(height: 25),
-            TemboTextField(
-              controller: numberController,
-              hint: TemboTexts.docNumber,
-              validator: validateName,
-            ),
-            const SizedBox(height: 15),
-            TemboDatePicker(
-              onSelected: onIssueDateSelected,
-              value: issueDate,
-              hint: TemboTexts.docIssueDate,
-              error: issueDateError,
-            ),
-            const SizedBox(height: 15),
-            TemboDatePicker(
-              onSelected: onExpiryDateSelected,
-              value: expiryDate,
-              hint: TemboTexts.docExpiryDate,
-              error: expiryDateError,
-            ),
-            const SizedBox(height: 25),
-            ValidationErrorView(error: error),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavBarButton(
-        callback: next,
-      ),
+          ),
+          bottomNavigationBar: BottomNavBarButton(
+            callback: next,
+          ),
+        );
+      }
     );
   }
 

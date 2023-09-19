@@ -17,63 +17,68 @@ class _DataVerifyPageState extends State<DataVerifyPage> {
   Widget build(BuildContext context) {
     final data = dataManager.value;
 
-    return Scaffold(
-      appBar: AppBar(),
-      body: ListView(
-        padding: kPagePadding.copyWith(bottom: 30),
-        children: [
-          const PageTitle(title: TemboTexts.dataVerifyPageTitle),
-          const SizedBox(height: 20),
-          OverflowBar(
-            overflowSpacing: 15,
+    return ThemeDataWrapper(
+      builder: (context, theme) {
+        return Scaffold(
+          backgroundColor: theme.colorScheme.scaffoldBackground,
+          appBar: AppBar(),
+          body: ListView(
+            padding: kPagePadding.copyWith(bottom: 30),
             children: [
-              TemboLabelledFormField(
-                label: TemboTexts.userFirstName,
-                value: data.firstName!,
-              ),
-              TemboLabelledFormField(
-                label: TemboTexts.userLastName,
-                value: data.lastName!,
-              ),
-              TemboLabelledFormField(
-                label: TemboTexts.userGender,
-                value: data.gender!.name,
-              ),
-              TemboLabelledFormField(
-                label: TemboTexts.userDOB,
-                value: data.dob!.format(),
-              ),
-              TemboLabelledFormField(
-                label: TemboTexts.userCountry,
-                value: data.country!.name,
-              ),
-              TemboLabelledFormField(
-                label: TemboTexts.docType,
-                value: data.document!.type.jsonKey,
-              ),
-              TemboLabelledFormField(
-                label: TemboTexts.docNumber,
-                value: data.document!.idNumber,
-              ),
-              TemboLabelledFormField(
-                label: TemboTexts.docIssueDate,
-                value: data.document!.issueDate.format(),
-              ),
-              TemboLabelledFormField(
-                label: TemboTexts.docExpiryDate,
-                value: data.document!.expiryDate.format(),
+              const PageTitle(title: TemboTexts.dataVerifyPageTitle),
+              const SizedBox(height: 20),
+              OverflowBar(
+                overflowSpacing: 15,
+                children: [
+                  TemboLabelledFormField(
+                    label: TemboTexts.userFirstName,
+                    value: data.firstName!,
+                  ),
+                  TemboLabelledFormField(
+                    label: TemboTexts.userLastName,
+                    value: data.lastName!,
+                  ),
+                  TemboLabelledFormField(
+                    label: TemboTexts.userGender,
+                    value: data.gender!.name,
+                  ),
+                  TemboLabelledFormField(
+                    label: TemboTexts.userDOB,
+                    value: data.dob!.format(),
+                  ),
+                  TemboLabelledFormField(
+                    label: TemboTexts.userCountry,
+                    value: data.country!.name,
+                  ),
+                  TemboLabelledFormField(
+                    label: TemboTexts.docType,
+                    value: data.document!.type.jsonKey,
+                  ),
+                  TemboLabelledFormField(
+                    label: TemboTexts.docNumber,
+                    value: data.document!.idNumber,
+                  ),
+                  TemboLabelledFormField(
+                    label: TemboTexts.docIssueDate,
+                    value: data.document!.issueDate.format(),
+                  ),
+                  TemboLabelledFormField(
+                    label: TemboTexts.docExpiryDate,
+                    value: data.document!.expiryDate.format(),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavBarButton(
-        callback: () => push(
-          context,
-          routeName: DocumentsPreparationPage.routeName,
-          page: const DocumentsPreparationPage(),
-        ),
-      ),
+          bottomNavigationBar: BottomNavBarButton(
+            callback: () => push(
+              context,
+              routeName: DocumentsPreparationPage.routeName,
+              page: const DocumentsPreparationPage(),
+            ),
+          ),
+        );
+      }
     );
   }
 }

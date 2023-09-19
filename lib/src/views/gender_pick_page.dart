@@ -24,30 +24,35 @@ class _GenderPickPageState extends TemboState<GenderPickPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: kPagePadding,
-        child: ListView(
-          children: [
-            const PageTitle(title: TemboTexts.genderPickPageTitle),
-            const SizedBox(height: 15),
-            TemboPicker2(
-              options: Gender.values,
-              onChange: onGenderSelected,
-              selected: (d) => d == gender,
-              label: (d) => d.label,
+    return ThemeDataWrapper(
+      builder: (context, theme) {
+        return Scaffold(
+          backgroundColor: theme.colorScheme.scaffoldBackground,
+          appBar: AppBar(),
+          body: Padding(
+            padding: kPagePadding,
+            child: ListView(
+              children: [
+                const PageTitle(title: TemboTexts.genderPickPageTitle),
+                const SizedBox(height: 15),
+                TemboPicker2(
+                  options: Gender.values,
+                  onChange: onGenderSelected,
+                  selected: (d) => d == gender,
+                  label: (d) => d.label,
+                ),
+                const SizedBox(height: 20),
+                ValidationErrorView(
+                  error: error,
+                )
+              ],
             ),
-            const SizedBox(height: 20),
-            ValidationErrorView(
-              error: error,
-            )
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavBarButton(
-        callback: next,
-      ),
+          ),
+          bottomNavigationBar: BottomNavBarButton(
+            callback: next,
+          ),
+        );
+      }
     );
   }
 
