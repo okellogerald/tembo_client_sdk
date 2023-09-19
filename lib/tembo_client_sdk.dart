@@ -1,6 +1,7 @@
 library tembo_client_sdk;
 
 import 'package:smile_identity_plugin/models/smile_data.dart';
+import 'package:tembo_client_sdk/src/view_models/fields_manager.dart';
 import 'package:tembo_client_sdk/src/view_models/locale_manager.dart';
 import 'package:tembo_client_sdk/src/view_models/theme_manager.dart';
 import 'package:tembo_client_sdk/src/views/data_verify_page.dart';
@@ -16,6 +17,7 @@ export 'src/models/source.dart';
 late final ThemeManager themeManager;
 late final DataManager dataManager;
 late final LocaleManager localeManager;
+late final UnModifiableFieldsManager fieldsManager;
 
 var _environment = Environment.test;
 Environment get environment => _environment;
@@ -34,7 +36,7 @@ void startTemboVerification(
   ///
   /// If [scheme] is not provided, the SDK checks for current system ThemeMode then
   /// the default respective [TemboColorScheme]s will be used:
-  /// 
+  ///
   /// [TemboColorScheme.light] for ThemeMode.light and
   /// [TemboColorScheme.dark] for ThemeMode.dark
   TemboColorScheme? scheme,
@@ -48,16 +50,20 @@ void startTemboVerification(
   TemboLocale locale = TemboLocale.en,
 
   /// Make sure to use Environment.prod before you push to production.
-  final Environment? environment,
+  Environment? environment,
 
   /// If set to true and all [TemboUserData] properties are given proper values makes the user start
   /// documents verification immediately
-  final bool? skipUserInfoCollection,
+  bool? skipUserInfoCollection,
+
+  /// A list of unmodifiable lists
+  Fields unmodifiableFields = const [],
 }) {
   final themeData = _initThemeData(context, scheme, fontFamily);
   _initThemeManager(themeData);
   _initDataManager(userData);
   _initLocaleManager(locale);
+  _initFieldsManager(unmodifiableFields);
   _environment = environment ?? Environment.test;
 
   if (skipUserInfoCollection == true &&
@@ -122,5 +128,14 @@ void _initThemeManager(TemboThemeData themeData) {
   } catch (_) {
     // handling LateInitializationError issues
     themeManager.updateTheme(themeData);
+  }
+}
+
+void _initFieldsManager(Fields fields) {
+  try {
+    fieldsManager = UnModifiableFieldsManager(fields);
+  } catch (_) {
+    // handling LateInitializationError issues
+    fieldsManager.updateList(fields);
   }
 }

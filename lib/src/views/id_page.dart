@@ -33,59 +33,66 @@ class _IDPageState extends TemboState<IDPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ThemeDataWrapper(
-      builder: (context, theme) {
-        return Scaffold(
-          backgroundColor: theme.colorScheme.scaffoldBackground,
-          appBar: AppBar(),
-          body: TemboForm(
-            key: formKey,
-            child: ListView(
-              padding: kPagePadding,
-              children: [
-                const PageTitle(title: TemboTexts.docDataPageTitle),
-                const SizedBox(height: 15),
-                TemboText(
-                  TemboTexts.docType,
-                  style: context.textTheme.bodyLarge,
-                ),
-                const SizedBox(height: 10),
-                TemboPicker2(
-                  options: VerDocumentType.values,
-                  onChange: onTypeSelected,
-                  label: (t) => t.label,
-                  selected: (p0) => p0 == type,
-                ),
-                const SizedBox(height: 25),
-                TemboTextField(
-                  controller: numberController,
-                  hint: TemboTexts.docNumber,
-                  validator: validateName,
-                ),
-                const SizedBox(height: 15),
-                TemboDatePicker(
-                  onSelected: onIssueDateSelected,
-                  value: issueDate,
-                  hint: TemboTexts.docIssueDate,
-                  error: issueDateError,
-                ),
-                const SizedBox(height: 15),
-                TemboDatePicker(
-                  onSelected: onExpiryDateSelected,
-                  value: expiryDate,
-                  hint: TemboTexts.docExpiryDate,
-                  error: expiryDateError,
-                ),
-                const SizedBox(height: 25),
-                ValidationErrorView(error: error),
-              ],
+    return TemboScaffold(
+      body: TemboForm(
+        key: formKey,
+        child: ListView(
+          padding: kPagePadding,
+          children: [
+            const PageTitle(title: TemboTexts.docDataPageTitle),
+            const SizedBox(height: 15),
+            const TemboText(TemboTexts.docType),
+            const SizedBox(height: 10),
+            FieldWrapper(
+              field: Field.docType,
+              builder: (_, canUpdate) => TemboPicker2(
+                options: VerDocumentType.values,
+                onChange: onTypeSelected,
+                label: (t) => t.label,
+                selected: (p0) => p0 == type,
+                active: canUpdate,
+              ),
             ),
-          ),
-          bottomNavigationBar: BottomNavBarButton(
-            callback: next,
-          ),
-        );
-      }
+            const SizedBox(height: 25),
+            FieldWrapper(
+              field: Field.docNumber,
+              builder: (_, canUpdate) => TemboTextField(
+                controller: numberController,
+                hint: TemboTexts.docNumber,
+                validator: validateName,
+                enabled: canUpdate,
+              ),
+            ),
+            const SizedBox(height: 15),
+            FieldWrapper(
+              field: Field.docIssueDate,
+              builder: (_, canUpdate) => TemboDatePicker(
+                onSelected: onIssueDateSelected,
+                value: issueDate,
+                hint: TemboTexts.docIssueDate,
+                error: issueDateError,
+                active: canUpdate,
+              ),
+            ),
+            const SizedBox(height: 15),
+            FieldWrapper(
+              field: Field.docExpiryDate,
+              builder: (_, canUpdate) => TemboDatePicker(
+                onSelected: onExpiryDateSelected,
+                value: expiryDate,
+                hint: TemboTexts.docExpiryDate,
+                error: expiryDateError,
+                active: canUpdate,
+              ),
+            ),
+            const SizedBox(height: 25),
+            ValidationErrorView(error: error),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavBarButton(
+        callback: next,
+      ),
     );
   }
 

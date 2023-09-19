@@ -32,7 +32,8 @@ class TemboText extends StatelessWidget {
             return Text(
               (locale == TemboLocale.en ? enTexts[data] : swTexts[data]) ??
                   data,
-              style: (style ?? const TextStyle()).copyWith(
+              style:
+                  (style ?? TextStyle(color: theme.colorScheme.body)).copyWith(
                 fontFamily: theme.fontFamily,
               ),
               textAlign: textAlign,

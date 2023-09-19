@@ -14,7 +14,7 @@ class LightTemboColors {
   static const title = Color(0xffAAC0CE);
   static const body = Colors.black87;
 
-  static const scaffoldBackground = Color.fromARGB(255, 245, 245, 245);
+  static const scaffoldBackground = Color.fromARGB(255, 255, 255, 255);
 
   static const background = Colors.white;
   static const onBackground = Colors.black87;

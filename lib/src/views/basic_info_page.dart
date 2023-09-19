@@ -59,46 +59,54 @@ class _BasicInfoPageState extends TemboState<BasicInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ThemeDataWrapper(
-      builder: (context, theme) {
-        return Scaffold(
-          appBar: AppBar(),
-          backgroundColor: theme.colorScheme.scaffoldBackground,
-          body: TemboForm(
-            key: formKey,
-            child: ListView(
-              padding: kPagePadding,
-              children: [
-                const PageTitle(title: TemboTexts.basicInfoPageTitle),
-                const SizedBox(height: 15),
-                TemboTextField(
+    return TemboScaffold(
+      body: Padding(
+        padding: kPagePadding,
+        child: TemboForm(
+          key: formKey,
+          child: ListView(
+            children: [
+              const PageTitle(title: TemboTexts.basicInfoPageTitle),
+              const SizedBox(height: 15),
+              FieldWrapper(
+                field: Field.firstName,
+                builder: (_, canUpdate) => TemboTextField(
                   controller: firstNameController,
                   textCapitalization: TextCapitalization.words,
                   hint: TemboTexts.userFirstName,
                   validator: validateName,
+                  enabled: canUpdate,
                 ),
-                const SizedBox(height: 15),
-                TemboTextField(
+              ),
+              const SizedBox(height: 15),
+              FieldWrapper(
+                field: Field.lastName,
+                builder: (_, canUpdate) => TemboTextField(
                   controller: lastNameController,
                   textCapitalization: TextCapitalization.words,
                   hint: TemboTexts.userLastName,
                   validator: validateName,
+                  enabled: canUpdate,
                 ),
-                const SizedBox(height: 15),
-                TemboDatePicker(
+              ),
+              const SizedBox(height: 15),
+              FieldWrapper(
+                field: Field.dob,
+                builder: (_, canUpdate) => TemboDatePicker(
                   value: date,
                   onSelected: onDateSelected,
                   error: dateError,
                   hint: TemboTexts.userDOB,
+                  active: canUpdate,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          bottomNavigationBar: BottomNavBarButton(
-            callback: next,
-          ),
-        );
-      }
+        ),
+      ),
+      bottomNavigationBar: BottomNavBarButton(
+        callback: next,
+      ),
     );
   }
 

@@ -42,7 +42,14 @@ class MainApp extends StatelessWidget {
                     ),
                     locale: TemboLocale.sw,
                     fontFamily: "circular",
-                    skipUserInfoCollection: true,
+                    scheme: TemboColorScheme.light(),
+                    unmodifiableFields: [
+                      Field.country,
+                      Field.dob,
+                      Field.docIssueDate,
+                      Field.firstName,
+                    ]
+                   // skipUserInfoCollection: true,
                   );
                 },
                 style: TextButton.styleFrom(

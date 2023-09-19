@@ -6,8 +6,8 @@ class TemboPicker2<T> extends StatelessWidget {
   final List<T> options;
   final ValueChanged<T> onChange;
   final bool Function(T) selected;
+  final bool active;
   final String Function(T) label;
-  final Widget Function(T option, bool selected, String label)? builder;
 
   const TemboPicker2({
     super.key,
@@ -15,7 +15,7 @@ class TemboPicker2<T> extends StatelessWidget {
     required this.onChange,
     required this.selected,
     required this.label,
-    this.builder,
+    this.active = true,
   });
 
   @override
@@ -27,18 +27,13 @@ class TemboPicker2<T> extends StatelessWidget {
       runAlignment: WrapAlignment.start,
       children: List.generate(
         options.length,
-        (index) => builder != null
-            ? builder!(
-                options[index],
-                selected(options[index]),
-                label(options[index]),
-              )
-            : TemboRadioButton(
-                value: options[index],
-                onPressed: onChange,
-                selected: selected,
-                label: label,
-              ),
+        (index) => TemboRadioButton(
+          value: options[index],
+          onPressed: onChange,
+          selected: selected,
+          label: label,
+          enabled: active,
+        ),
       ),
     );
   }
