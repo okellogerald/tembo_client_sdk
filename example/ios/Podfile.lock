@@ -59,11 +59,14 @@ PODS:
     - Smile_Identity_SDK (= 2.1.23)
   - Smile_Identity_SDK (2.1.23):
     - GoogleMLKit/FaceDetection
+  - url_launcher_ios (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - smile_identity_plugin (from `.symlinks/plugins/smile_identity_plugin/ios`)
   - Smile_Identity_SDK
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
   trunk:
@@ -86,6 +89,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   smile_identity_plugin:
     :path: ".symlinks/plugins/smile_identity_plugin/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
@@ -103,6 +108,7 @@ SPEC CHECKSUMS:
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   smile_identity_plugin: e0a11ec680c38d268122440e4bd252cc012d8635
   Smile_Identity_SDK: cc939bc1b52c6334ff3c5aa85fc089dcaefc3260
+  url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
 
 PODFILE CHECKSUM: 890a1091ec6e707e45e735f933b60eb7a6ba5775
 
