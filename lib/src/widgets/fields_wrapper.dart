@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tembo_client_sdk/src/view_models/fields_manager.dart';
 import 'package:tembo_client_sdk/tembo_client_sdk.dart';
 
 /// Exposes the most recent [TemboThemeData] instance

@@ -25,23 +25,25 @@ class TemboText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ThemeDataWrapper(builder: (context, theme) {
-      return ValueListenableBuilder(
-          valueListenable: localeManager,
-          builder: (context, locale, _) {
-            return Text(
-              (locale == TemboLocale.en ? enTexts[data] : swTexts[data]) ??
-                  data,
-              style:
-                  (style ?? TextStyle(color: theme.colorScheme.body)).copyWith(
-                fontFamily: theme.fontFamily,
-              ),
-              textAlign: textAlign,
-              overflow: overflow,
-              maxLines: maxLines,
-              textScaleFactor: 1.0,
-            );
-          });
-    });
+    return ThemeDataWrapper(
+      builder: (context, theme) {
+        return ValueListenableBuilder(
+            valueListenable: localeManager,
+            builder: (context, locale, _) {
+              final textStyle = (style ?? const TextStyle());
+              return Text(
+                (locale == TemboLocale.en ? enTexts[data] : swTexts[data]) ??
+                    data,
+                style: textStyle.copyWith(
+                  fontFamily: theme.fontFamily,
+                ),
+                textAlign: textAlign,
+                overflow: overflow,
+                maxLines: maxLines,
+                textScaleFactor: 1.0,
+              );
+            });
+      },
+    );
   }
 }

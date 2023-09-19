@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:tembo_client_sdk/src/components/source.dart';
 import 'package:tembo_client_sdk/src/views/source.dart';
-import 'package:tembo_client_sdk/tembo_client_sdk.dart';
-
-import '../widgets/theme_data_wrapper.dart';
 
 class BottomNavBarButton extends StatelessWidget {
   final VoidCallback callback;
@@ -18,11 +13,12 @@ class BottomNavBarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: ThemeDataWrapper(builder: (context, theme) {
+        final style = theme.bottomNavBarButtonStyle.copyWith(
+          foregroundColor: theme.colorScheme.onPrimary,
+        );
         return TemboTextButton(
           onPressed: callback,
-          style: theme.bottomNavBarButtonStyle.copyWith(
-            textStyle: TextStyle(color: Colors.white),
-          ),
+          style: style,
           child: TemboText(text ?? TemboTexts.actionsNext),
         );
       }),

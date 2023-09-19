@@ -11,10 +11,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark(
-        // fontFamily: "circular",
-        useMaterial3: true,
-      ),
+      theme: ThemeData.dark(),
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Application 1"),
@@ -24,33 +21,32 @@ class MainApp extends StatelessWidget {
             return Center(
               child: TextButton(
                 onPressed: () async {
-                  startTemboVerification(
-                    context,
-                    userData: TemboUserData(
-                      userId: "user-3",
-                      country: Country.tz(),
-                      gender: Gender.female,
-                      firstName: "Jane",
-                      lastName: "Doe",
-                      dob: DateTime(1995),
-                      document: VerDocument(
-                        type: VerDocumentType.nida,
-                        issueDate: DateTime.now(),
-                        expiryDate: DateTime.now(),
-                        idNumber: "2836464744784",
+                  startTemboVerification(context,
+                      userData: TemboUserData(
+                        userId: "user-3",
+                        country: Country.tz(),
+                        gender: Gender.female,
+                        firstName: "Jane",
+                        lastName: "Doe",
+                        dob: DateTime(1995),
+                        document: VerDocument(
+                          type: VerDocumentType.nida,
+                          issueDate: DateTime.now(),
+                          expiryDate: DateTime.now(),
+                          idNumber: "2836464744784",
+                        ),
                       ),
-                    ),
-                    locale: TemboLocale.sw,
-                    fontFamily: "circular",
-                    scheme: TemboColorScheme.light(),
-                    unmodifiableFields: [
-                      Field.country,
-                      Field.dob,
-                      Field.docIssueDate,
-                      Field.firstName,
-                    ]
-                   // skipUserInfoCollection: true,
-                  );
+                      locale: TemboLocale.sw,
+                      fontFamily: "circular",
+                      unmodifiableFields: [
+                        Field.country,
+                        Field.dob,
+                        Field.docIssueDate,
+                        Field.firstName,
+                      ],
+                      scheme: const TemboColorScheme.dark()
+                      // skipUserInfoCollection: true,
+                      );
                 },
                 style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(

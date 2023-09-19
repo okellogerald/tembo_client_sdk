@@ -28,6 +28,10 @@ class TemboScaffold extends StatelessWidget {
             appBar: AppBar(
               backgroundColor:
                   themeData.colorScheme.scaffoldBackground?.withOpacity(.5),
+              elevation: 0,
+              iconTheme: IconThemeData(
+                color: themeData.colorScheme.body,
+              ),
             ),
             backgroundColor: themeData.colorScheme.scaffoldBackground,
             body: builder == null ? body : builder!(context, themeData),

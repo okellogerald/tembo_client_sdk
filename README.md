@@ -2,7 +2,7 @@
 A flutter SDK for handling onboarding process specific to [TemboPlus](https://temboplus.com/) requirements.
 
 # Getting SDK
-Currently the SDK uses a third-party service provider, [Smile Identity](https://smileidentity.com/) for user identification and verification. Internally the package leverages [this plugin](https://pub.dev/packages/smile_identity_plugin) for handling all mobile native implementations. Please make sure you have done all the set-up required by that package before your first run.
+Currently the SDK uses a third-party service provider, [Smile Identity](https://smileidentity.com/) for user identification and verification. Internally the package leverages the [smile_identity_plugin](https://pub.dev/packages/smile_identity_plugin) plugin for handling all mobile native implementations. Please make sure you have done all the set-up required by that package before your first run.
 
 # Usage Guide
 The entry point to the SDK is the `startTemboVerification` function.

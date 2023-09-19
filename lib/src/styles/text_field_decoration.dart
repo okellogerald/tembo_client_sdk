@@ -20,7 +20,6 @@ class TemboTextFieldDecoration {
   final Widget? suffixIcon;
   final TemboBorderStyle? borderStyle;
   final EdgeInsets? padding;
-  final bool useDefinedStylesForDisabledBorder;
 
   const TemboTextFieldDecoration({
     this.fillColor,
@@ -42,7 +41,6 @@ class TemboTextFieldDecoration {
     this.suffixIcon,
     this.borderStyle = TemboBorderStyle.outline,
     this.padding,
-    this.useDefinedStylesForDisabledBorder = false,
   });
 
   TemboTextFieldDecoration copyWith({
@@ -80,18 +78,10 @@ class TemboTextFieldDecoration {
   }
 
   InputBorder get disabledBorder {
-    if (useDefinedStylesForDisabledBorder) {
-      return OutlineInputBorder(
-        borderSide: BorderSide(
-          color: borderColor ?? Colors.transparent,
-          width: borderWidth ?? 0,
-        ),
-      );
-    }
-    return const OutlineInputBorder(
+    return OutlineInputBorder(
       borderSide: BorderSide(
-        color: LightTemboColors.border,
-        width: 2,
+        color: borderColor ?? Colors.grey.shade100,
+        width: borderWidth ?? 0.5,
       ),
     );
   }
