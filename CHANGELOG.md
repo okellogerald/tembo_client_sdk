@@ -9,3 +9,7 @@
 ## 0.0.3
 
 * Added support for un-editable fields.
+
+## 0.0.4
+
+* UI Updates

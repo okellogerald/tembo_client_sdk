@@ -42,7 +42,9 @@ class TemboTexts {
   static const actionsClose = "actions-close";
   static const actionsReadTOC = "actions-read-toc";
 
+  static const dataPrepTitle = "data-prep-title";
   static const dataPrepDesc = "data-prep-desc";
+  static const dataPrepRequirementsTitle = "data-prep-req-title";
   static const dataPrepRequirement1 = "data-prep-req-1";
   static const dataPrepRequirement2 = "data-prep-req-2";
   static const dataPrepSupportedDocs = "data-prep-supported-docs";
@@ -106,12 +108,14 @@ const enTexts = {
   TemboTexts.tocPageAgreeConfirmDesc:
       "I have read and agreed to your Terms & Conditions",
   TemboTexts.dataPrepDesc:
-      "You're about to start the document capturing process. We have two requirements:",
-  TemboTexts.dataPrepRequirement1: 'Your Selfie',
-  TemboTexts.dataPrepRequirement2: 'Your Identity Document',
+      "You're about to start the document capturing process. We have two steps",
+  TemboTexts.dataPrepRequirement1: 'Take Your Selfie',
+  TemboTexts.dataPrepRequirement2: 'Capture Your Identity Document',
   TemboTexts.dataPrepSupportedDocs:
       "Only the below Identity Documents are supported:",
   TemboTexts.dataPrepNextPageCTA: "I'm ready. Let's go!",
+  TemboTexts.dataPrepTitle: "Verify Your Identity",
+  TemboTexts.dataPrepRequirementsTitle: "Steps",
 };
 
 const swTexts = {
@@ -159,12 +163,14 @@ const swTexts = {
   TemboTexts.tocPageAgreeConfirmDesc:
       "Nimesoma na ninakubaliana na Sheria na Masharti yenu",
   TemboTexts.dataPrepDesc:
-      "Unakaribia kuanza mchakato wa kunasa hati. Tuna mahitaji mawili:",
-  TemboTexts.dataPrepRequirement1: 'Picha Yako',
-  TemboTexts.dataPrepRequirement2: 'Hati yako ya Utambulisho',
+      "Tunahitaji kuhakikisha utambulisho wako.\n\nTafadhari andaa kitambulisho chako kisha fuata hatua zinazofuata",
+  TemboTexts.dataPrepRequirement1: 'Jipige Picha',
+  TemboTexts.dataPrepRequirement2: 'Piga picha kitambulisho',
   TemboTexts.dataPrepSupportedDocs:
       "Ni Hati za Utambulisho zilizo hapa chini ndizo zinazotumika:",
   TemboTexts.dataPrepNextPageCTA: "Niko tayari. Twende!",
+  TemboTexts.dataPrepTitle: "Hakiki Utambulisho Wako",
+  TemboTexts.dataPrepRequirementsTitle: "Hatua",
 };
 
 extension StringExt2 on String {

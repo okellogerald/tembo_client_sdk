@@ -18,48 +18,42 @@ class _DocumentsPreparationPageState extends State<DocumentsPreparationPage> {
   Widget build(BuildContext context) {
     return TemboScaffold(
       extendBody: true,
-      extendBehindAppBar: true,
-      body: Container(
-        padding: kHorPadding,
-        constraints: const BoxConstraints.expand(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const TemboText(
-              TemboTexts.dataPrepDesc,
-            ),
-            const SizedBox(height: 15),
-            const ListTile(
-              leading: TemboText("1."),
-              title: TemboText(TemboTexts.dataPrepRequirement1),
-            ),
-            const ListTile(
-              leading: TemboText("2."),
-              title: TemboText(TemboTexts.dataPrepRequirement1),
-              subtitle: TemboText(TemboTexts.dataPrepSupportedDocs),
-            ),
-            const SizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.only(left: 55),
-              child: Wrap(
-                runSpacing: 10,
-                spacing: 10,
-                alignment: WrapAlignment.start,
-                runAlignment: WrapAlignment.start,
-                children: List.generate(
-                  VerDocumentType.values.length,
-                  (index) {
-                    final label = VerDocumentType.values[index].label;
-                    return TemboText(
-                      "· ${label.tr()}",
-                    );
-                  },
-                ),
+      body: ListView(
+        padding: kPagePadding,
+        children: [
+          const PageTitle(title: TemboTexts.dataPrepTitle),
+          const SizedBox(height: 15),
+          const TemboText(
+            TemboTexts.dataPrepDesc,
+          ),
+          const SizedBox(height: 30),
+          TemboText(
+            TemboTexts.dataPrepRequirementsTitle,
+            style: context.textTheme.labelLarge,
+          ),
+          ListTile(
+            leading: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white),
               ),
+              child: const TemboText("1"),
             ),
-          ],
-        ),
+            title: const TemboText(TemboTexts.dataPrepRequirement1),
+          ),
+          ListTile(
+            leading: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white),
+              ),
+              child: const TemboText("2"),
+            ),
+            title: const TemboText(TemboTexts.dataPrepRequirement2),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavBarButton(
         callback: capture,
